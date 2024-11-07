@@ -1,0 +1,38 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    function isValidFoodPost() {
+      let requiredFields = ['foodDescription', 'quantity', 'pickupLocation', 'providerId', 'isActive'];
+      return request.resource.data.keys().hasAll(requiredFields)
+        && request.resource.data.foodDescription is string
+        && request.resource.data.foodDescription.size() > 0
+        && request.resource.data.quantity is number
+        && request.resource.data.quantity > 0;
+    }
+
+    // User rules
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && isOwner(userId);
+      allow update: if isAuthenticated() && isOwner(userId);
+      allow delete: if isAuthenticated() && isOwner(userId);
+    }
+
+    // Food post rules
+    match /foodPosts/{postId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && isValidFoodPost() && isOwner(request.resource.data.providerId);
+      allow update: if isAuthenticated() && isOwner(resource.data.providerId);
+      allow delete: if isAuthenticated() && isOwner(resource.data.providerId);
+    }
+  }
+}

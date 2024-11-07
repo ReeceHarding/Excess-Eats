@@ -1,0 +1,255 @@
+# .cursorrules for Excess Eats Android App
+# This file defines custom rules and guidelines for Cursor AI when generating Kotlin code for the Excess Eats project.
+
+# ========================================
+# Project Overview
+# ========================================
+project:
+  name: Excess Eats
+  description: >
+    Excess Eats is an Android application designed to reduce food waste by connecting users with leftover food from nearby catering events. Built using Kotlin and Firebase, the app features real-time notifications, map integration, and user authentication.
+  team:
+    - name: Xerxis Palsetia
+      role: Developer
+      github: x-pal
+      email: xpalsetia@wisc.edu
+    - name: Shivam Ratnani
+      role: Developer
+      github: shivamratnani
+      email: ratnani@wisc.edu
+    - name: Ahmad Adil Imam
+      role: Developer
+      github: ahmad-i
+      email: aaimam@wisc.edu
+    - name: Reece Harding
+      role: Developer
+      github: ReeceHarding
+      email: rharding2@wisc.edu
+    - name: Steven Zhuo
+      role: Developer
+      github: z3roToHero
+      email: szhuo2@wisc.edu
+
+# ========================================
+# Coding Standards
+# ========================================
+coding_standards:
+  language: Kotlin
+  style:
+    - Follow Kotlin coding conventions as per [Kotlin Official Style Guide](https://kotlinlang.org/docs/coding-conventions.html).
+    - Use camelCase for variable and function names.
+    - Use PascalCase for class and object names.
+    - Limit lines to 100 characters.
+    - Use 4 spaces for indentation.
+    - Place opening braces on the same line.
+    - Order class members in the following sequence:
+      1. Companion objects
+      2. Properties
+      3. Initializers
+      4. Constructors
+      5. Functions
+  comments:
+    - Include KDoc comments for all public classes, functions, and properties.
+    - Use inline comments sparingly and only to explain complex logic.
+    - Maintain up-to-date comments reflecting the current state of the code.
+
+# ========================================
+# Architecture and Design Patterns
+# ========================================
+architecture:
+  pattern: MVVM (Model-View-ViewModel)
+  guidelines:
+    - Separate UI logic from business logic using ViewModels.
+    - Use LiveData or Kotlin Flow for data observation.
+    - Repository pattern for data handling and abstraction.
+    - Dependency Injection using Hilt or Dagger.
+    - Utilize Android Jetpack components (e.g., Navigation, Room if needed).
+
+# ========================================
+# Libraries and Frameworks
+# ========================================
+libraries:
+  mandatory:
+    - name: Firebase Authentication
+      purpose: User authentication and management.
+    - name: Firebase Firestore
+      purpose: Real-time database for storing user data and food posts.
+    - name: Firebase Cloud Messaging (FCM)
+      purpose: Handling push notifications.
+    - name: Google Maps SDK
+      purpose: Displaying maps and handling geolocation.
+    - name: Fused Location Provider API
+      purpose: Obtaining user location for accurate notifications and navigation.
+  optional:
+    - name: Glide or Picasso
+      purpose: Image loading and caching.
+    - name: Retrofit
+      purpose: Handling network requests (if needed beyond Firebase).
+    - name: Coroutines
+      purpose: Asynchronous programming and managing background tasks.
+
+# ========================================
+# File and Project Structure
+# ========================================
+structure:
+  directories:
+    - name: src/main/java/com/exceseats
+      description: >
+        Contains all Kotlin source files organized by feature.
+    - name: src/main/res
+      description: >
+        Contains all resource files including layouts, drawables, and values.
+  files:
+    - name: AndroidManifest.xml
+      description: >
+        Defines essential information about the app to the Android build tools, the Android operating system, and Google Play.
+    - name: build.gradle
+      description: >
+        Contains project and module-level build configurations.
+    - name: .cursorrules
+      description: >
+        Defines custom rules and guidelines for Cursor AI.
+
+# ========================================
+# Error Handling and Logging
+# ========================================
+error_handling:
+  guidelines:
+    - Use try-catch blocks to handle exceptions gracefully.
+    - Avoid empty catch blocks; always log exceptions using Timber or Android’s Log class.
+    - Provide user-friendly error messages where appropriate.
+    - Validate all user inputs to prevent crashes and ensure data integrity.
+logging:
+  library: Timber
+  guidelines:
+    - Initialize Timber in the Application class.
+    - Use appropriate log levels (e.g., Debug, Info, Warning, Error).
+    - Remove or disable verbose logging in production builds.
+
+# ========================================
+# Security Practices
+# ========================================
+security:
+  guidelines:
+    - Securely handle user authentication and authorization using Firebase Authentication.
+    - Validate and sanitize all user inputs to prevent injection attacks.
+    - Use HTTPS for all network communications.
+    - Do not store sensitive information in plain text.
+    - Implement proper access controls for Firestore data.
+
+# ========================================
+# Testing Guidelines
+# ========================================
+testing:
+  frameworks:
+    - name: JUnit
+      purpose: Unit testing.
+    - name: Espresso
+      purpose: UI testing.
+    - name: Mockito
+      purpose: Mocking dependencies.
+  strategies:
+    - Write unit tests for ViewModels, Repositories, and other business logic.
+    - Implement UI tests for critical user flows.
+    - Ensure high code coverage to maintain code quality.
+    - Use Test-Driven Development (TDD) where feasible.
+
+# ========================================
+# Documentation Standards
+# ========================================
+documentation:
+  guidelines:
+    - Maintain up-to-date README.md with project overview, setup instructions, and contribution guidelines.
+    - Use KDoc for inline documentation of classes, functions, and properties.
+    - Document API endpoints and data models clearly.
+    - Provide a changelog to track significant changes and updates.
+
+# ========================================
+# Best Practices
+# ========================================
+best_practices:
+  - Utilize Kotlin's features such as data classes, extension functions, and coroutines for cleaner and more efficient code.
+  - Avoid memory leaks by properly handling lifecycle-aware components.
+  - Optimize Firestore queries to reduce latency and cost.
+  - Ensure the app is responsive and handles different screen sizes and orientations gracefully.
+  - Follow Material Design guidelines for a consistent and intuitive user interface.
+
+# ========================================
+# AI Generation Rules
+# ========================================
+ai_rules:
+  behavior:
+    - Generate clean, readable, and maintainable Kotlin code.
+    - Adhere strictly to the MVVM architecture.
+    - Utilize the specified libraries and frameworks effectively.
+    - Follow the defined coding standards and naming conventions.
+    - Include necessary comments and documentation.
+    - Implement error handling and logging as per guidelines.
+    - Ensure security best practices are followed in all generated code.
+    - Write testable code and include unit tests where applicable.
+  restrictions:
+    - Do not generate deprecated APIs or methods.
+    - Avoid hardcoding values; use resources and constants instead.
+    - Do not include any sensitive information or credentials in the code.
+    - Ensure all generated code is free from common vulnerabilities and follows security guidelines.
+
+# ========================================
+# Example Snippets and Templates
+# ========================================
+examples:
+  viewmodel:
+    description: Template for creating a ViewModel.
+    code: |
+      /**
+       * ViewModel for [Feature] feature.
+       */
+      class [Feature]ViewModel @ViewModelInject constructor(
+          private val repository: [Feature]Repository
+      ) : ViewModel() {
+
+          private val _state = MutableLiveData<[Feature]State>()
+          val state: LiveData<[Feature]State> = _state
+
+          fun loadData() {
+              viewModelScope.launch {
+                  try {
+                      val data = repository.getData()
+                      _state.value = [Feature]State.Success(data)
+                  } catch (e: Exception) {
+                      _state.value = [Feature]State.Error(e.localizedMessage)
+                  }
+              }
+          }
+      }
+
+  repository:
+    description: Template for creating a Repository.
+    code: |
+      /**
+       * Repository for [Feature] feature.
+       */
+      class [Feature]Repository @Inject constructor(
+          private val firestore: FirebaseFirestore
+      ) {
+
+          suspend fun getData(): [DataType] {
+              return firestore.collection("collection")
+                  .get()
+                  .await()
+                  .toObjects([DataType]::class.java)
+          }
+      }
+
+# ========================================
+# Additional Notes
+# ========================================
+notes:
+  - Ensure all dependencies are up-to-date and compatible with each other.
+  - Regularly review and refactor code to maintain quality.
+  - Encourage team members to follow the guidelines to ensure consistency across the codebase.
+  - Utilize version control effectively with meaningful commit messages and branching strategies.
+
+# ========================================
+# License
+# ========================================
+license: CC0-1.0

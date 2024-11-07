@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/nearbyFoodSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nearby Food Alerts"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Receive notifications about new food available near you"
+        android:textColor="?android:textColorSecondary"
+        android:layout_marginBottom="24dp" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/claimUpdatesSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Claim Updates"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get notified about updates to your claimed food"
+        android:textColor="?android:textColorSecondary"
+        android:layout_marginBottom="24dp" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/systemNotificationsSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="System Notifications"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Receive updates about new features and important announcements"
+        android:textColor="?android:textColorSecondary" />
+
+</LinearLayout>

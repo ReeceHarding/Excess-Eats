@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Excess Eats</string>
+
+    <!-- Auth -->
+    <string name="hint_email">Correo electrónico</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="hint_confirm_password">Confirmar contraseña</string>
+    <string name="hint_name">Nombre</string>
+    <string name="btn_login">Iniciar sesión</string>
+    <string name="btn_register">Registrarse</string>
+
+    <!-- Home -->
+    <string name="empty_food_posts">No hay publicaciones disponibles</string>
+    <string name="quantity_format">Cantidad: %d</string>
+    <string name="posted_format">Publicado: %s</string>
+
+    <!-- Accessibility -->
+    <string name="a11y_food_post_image">Imagen de comida</string>
+    <string name="a11y_claim_food">Reclamar esta comida</string>
+    <string name="a11y_get_directions">Obtener direcciones al punto de recogida</string>
+    <string name="a11y_post_food">Crear nueva publicación</string>
+</resources>
