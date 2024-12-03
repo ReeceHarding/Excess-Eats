@@ -25,4 +25,26 @@
     <string name="message_no_notifications">No notifications yet</string>
     <string name="message_post_coming_soon">Posting feature coming soon!</string>
     <string name="message_profile_coming_soon">Profile customization coming soon!</string>
+
+    <!-- Post Food Form -->
+    <string name="post_title">Post Available Food</string>
+    <string name="hint_food_title">E.g., Leftover Sandwiches from Conference</string>
+    <string name="hint_food_type">Select food type</string>
+    <string name="hint_quantity">E.g., 20 servings</string>
+    <string name="hint_location">E.g., Student Union, Room 201</string>
+    <string name="hint_pickup_time">Select pickup time</string>
+    <string name="hint_description">Provide any additional details about the food…</string>
+    <string name="label_containers_available">Containers available for pickup</string>
+    <string name="button_upload_image">Upload Image</string>
+    <string name="button_post_food">Post Food</string>
+    <string name="map_placeholder">Google Maps Placeholder</string>
+
+    <!-- Food Types -->
+    <string-array name="food_types">
+        <item>Sandwiches</item>
+        <item>Pizza</item>
+        <item>Salad</item>
+        <item>Desserts</item>
+        <item>Other</item>
+    </string-array>
 </resources>

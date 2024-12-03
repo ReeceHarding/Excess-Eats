@@ -4,13 +4,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.yourcompany.excesseats.MainActivity
 import com.yourcompany.excesseats.data.model.User
+import com.yourcompany.excesseats.data.repository.UserRepository
 import com.yourcompany.excesseats.databinding.ActivityRegisterBinding
+import kotlinx.coroutines.launch
 import java.util.UUID
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
+    private val userRepository = UserRepository.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +37,19 @@ class RegisterActivity : AppCompatActivity() {
                     return@setOnClickListener
                 }
 
-                // Create user and proceed
-                createUserProfile(email, displayName)
+                // Check if email already exists
+                lifecycleScope.launch {
+                    val existingUser = userRepository.getUserByEmail(email)
+                    if (existingUser.isSuccess) {
+                        Toast.makeText(this@RegisterActivity,
+                            "Email already registered. Please login.",
+                            Toast.LENGTH_SHORT).show()
+                        return@launch
+                    }
+
+                    // Create user and proceed
+                    createUserProfile(email, password, displayName)
+                }
             } else {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
@@ -45,15 +60,20 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun createUserProfile(email: String, displayName: String) {
+    private suspend fun createUserProfile(email: String, password: String, displayName: String) {
         val user = User(
             id = UUID.randomUUID().toString(),
             email = email,
+            password = password, // In a real app, this would be hashed
             displayName = displayName
         )
 
-        // TODO: Save user to local storage or backend service
-        startMainActivity()
+        val result = userRepository.createUser(user)
+        if (result.isSuccess) {
+            startMainActivity()
+        } else {
+            Toast.makeText(this, "Failed to create account", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun startMainActivity() {

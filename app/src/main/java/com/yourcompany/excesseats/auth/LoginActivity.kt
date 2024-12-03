@@ -5,12 +5,16 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.yourcompany.excesseats.MainActivity
+import com.yourcompany.excesseats.data.repository.UserRepository
 import com.yourcompany.excesseats.databinding.ActivityLoginBinding
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val TAG = "LoginActivity"
+    private val userRepository = UserRepository.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         try {
@@ -21,14 +25,42 @@ class LoginActivity : AppCompatActivity() {
             setContentView(binding.root)
             Log.d(TAG, "Layout inflated")
 
-            // Temporary: Skip authentication and go straight to MainActivity
             binding.btnLogin.setOnClickListener {
                 val email = binding.etEmail.text.toString()
                 val password = binding.etPassword.text.toString()
 
                 if (email.isNotEmpty() && password.isNotEmpty()) {
-                    Log.d(TAG, "Login successful (temporary no-auth mode)")
-                    startMainActivity()
+                    if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                        Toast.makeText(this, "Please enter a valid email", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    }
+
+                    lifecycleScope.launch {
+                        val result = userRepository.getUserByEmail(email)
+                        when {
+                            result.isSuccess -> {
+                                val user = result.getOrNull()
+                                if (user != null) {
+                                    // In a real app, we would hash the password and compare
+                                    if (password == user.password) {
+                                        Log.d(TAG, "Login successful")
+                                        startMainActivity()
+                                    } else {
+                                        Log.w(TAG, "Incorrect password")
+                                        Toast.makeText(this@LoginActivity,
+                                            "Incorrect password",
+                                            Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                            }
+                            result.isFailure -> {
+                                Log.w(TAG, "User not found")
+                                Toast.makeText(this@LoginActivity,
+                                    "Email not registered. Please create an account.",
+                                    Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
                 } else {
                     Log.w(TAG, "Empty email or password")
                     Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()

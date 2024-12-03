@@ -6,11 +6,22 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
 
-class UserRepository {
+class UserRepository private constructor() {
     // In-memory storage
     private val users = mutableMapOf<String, User>()
     private val preferences = mutableMapOf<String, Preference>()
     private val userFlow = MutableStateFlow<Map<String, User>>(emptyMap())
+
+    companion object {
+        @Volatile
+        private var instance: UserRepository? = null
+
+        fun getInstance(): UserRepository {
+            return instance ?: synchronized(this) {
+                instance ?: UserRepository().also { instance = it }
+            }
+        }
+    }
 
     suspend fun createUser(user: User): Result<User> = try {
         users[user.id] = user
@@ -30,6 +41,17 @@ class UserRepository {
 
     suspend fun getUser(userId: String): Result<User> = try {
         val user = users[userId]
+        if (user != null) {
+            Result.success(user)
+        } else {
+            Result.failure(Exception("User not found"))
+        }
+    } catch (e: Exception) {
+        Result.failure(e)
+    }
+
+    suspend fun getUserByEmail(email: String): Result<User> = try {
+        val user = users.values.find { it.email == email }
         if (user != null) {
             Result.success(user)
         } else {

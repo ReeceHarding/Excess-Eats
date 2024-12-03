@@ -1,22 +1,30 @@
 package com.yourcompany.excesseats.data.repository
 
 import com.yourcompany.excesseats.data.model.Item
-import com.yourcompany.excesseats.data.model.ItemStatus
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
-import java.util.*
 
-class ItemRepository {
+class ItemRepository private constructor() {
     // In-memory storage
     private val items = mutableMapOf<String, Item>()
     private val itemsFlow = MutableStateFlow<Map<String, Item>>(emptyMap())
 
+    companion object {
+        @Volatile
+        private var instance: ItemRepository? = null
+
+        fun getInstance(): ItemRepository {
+            return instance ?: synchronized(this) {
+                instance ?: ItemRepository().also { instance = it }
+            }
+        }
+    }
+
     suspend fun createItem(item: Item): Result<Item> = try {
-        val itemWithId = item.copy(id = UUID.randomUUID().toString())
-        items[itemWithId.id] = itemWithId
+        items[item.id] = item
         itemsFlow.emit(items.toMap())
-        Result.success(itemWithId)
+        Result.success(item)
     } catch (e: Exception) {
         Result.failure(e)
     }
@@ -54,7 +62,6 @@ class ItemRepository {
         radiusInKm: Double
     ): Result<List<Item>> = try {
         val nearbyItems = items.values
-            .filter { it.status == ItemStatus.AVAILABLE }
             .filter { item ->
                 calculateDistance(
                     latitude, longitude,
@@ -73,7 +80,6 @@ class ItemRepository {
     ): Flow<Result<List<Item>>> = itemsFlow.map { items ->
         try {
             val nearbyItems = items.values
-                .filter { it.status == ItemStatus.AVAILABLE }
                 .filter { item ->
                     calculateDistance(
                         latitude, longitude,
@@ -84,47 +90,6 @@ class ItemRepository {
         } catch (e: Exception) {
             Result.failure(e)
         }
-    }
-
-    suspend fun claimItem(
-        itemId: String,
-        userId: String
-    ): Result<Item> = try {
-        val item = items[itemId]
-        if (item == null) {
-            Result.failure(Exception("Item not found"))
-        } else if (item.status != ItemStatus.AVAILABLE) {
-            Result.failure(Exception("Item is not available"))
-        } else {
-            val updatedItem = item.copy(
-                status = ItemStatus.CLAIMED,
-                claimedBy = userId,
-                claimedAt = System.currentTimeMillis()
-            )
-            items[itemId] = updatedItem
-            itemsFlow.emit(items.toMap())
-            Result.success(updatedItem)
-        }
-    } catch (e: Exception) {
-        Result.failure(e)
-    }
-
-    suspend fun getUserItems(userId: String): Result<List<Item>> = try {
-        val userItems = items.values
-            .filter { it.providerId == userId }
-            .sortedByDescending { it.createdAt }
-        Result.success(userItems)
-    } catch (e: Exception) {
-        Result.failure(e)
-    }
-
-    suspend fun getClaimedItems(userId: String): Result<List<Item>> = try {
-        val claimedItems = items.values
-            .filter { it.claimedBy == userId }
-            .sortedByDescending { it.claimedAt }
-        Result.success(claimedItems)
-    } catch (e: Exception) {
-        Result.failure(e)
     }
 
     private fun calculateDistance(

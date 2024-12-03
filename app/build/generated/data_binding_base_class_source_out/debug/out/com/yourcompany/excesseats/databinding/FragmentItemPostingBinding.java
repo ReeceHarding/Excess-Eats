@@ -4,12 +4,19 @@ package com.yourcompany.excesseats.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.yourcompany.excesseats.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -20,12 +27,88 @@ public final class FragmentItemPostingBinding implements ViewBinding {
   private final CoordinatorLayout rootView;
 
   @NonNull
+  public final SwitchMaterial containerSwitch;
+
+  @NonNull
+  public final TextInputEditText descriptionInput;
+
+  @NonNull
+  public final TextInputLayout descriptionLayout;
+
+  @NonNull
+  public final AutoCompleteTextView foodTypeInput;
+
+  @NonNull
+  public final TextInputLayout foodTypeLayout;
+
+  @NonNull
+  public final ImageView imagePreview;
+
+  @NonNull
+  public final TextInputEditText locationInput;
+
+  @NonNull
+  public final TextInputLayout locationLayout;
+
+  @NonNull
+  public final FrameLayout mapContainer;
+
+  @NonNull
+  public final TextInputEditText pickupTimeInput;
+
+  @NonNull
+  public final TextInputLayout pickupTimeLayout;
+
+  @NonNull
+  public final TextInputEditText quantityInput;
+
+  @NonNull
+  public final TextInputLayout quantityLayout;
+
+  @NonNull
+  public final MaterialButton submitButton;
+
+  @NonNull
+  public final TextInputEditText titleInput;
+
+  @NonNull
+  public final TextInputLayout titleLayout;
+
+  @NonNull
   public final MaterialToolbar toolbar;
 
+  @NonNull
+  public final MaterialButton uploadImageButton;
+
   private FragmentItemPostingBinding(@NonNull CoordinatorLayout rootView,
-      @NonNull MaterialToolbar toolbar) {
+      @NonNull SwitchMaterial containerSwitch, @NonNull TextInputEditText descriptionInput,
+      @NonNull TextInputLayout descriptionLayout, @NonNull AutoCompleteTextView foodTypeInput,
+      @NonNull TextInputLayout foodTypeLayout, @NonNull ImageView imagePreview,
+      @NonNull TextInputEditText locationInput, @NonNull TextInputLayout locationLayout,
+      @NonNull FrameLayout mapContainer, @NonNull TextInputEditText pickupTimeInput,
+      @NonNull TextInputLayout pickupTimeLayout, @NonNull TextInputEditText quantityInput,
+      @NonNull TextInputLayout quantityLayout, @NonNull MaterialButton submitButton,
+      @NonNull TextInputEditText titleInput, @NonNull TextInputLayout titleLayout,
+      @NonNull MaterialToolbar toolbar, @NonNull MaterialButton uploadImageButton) {
     this.rootView = rootView;
+    this.containerSwitch = containerSwitch;
+    this.descriptionInput = descriptionInput;
+    this.descriptionLayout = descriptionLayout;
+    this.foodTypeInput = foodTypeInput;
+    this.foodTypeLayout = foodTypeLayout;
+    this.imagePreview = imagePreview;
+    this.locationInput = locationInput;
+    this.locationLayout = locationLayout;
+    this.mapContainer = mapContainer;
+    this.pickupTimeInput = pickupTimeInput;
+    this.pickupTimeLayout = pickupTimeLayout;
+    this.quantityInput = quantityInput;
+    this.quantityLayout = quantityLayout;
+    this.submitButton = submitButton;
+    this.titleInput = titleInput;
+    this.titleLayout = titleLayout;
     this.toolbar = toolbar;
+    this.uploadImageButton = uploadImageButton;
   }
 
   @Override
@@ -55,13 +138,119 @@ public final class FragmentItemPostingBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.containerSwitch;
+      SwitchMaterial containerSwitch = ViewBindings.findChildViewById(rootView, id);
+      if (containerSwitch == null) {
+        break missingId;
+      }
+
+      id = R.id.descriptionInput;
+      TextInputEditText descriptionInput = ViewBindings.findChildViewById(rootView, id);
+      if (descriptionInput == null) {
+        break missingId;
+      }
+
+      id = R.id.descriptionLayout;
+      TextInputLayout descriptionLayout = ViewBindings.findChildViewById(rootView, id);
+      if (descriptionLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.foodTypeInput;
+      AutoCompleteTextView foodTypeInput = ViewBindings.findChildViewById(rootView, id);
+      if (foodTypeInput == null) {
+        break missingId;
+      }
+
+      id = R.id.foodTypeLayout;
+      TextInputLayout foodTypeLayout = ViewBindings.findChildViewById(rootView, id);
+      if (foodTypeLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.imagePreview;
+      ImageView imagePreview = ViewBindings.findChildViewById(rootView, id);
+      if (imagePreview == null) {
+        break missingId;
+      }
+
+      id = R.id.locationInput;
+      TextInputEditText locationInput = ViewBindings.findChildViewById(rootView, id);
+      if (locationInput == null) {
+        break missingId;
+      }
+
+      id = R.id.locationLayout;
+      TextInputLayout locationLayout = ViewBindings.findChildViewById(rootView, id);
+      if (locationLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.mapContainer;
+      FrameLayout mapContainer = ViewBindings.findChildViewById(rootView, id);
+      if (mapContainer == null) {
+        break missingId;
+      }
+
+      id = R.id.pickupTimeInput;
+      TextInputEditText pickupTimeInput = ViewBindings.findChildViewById(rootView, id);
+      if (pickupTimeInput == null) {
+        break missingId;
+      }
+
+      id = R.id.pickupTimeLayout;
+      TextInputLayout pickupTimeLayout = ViewBindings.findChildViewById(rootView, id);
+      if (pickupTimeLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.quantityInput;
+      TextInputEditText quantityInput = ViewBindings.findChildViewById(rootView, id);
+      if (quantityInput == null) {
+        break missingId;
+      }
+
+      id = R.id.quantityLayout;
+      TextInputLayout quantityLayout = ViewBindings.findChildViewById(rootView, id);
+      if (quantityLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.submitButton;
+      MaterialButton submitButton = ViewBindings.findChildViewById(rootView, id);
+      if (submitButton == null) {
+        break missingId;
+      }
+
+      id = R.id.titleInput;
+      TextInputEditText titleInput = ViewBindings.findChildViewById(rootView, id);
+      if (titleInput == null) {
+        break missingId;
+      }
+
+      id = R.id.titleLayout;
+      TextInputLayout titleLayout = ViewBindings.findChildViewById(rootView, id);
+      if (titleLayout == null) {
+        break missingId;
+      }
+
       id = R.id.toolbar;
       MaterialToolbar toolbar = ViewBindings.findChildViewById(rootView, id);
       if (toolbar == null) {
         break missingId;
       }
 
-      return new FragmentItemPostingBinding((CoordinatorLayout) rootView, toolbar);
+      id = R.id.uploadImageButton;
+      MaterialButton uploadImageButton = ViewBindings.findChildViewById(rootView, id);
+      if (uploadImageButton == null) {
+        break missingId;
+      }
+
+      return new FragmentItemPostingBinding((CoordinatorLayout) rootView, containerSwitch,
+          descriptionInput, descriptionLayout, foodTypeInput, foodTypeLayout, imagePreview,
+          locationInput, locationLayout, mapContainer, pickupTimeInput, pickupTimeLayout,
+          quantityInput, quantityLayout, submitButton, titleInput, titleLayout, toolbar,
+          uploadImageButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
