@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-52:/layout/fragment_item_discovery.xml",
+        "source": "com.yourcompany.excesseats.app-main-55:/layout/fragment_item_discovery.xml"
+    },
+    {
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-52:/layout/fragment_user_profile.xml",
+        "source": "com.yourcompany.excesseats.app-main-55:/layout/fragment_user_profile.xml"
+    },
+    {
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-52:/layout/fragment_notifications.xml",
+        "source": "com.yourcompany.excesseats.app-main-55:/layout/fragment_notifications.xml"
+    },
+    {
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-52:/layout/activity_main.xml",
+        "source": "com.yourcompany.excesseats.app-main-55:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-52:/layout/fragment_item_posting.xml",
+        "source": "com.yourcompany.excesseats.app-main-55:/layout/fragment_item_posting.xml"
+    },
+    {
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-52:/layout/activity_register.xml",
+        "source": "com.yourcompany.excesseats.app-main-55:/layout/activity_register.xml"
+    },
+    {
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-52:/layout/activity_login.xml",
+        "source": "com.yourcompany.excesseats.app-main-55:/layout/activity_login.xml"
+    }
+]

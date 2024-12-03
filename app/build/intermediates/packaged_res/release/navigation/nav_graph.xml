@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/itemDiscoveryFragment">
+
+    <fragment
+        android:id="@+id/itemDiscoveryFragment"
+        android:name="com.yourcompany.excesseats.ui.discovery.ItemDiscoveryFragment"
+        android:label="@string/title_discover">
+        <action
+            android:id="@+id/action_discover_to_detail"
+            app:destination="@id/itemDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/itemPostingFragment"
+        android:name="com.yourcompany.excesseats.ui.posting.ItemPostingFragment"
+        android:label="@string/title_post" />
+
+    <fragment
+        android:id="@+id/itemDetailFragment"
+        android:name="com.yourcompany.excesseats.ui.detail.ItemDetailFragment"
+        android:label="@string/title_detail">
+        <argument
+            android:name="itemId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="com.yourcompany.excesseats.ui.profile.UserProfileFragment"
+        android:label="@string/title_profile" />
+
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.yourcompany.excesseats.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications" />
+
+</navigation>

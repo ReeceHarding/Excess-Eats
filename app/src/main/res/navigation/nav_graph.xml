@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_discover">
+
+    <fragment
+        android:id="@+id/navigation_discover"
+        android:name="com.yourcompany.excesseats.ui.discovery.ItemDiscoveryFragment"
+        android:label="@string/title_discover" />
+
+    <fragment
+        android:id="@+id/navigation_post"
+        android:name="com.yourcompany.excesseats.ui.posting.ItemPostingFragment"
+        android:label="@string/title_post" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.yourcompany.excesseats.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.yourcompany.excesseats.ui.profile.UserProfileFragment"
+        android:label="@string/title_profile" />
+
+</navigation>

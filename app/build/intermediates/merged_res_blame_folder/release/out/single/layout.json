@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeReleaseResources-59:/layout/activity_main.xml",
+        "source": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-61:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.yourcompany.excesseats.app-mergeReleaseResources-59:/layout/activity_login.xml",
+        "source": "com.yourcompany.excesseats.app-main-61:/layout/activity_login.xml"
+    },
+    {
+        "merged": "com.yourcompany.excesseats.app-mergeReleaseResources-59:/layout/activity_register.xml",
+        "source": "com.yourcompany.excesseats.app-main-61:/layout/activity_register.xml"
+    }
+]

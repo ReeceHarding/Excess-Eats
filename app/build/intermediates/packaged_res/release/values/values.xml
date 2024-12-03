@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <color name="black">#FF000000</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="action_back_to_login">Back to Login</string>
+    <string name="action_login">Log In</string>
+    <string name="action_register">Register</string>
+    <string name="app_name">ExcessEats</string>
+    <string name="com.google.firebase.crashlytics.mapping_file_id" ns1:ignore="UnusedResources,TypographyDashes" translatable="false">00000000000000000000000000000000</string>
+    <string name="gcm_defaultSenderId" translatable="false">123456789000</string>
+    <string name="google_api_key" translatable="false">YOUR-API-KEY</string>
+    <string name="google_app_id" translatable="false">1:123456789000:android:1234567890abcdef</string>
+    <string name="google_crash_reporting_api_key" translatable="false">YOUR-API-KEY</string>
+    <string name="google_maps_key">AIzaSyAJ5IZslt0hKP3DjFUHg9dbOhZRNhcybYo</string>
+    <string name="google_storage_bucket" translatable="false">excess-eats.appspot.com</string>
+    <string name="hint_display_name">Display Name</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="project_id" translatable="false">excess-eats</string>
+    <string name="title_detail">Details</string>
+    <string name="title_discover">Discover</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_post">Post</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_register">Create Account</string>
+    <style name="Theme.ExcessEats" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
+    <style name="Theme.ExcessEats.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
+</resources>

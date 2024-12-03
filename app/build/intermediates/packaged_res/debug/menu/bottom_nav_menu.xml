@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/itemDiscoveryFragment"
+        android:icon="@drawable/ic_discover"
+        android:title="@string/title_discover" />
+
+    <item
+        android:id="@+id/itemPostingFragment"
+        android:icon="@drawable/ic_post"
+        android:title="@string/title_post" />
+
+    <item
+        android:id="@+id/notificationsFragment"
+        android:icon="@drawable/ic_notifications"
+        android:title="@string/title_notifications" />
+
+    <item
+        android:id="@+id/userProfileFragment"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/title_profile" />
+</menu>

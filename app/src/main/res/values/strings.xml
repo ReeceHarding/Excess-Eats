@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ExcessEats</string>
+    <string name="google_maps_key">AIzaSyAJ5IZslt0hKP3DjFUHg9dbOhZRNhcybYo</string>
+
+    <!-- Navigation Titles -->
+    <string name="title_discover">Discover</string>
+    <string name="title_post">Post</string>
+    <string name="title_detail">Details</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_register">Create Account</string>
+
+    <!-- Authentication -->
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_display_name">Display Name</string>
+    <string name="action_login">Log In</string>
+    <string name="action_register">Register</string>
+    <string name="action_back_to_login">Back to Login</string>
+    <string name="action_logout">Log Out</string>
+
+    <!-- Messages -->
+    <string name="message_no_items">No items available nearby</string>
+    <string name="message_no_notifications">No notifications yet</string>
+    <string name="message_post_coming_soon">Posting feature coming soon!</string>
+    <string name="message_profile_coming_soon">Profile customization coming soon!</string>
+</resources>

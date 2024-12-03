@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.0.0" type="partial_results">
+    <map id="NotificationPermission">
+        <entry
+            name="className"
+            string="com/bumptech/glide/request/target/NotificationTarget"/>
+        <entry
+            name="source"
+            boolean="true"/>
+        <location id="class"
+            file="$GRADLE_USER_HOME/caches/8.10.2/transforms/4cc3ba6d027105de94ee62b6c5f896b8/transformed/jetified-glide-4.15.1/jars/classes.jar"/>
+    </map>
+    <map id="UnusedResources">
+        <location id="R.color.purple_200"
+            file="${:app*debug*sourceProvider*0*resDir*0}/values/colors.xml"
+            line="3"
+            column="12"
+            startOffset="62"
+            endLine="3"
+            endColumn="29"
+            endOffset="79"/>
+        <entry
+            name="model"
+            string="attr[colorPrimaryVariant(R)],color[purple_200(D),black(U),teal_200(U),white(U),teal_700(U),ic_launcher_background(U),purple_700(U),purple_500(U)],drawable[ic_post(U),ic_discover(U),ic_profile(U),ic_notifications(U),ic_launcher_foreground(U)],id[bottom_navigation(U),nav_graph(D),etPassword(U),itemDiscoveryFragment(U),etEmail(U),nav_host_fragment(U),itemPostingFragment(U),btnRegister(U),itemDetailFragment(U),btnLogin(U),etDisplayName(U),notificationsFragment(U),userProfileFragment(U),action_discover_to_detail(R)],layout[activity_login(U),activity_main(U),activity_register(U)],menu[bottom_nav_menu(U)],mipmap[ic_launcher_round(U),ic_launcher(U)],navigation[nav_graph(U)],string[hint_display_name(U),title_notifications(U),hint_password(U),action_back_to_login(U),action_login(U),title_post(U),title_discover(U),google_maps_key(U),app_name(U),action_register(U),title_profile(U),title_register(U),title_detail(U),hint_email(U)],style[Theme_ExcessEats_NoActionBar(U),Widget_MaterialComponents_Button_TextButton(R),Theme_ExcessEats(U),Theme_MaterialComponents_DayNight_DarkActionBar(R),Theme_MaterialComponents_DayNight_NoActionBar(R)],xml[data_extraction_rules(U),backup_rules(U)];1c^2b^30^25^27^2c^32,1d^e^22^1f,1e^2e^23^30^25^2c^26^32,1f^a^29^9^28^c^24^b^2d,20^6^d,21^6^d,22^11^29^16^28^2f^2d^24,31^35^8^7^4^3^5^2^0,33^34^8^7^4^3^5^2^0;;;"/>
+    </map>
+
+</incidents>

@@ -1,39 +1,36 @@
 package com.yourcompany.excesseats.data.repository
 
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
-import com.google.firebase.storage.FirebaseStorage
 import com.yourcompany.excesseats.data.model.Item
 import com.yourcompany.excesseats.data.model.ItemStatus
-import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.map
 import java.util.*
 
 class ItemRepository {
-    private val firestore = FirebaseFirestore.getInstance()
-    private val storage = FirebaseStorage.getInstance()
-
-    private val itemsCollection = firestore.collection("items")
+    // In-memory storage
+    private val items = mutableMapOf<String, Item>()
+    private val itemsFlow = MutableStateFlow<Map<String, Item>>(emptyMap())
 
     suspend fun createItem(item: Item): Result<Item> = try {
         val itemWithId = item.copy(id = UUID.randomUUID().toString())
-        itemsCollection.document(itemWithId.id).set(itemWithId).await()
+        items[itemWithId.id] = itemWithId
+        itemsFlow.emit(items.toMap())
         Result.success(itemWithId)
     } catch (e: Exception) {
         Result.failure(e)
     }
 
     suspend fun updateItem(item: Item): Result<Item> = try {
-        itemsCollection.document(item.id).set(item).await()
+        items[item.id] = item
+        itemsFlow.emit(items.toMap())
         Result.success(item)
     } catch (e: Exception) {
         Result.failure(e)
     }
 
     suspend fun getItem(itemId: String): Result<Item> = try {
-        val itemDoc = itemsCollection.document(itemId).get().await()
-        val item = itemDoc.toObject(Item::class.java)
+        val item = items[itemId]
         if (item != null) {
             Result.success(item)
         } else {
@@ -44,7 +41,8 @@ class ItemRepository {
     }
 
     suspend fun deleteItem(itemId: String): Result<Unit> = try {
-        itemsCollection.document(itemId).delete().await()
+        items.remove(itemId)
+        itemsFlow.emit(items.toMap())
         Result.success(Unit)
     } catch (e: Exception) {
         Result.failure(e)
@@ -55,20 +53,15 @@ class ItemRepository {
         longitude: Double,
         radiusInKm: Double
     ): Result<List<Item>> = try {
-        // This is a simple implementation. In production, you'd want to use
-        // geohashing or a more sophisticated spatial query system
-        val items = itemsCollection
-            .whereEqualTo("status", ItemStatus.AVAILABLE)
-            .get()
-            .await()
-            .toObjects(Item::class.java)
+        val nearbyItems = items.values
+            .filter { it.status == ItemStatus.AVAILABLE }
             .filter { item ->
                 calculateDistance(
                     latitude, longitude,
                     item.latitude, item.longitude
                 ) <= radiusInKm
             }
-        Result.success(items)
+        Result.success(nearbyItems)
     } catch (e: Exception) {
         Result.failure(e)
     }
@@ -77,84 +70,59 @@ class ItemRepository {
         latitude: Double,
         longitude: Double,
         radiusInKm: Double
-    ): Flow<Result<List<Item>>> = flow {
+    ): Flow<Result<List<Item>>> = itemsFlow.map { items ->
         try {
-            val snapshot = itemsCollection
-                .whereEqualTo("status", ItemStatus.AVAILABLE)
-                .addSnapshotListener { snapshot, e ->
-                    if (e != null) {
-                        throw e
-                    }
-                    val items = snapshot?.toObjects(Item::class.java)
-                        ?.filter { item ->
-                            calculateDistance(
-                                latitude, longitude,
-                                item.latitude, item.longitude
-                            ) <= radiusInKm
-                        } ?: emptyList()
-                    emit(Result.success(items))
+            val nearbyItems = items.values
+                .filter { it.status == ItemStatus.AVAILABLE }
+                .filter { item ->
+                    calculateDistance(
+                        latitude, longitude,
+                        item.latitude, item.longitude
+                    ) <= radiusInKm
                 }
+            Result.success(nearbyItems)
         } catch (e: Exception) {
-            emit(Result.failure(e))
+            Result.failure(e)
         }
-    }
-
-    suspend fun uploadItemImage(itemId: String, imageBytes: ByteArray): Result<String> = try {
-        val imageRef = storage.reference.child("item_images/$itemId.jpg")
-        imageRef.putBytes(imageBytes).await()
-        val downloadUrl = imageRef.downloadUrl.await()
-        Result.success(downloadUrl.toString())
-    } catch (e: Exception) {
-        Result.failure(e)
     }
 
     suspend fun claimItem(
         itemId: String,
         userId: String
     ): Result<Item> = try {
-        val itemDoc = itemsCollection.document(itemId)
-        firestore.runTransaction { transaction ->
-            val snapshot = transaction.get(itemDoc)
-            val item = snapshot.toObject(Item::class.java)
-            if (item == null) {
-                throw Exception("Item not found")
-            }
-            if (item.status != ItemStatus.AVAILABLE) {
-                throw Exception("Item is not available")
-            }
+        val item = items[itemId]
+        if (item == null) {
+            Result.failure(Exception("Item not found"))
+        } else if (item.status != ItemStatus.AVAILABLE) {
+            Result.failure(Exception("Item is not available"))
+        } else {
             val updatedItem = item.copy(
                 status = ItemStatus.CLAIMED,
                 claimedBy = userId,
                 claimedAt = System.currentTimeMillis()
             )
-            transaction.set(itemDoc, updatedItem)
-            updatedItem
-        }.await()
-        Result.success(itemDoc.get().await().toObject(Item::class.java)!!)
+            items[itemId] = updatedItem
+            itemsFlow.emit(items.toMap())
+            Result.success(updatedItem)
+        }
     } catch (e: Exception) {
         Result.failure(e)
     }
 
     suspend fun getUserItems(userId: String): Result<List<Item>> = try {
-        val items = itemsCollection
-            .whereEqualTo("providerId", userId)
-            .orderBy("createdAt", Query.Direction.DESCENDING)
-            .get()
-            .await()
-            .toObjects(Item::class.java)
-        Result.success(items)
+        val userItems = items.values
+            .filter { it.providerId == userId }
+            .sortedByDescending { it.createdAt }
+        Result.success(userItems)
     } catch (e: Exception) {
         Result.failure(e)
     }
 
     suspend fun getClaimedItems(userId: String): Result<List<Item>> = try {
-        val items = itemsCollection
-            .whereEqualTo("claimedBy", userId)
-            .orderBy("claimedAt", Query.Direction.DESCENDING)
-            .get()
-            .await()
-            .toObjects(Item::class.java)
-        Result.success(items)
+        val claimedItems = items.values
+            .filter { it.claimedBy == userId }
+            .sortedByDescending { it.claimedAt }
+        Result.success(claimedItems)
     } catch (e: Exception) {
         Result.failure(e)
     }
