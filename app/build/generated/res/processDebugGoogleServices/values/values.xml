@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="firebase_database_url" translatable="false">https://excess-eats-c1b6a-default-rtdb.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">276976352856</string>
+    <string name="google_api_key" translatable="false">AIzaSyCIokxMuxQSFqlq3njQ55LA-44ZsLN0OYs</string>
+    <string name="google_app_id" translatable="false">1:276976352856:android:f3344b4c8f156c4983d42d</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCIokxMuxQSFqlq3njQ55LA-44ZsLN0OYs</string>
+    <string name="google_storage_bucket" translatable="false">excess-eats-c1b6a.firebasestorage.app</string>
+    <string name="project_id" translatable="false">excess-eats-c1b6a</string>
+</resources>

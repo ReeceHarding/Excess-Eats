@@ -1,10 +1,20 @@
 {
     "logs": [
         {
-            "outputFile": "com.yourcompany.excesseats.app-mergeDebugResources-51:/values-v16/values-v16.xml",
+            "outputFile": "com.yourcompany.excesseats.app-mergeDebugResources-55:/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "/Users/reeceharding/.gradle/caches/8.10.2/transforms/f30c9c1c4af8c358f007551f1af370ee/transformed/appcompat-1.6.1/res/values-v16/values-v16.xml",
+                    "source": "/Users/reeceharding/.gradle/caches/8.10.2/transforms/8f85a86b56cb7b9a121c5d64a0bf1fad/transformed/core-1.10.1/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                },
+                {
+                    "source": "/Users/reeceharding/.gradle/caches/8.10.2/transforms/26ba17d4213c0a6bce18608be2868975/transformed/appcompat-1.6.1/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -20,16 +30,6 @@
                         "endLines": "6",
                         "endColumns": "12",
                         "endOffsets": "289"
-                    }
-                },
-                {
-                    "source": "/Users/reeceharding/.gradle/caches/8.10.2/transforms/5ae29dbbf58c2c6115f2705f05a34e01/transformed/core-1.10.1/res/values-v16/values-v16.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "65",
-                        "endOffsets": "116"
                     }
                 }
             ]

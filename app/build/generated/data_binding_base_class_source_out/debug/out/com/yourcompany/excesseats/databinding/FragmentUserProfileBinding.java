@@ -4,6 +4,7 @@ package com.yourcompany.excesseats.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -24,12 +25,26 @@ public final class FragmentUserProfileBinding implements ViewBinding {
   public final MaterialButton btnLogout;
 
   @NonNull
+  public final MaterialButton btnSignIn;
+
+  @NonNull
+  public final LinearLayout loggedInLayout;
+
+  @NonNull
+  public final LinearLayout loggedOutLayout;
+
+  @NonNull
   public final MaterialToolbar toolbar;
 
   private FragmentUserProfileBinding(@NonNull CoordinatorLayout rootView,
-      @NonNull MaterialButton btnLogout, @NonNull MaterialToolbar toolbar) {
+      @NonNull MaterialButton btnLogout, @NonNull MaterialButton btnSignIn,
+      @NonNull LinearLayout loggedInLayout, @NonNull LinearLayout loggedOutLayout,
+      @NonNull MaterialToolbar toolbar) {
     this.rootView = rootView;
     this.btnLogout = btnLogout;
+    this.btnSignIn = btnSignIn;
+    this.loggedInLayout = loggedInLayout;
+    this.loggedOutLayout = loggedOutLayout;
     this.toolbar = toolbar;
   }
 
@@ -66,13 +81,32 @@ public final class FragmentUserProfileBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnSignIn;
+      MaterialButton btnSignIn = ViewBindings.findChildViewById(rootView, id);
+      if (btnSignIn == null) {
+        break missingId;
+      }
+
+      id = R.id.loggedInLayout;
+      LinearLayout loggedInLayout = ViewBindings.findChildViewById(rootView, id);
+      if (loggedInLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.loggedOutLayout;
+      LinearLayout loggedOutLayout = ViewBindings.findChildViewById(rootView, id);
+      if (loggedOutLayout == null) {
+        break missingId;
+      }
+
       id = R.id.toolbar;
       MaterialToolbar toolbar = ViewBindings.findChildViewById(rootView, id);
       if (toolbar == null) {
         break missingId;
       }
 
-      return new FragmentUserProfileBinding((CoordinatorLayout) rootView, btnLogout, toolbar);
+      return new FragmentUserProfileBinding((CoordinatorLayout) rootView, btnLogout, btnSignIn,
+          loggedInLayout, loggedOutLayout, toolbar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

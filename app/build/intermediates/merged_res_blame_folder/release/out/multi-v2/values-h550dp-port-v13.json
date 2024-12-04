@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.yourcompany.excesseats.app-mergeReleaseResources-58:/values-h550dp-port-v13/values-h550dp-port-v13.xml",
+            "outputFile": "com.yourcompany.excesseats.app-mergeReleaseResources-52:/values-h550dp-port-v13/values-h550dp-port-v13.xml",
             "map": [
                 {
-                    "source": "/Users/reeceharding/.gradle/caches/8.10.2/transforms/996d5b0ac90a8f79a6f6fe2b3c5744dc/transformed/material-1.9.0/res/values-h550dp-port-v13/values-h550dp-port-v13.xml",
+                    "source": "/Users/reeceharding/.gradle/caches/8.10.2/transforms/e53e2a76520555feb719060000b2a03a/transformed/material-1.10.0/res/values-h550dp-port-v13/values-h550dp-port-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

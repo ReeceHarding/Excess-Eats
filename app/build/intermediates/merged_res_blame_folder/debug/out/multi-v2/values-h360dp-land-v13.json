@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.yourcompany.excesseats.app-mergeDebugResources-51:/values-h360dp-land-v13/values-h360dp-land-v13.xml",
+            "outputFile": "com.yourcompany.excesseats.app-mergeDebugResources-55:/values-h360dp-land-v13/values-h360dp-land-v13.xml",
             "map": [
                 {
-                    "source": "/Users/reeceharding/.gradle/caches/8.10.2/transforms/996d5b0ac90a8f79a6f6fe2b3c5744dc/transformed/material-1.9.0/res/values-h360dp-land-v13/values-h360dp-land-v13.xml",
+                    "source": "/Users/reeceharding/.gradle/caches/8.10.2/transforms/e53e2a76520555feb719060000b2a03a/transformed/material-1.10.0/res/values-h360dp-land-v13/values-h360dp-land-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",

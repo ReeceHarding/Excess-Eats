@@ -32,8 +32,8 @@
 
    https://goo.gle/android-storage-usecases
 
-/Users/reeceharding/ExcessEatsNew/app/build.gradle:16: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]
-        targetSdk 33
+/Users/reeceharding/ExcessEatsNew/app/build.gradle:15: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]
+        targetSdk 34
         ~~~~~~~~~~~~
 
    Explanation for issues of type "OldTargetApi":
@@ -54,46 +54,64 @@
 
    https://developer.android.com/distribute/best-practices/develop/target-sdk.html
 
-/Users/reeceharding/ExcessEatsNew/app/build.gradle:50: Warning: A newer version of androidx.core:core-ktx than 1.10.1 is available: 1.15.0 [GradleDependency]
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/fragment_item_posting.xml:97: Warning: Replace the <fragment> tag with FragmentContainerView. [FragmentTagUsage from androidx.fragment]
+                    <fragment
+                     ~~~~~~~~
+
+   Explanation for issues of type "FragmentTagUsage":
+   FragmentContainerView replaces the <fragment> tag as the preferred         
+          way of adding fragments via XML. Unlike the <fragment> tag,
+   FragmentContainerView                 uses a normal FragmentTransaction
+   under the hood to add the initial fragment,                 allowing
+   further FragmentTransaction operations on the FragmentContainerView        
+           and providing a consistent timing for lifecycle events.
+
+   https://developer.android.com/reference/androidx/fragment/app/FragmentContainerView.html
+
+   Vendor: Android Open Source Project
+   Identifier: androidx.fragment
+   Feedback: https://issuetracker.google.com/issues/new?component=460964
+
+/Users/reeceharding/ExcessEatsNew/app/build.gradle:49: Warning: A newer version of androidx.core:core-ktx than 1.10.1 is available: 1.15.0 [GradleDependency]
     implementation 'androidx.core:core-ktx:1.10.1'
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/reeceharding/ExcessEatsNew/app/build.gradle:53: Warning: A newer version of androidx.appcompat:appcompat than 1.6.1 is available: 1.7.0 [GradleDependency]
+/Users/reeceharding/ExcessEatsNew/app/build.gradle:52: Warning: A newer version of androidx.appcompat:appcompat than 1.6.1 is available: 1.7.0 [GradleDependency]
     implementation 'androidx.appcompat:appcompat:1.6.1'
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/reeceharding/ExcessEatsNew/app/build.gradle:54: Warning: A newer version of androidx.constraintlayout:constraintlayout than 2.1.4 is available: 2.2.0 [GradleDependency]
+/Users/reeceharding/ExcessEatsNew/app/build.gradle:53: Warning: A newer version of androidx.constraintlayout:constraintlayout than 2.1.4 is available: 2.2.0 [GradleDependency]
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/reeceharding/ExcessEatsNew/app/build.gradle:55: Warning: A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.6.1 is available: 2.8.7 [GradleDependency]
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+/Users/reeceharding/ExcessEatsNew/app/build.gradle:54: Warning: A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.6.2 is available: 2.8.7 [GradleDependency]
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2'
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/reeceharding/ExcessEatsNew/app/build.gradle:56: Warning: A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.6.1 is available: 2.8.7 [GradleDependency]
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
+/Users/reeceharding/ExcessEatsNew/app/build.gradle:55: Warning: A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.6.2 is available: 2.8.7 [GradleDependency]
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.2'
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/reeceharding/ExcessEatsNew/app/build.gradle:57: Warning: A newer version of androidx.navigation:navigation-fragment-ktx than 2.6.0 is available: 2.8.4 [GradleDependency]
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
+/Users/reeceharding/ExcessEatsNew/app/build.gradle:56: Warning: A newer version of androidx.navigation:navigation-fragment-ktx than 2.7.5 is available: 2.8.4 [GradleDependency]
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.5'
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/reeceharding/ExcessEatsNew/app/build.gradle:58: Warning: A newer version of androidx.navigation:navigation-ui-ktx than 2.6.0 is available: 2.8.4 [GradleDependency]
-    implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
+/Users/reeceharding/ExcessEatsNew/app/build.gradle:57: Warning: A newer version of androidx.navigation:navigation-ui-ktx than 2.7.5 is available: 2.8.4 [GradleDependency]
+    implementation 'androidx.navigation:navigation-ui-ktx:2.7.5'
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/reeceharding/ExcessEatsNew/app/build.gradle:61: Warning: A newer version of com.google.android.material:material than 1.9.0 is available: 1.12.0 [GradleDependency]
-    implementation 'com.google.android.material:material:1.9.0'
-                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/reeceharding/ExcessEatsNew/app/build.gradle:70: Warning: A newer version of com.google.firebase:firebase-bom than 32.2.0 is available: 33.6.0 [GradleDependency]
-    implementation platform('com.google.firebase:firebase-bom:32.2.0')
-                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/reeceharding/ExcessEatsNew/app/build.gradle:79: Warning: A newer version of com.google.android.gms:play-services-auth than 20.6.0 is available: 21.2.0 [GradleDependency]
-    implementation 'com.google.android.gms:play-services-auth:20.6.0'
+/Users/reeceharding/ExcessEatsNew/app/build.gradle:60: Warning: A newer version of com.google.android.material:material than 1.10.0 is available: 1.12.0 [GradleDependency]
+    implementation 'com.google.android.material:material:1.10.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/build.gradle:69: Warning: A newer version of com.google.android.gms:play-services-auth than 20.7.0 is available: 21.2.0 [GradleDependency]
+    implementation 'com.google.android.gms:play-services-auth:20.7.0'
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/reeceharding/ExcessEatsNew/app/build.gradle:80: Warning: A newer version of com.google.android.gms:play-services-location than 21.0.1 is available: 21.3.0 [GradleDependency]
+/Users/reeceharding/ExcessEatsNew/app/build.gradle:70: Warning: A newer version of com.google.android.gms:play-services-location than 21.0.1 is available: 21.3.0 [GradleDependency]
     implementation 'com.google.android.gms:play-services-location:21.0.1'
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/reeceharding/ExcessEatsNew/app/build.gradle:81: Warning: A newer version of com.google.android.gms:play-services-maps than 18.1.0 is available: 19.0.0 [GradleDependency]
-    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+/Users/reeceharding/ExcessEatsNew/app/build.gradle:71: Warning: A newer version of com.google.android.gms:play-services-maps than 18.2.0 is available: 19.0.0 [GradleDependency]
+    implementation 'com.google.android.gms:play-services-maps:18.2.0'
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/reeceharding/ExcessEatsNew/app/build.gradle:93: Warning: A newer version of androidx.test.ext:junit than 1.1.5 is available: 1.2.1 [GradleDependency]
+/Users/reeceharding/ExcessEatsNew/app/build.gradle:72: Warning: A newer version of com.google.android.libraries.places:places than 3.2.0 is available: 4.1.0 [GradleDependency]
+    implementation 'com.google.android.libraries.places:places:3.2.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/build.gradle:87: Warning: A newer version of androidx.test.ext:junit than 1.1.5 is available: 1.2.1 [GradleDependency]
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/reeceharding/ExcessEatsNew/app/build.gradle:94: Warning: A newer version of androidx.test.espresso:espresso-core than 3.5.1 is available: 3.6.1 [GradleDependency]
+/Users/reeceharding/ExcessEatsNew/app/build.gradle:88: Warning: A newer version of androidx.test.espresso:espresso-core than 3.5.1 is available: 3.6.1 [GradleDependency]
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -104,9 +122,75 @@
    However, you may simply not be aware that a more recent version is
    available, and that is what this lint check helps find.
 
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/fragment_food_post_detail.xml:72: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+                        <LinearLayout
+                         ~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/fragment_food_post_detail.xml:94: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+                        <LinearLayout
+                         ~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/fragment_food_post_detail.xml:116: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+                        <LinearLayout
+                         ~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/fragment_food_post_detail.xml:138: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+                        <LinearLayout
+                         ~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/fragment_food_post_detail.xml:160: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+                        <LinearLayout
+                         ~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/item_food_post.xml:59: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+                <LinearLayout
+                 ~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/item_food_post.xml:81: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+                <LinearLayout
+                 ~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/item_food_post.xml:103: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+                <LinearLayout
+                 ~~~~~~~~~~~~
+
+   Explanation for issues of type "UseCompoundDrawables":
+   A LinearLayout which contains an ImageView and a TextView can be more
+   efficiently handled as a compound drawable (a single TextView, using the
+   drawableTop, drawableLeft, drawableRight and/or drawableBottom attributes
+   to draw one or more images adjacent to the text).
+
+   If the two widgets are offset from each other with margins, this can be
+   replaced with a drawablePadding attribute.
+
+   There's a lint quickfix to perform this conversion in the Eclipse plugin.
+
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/menu/bottom_nav_menu.xml:2: Warning: The resource R.menu.bottom_nav_menu appears to be unused [UnusedResources]
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+^
 /Users/reeceharding/ExcessEatsNew/app/src/main/res/values/colors.xml:3: Warning: The resource R.color.purple_200 appears to be unused [UnusedResources]
     <color name="purple_200">#FFBB86FC</color>
            ~~~~~~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/values/colors.xml:10: Warning: The resource R.color.gray appears to be unused [UnusedResources]
+    <color name="gray">#FF757575</color>
+           ~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/values/colors.xml:11: Warning: The resource R.color.light_gray appears to be unused [UnusedResources]
+    <color name="light_gray">#FFF5F5F5</color>
+           ~~~~~~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/list_item.xml:2: Warning: The resource R.layout.list_item appears to be unused [UnusedResources]
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+^
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/values/strings.xml:9: Warning: The resource R.string.title_detail appears to be unused [UnusedResources]
+    <string name="title_detail">Details</string>
+            ~~~~~~~~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/values/strings.xml:24: Warning: The resource R.string.message_no_items appears to be unused [UnusedResources]
+    <string name="message_no_items">No items available nearby</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/values/strings.xml:26: Warning: The resource R.string.message_post_coming_soon appears to be unused [UnusedResources]
+    <string name="message_post_coming_soon">Posting feature coming soon!</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/values/strings.xml:30: Warning: The resource R.string.post_title appears to be unused [UnusedResources]
+    <string name="post_title">Post Available Food</string>
+            ~~~~~~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/values/strings.xml:40: Warning: The resource R.string.map_placeholder appears to be unused [UnusedResources]
+    <string name="map_placeholder">Google Maps Placeholder</string>
+            ~~~~~~~~~~~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/values/strings.xml:43: Warning: The resource R.array.food_types appears to be unused [UnusedResources]
+    <string-array name="food_types">
+                  ~~~~~~~~~~~~~~~~~
 
    Explanation for issues of type "UnusedResources":
    Unused resources make applications larger and slow down builds.
@@ -141,4 +225,146 @@
    application iconwill not show if your monochrome attribute is not also
    specified in android:roundIcon.
 
-0 errors, 19 warnings
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/fragment_food_post_detail.xml:35: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/fragment_food_post_detail.xml:79: Warning: Missing contentDescription attribute on image [ContentDescription]
+                            <ImageView
+                             ~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/fragment_food_post_detail.xml:101: Warning: Missing contentDescription attribute on image [ContentDescription]
+                            <ImageView
+                             ~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/fragment_food_post_detail.xml:123: Warning: Missing contentDescription attribute on image [ContentDescription]
+                            <ImageView
+                             ~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/fragment_food_post_detail.xml:145: Warning: Missing contentDescription attribute on image [ContentDescription]
+                            <ImageView
+                             ~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/fragment_food_post_detail.xml:166: Warning: Missing contentDescription attribute on image [ContentDescription]
+                            <ImageView
+                             ~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/fragment_item_posting.xml:158: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/item_food_post.xml:17: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageView
+         ~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/item_food_post.xml:66: Warning: Missing contentDescription attribute on image [ContentDescription]
+                    <ImageView
+                     ~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/item_food_post.xml:88: Warning: Missing contentDescription attribute on image [ContentDescription]
+                    <ImageView
+                     ~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/item_food_post.xml:109: Warning: Missing contentDescription attribute on image [ContentDescription]
+                    <ImageView
+                     ~~~~~~~~~
+
+   Explanation for issues of type "ContentDescription":
+   Non-textual widgets like ImageViews and ImageButtons should use the
+   contentDescription attribute to specify a textual description of the widget
+   such that screen readers and other accessibility tools can adequately
+   describe the user interface.
+
+   Note that elements in application screens that are purely decorative and do
+   not provide any content or enable a user action should not have
+   accessibility content descriptions. In this case, set their descriptions to
+   @null. If your app's minSdkVersion is 16 or higher, you can instead set
+   these graphical elements' android:importantForAccessibility attributes to
+   no.
+
+   Note that for text fields, you should not set both the hint and the
+   contentDescription attributes since the hint will never be shown. Just set
+   the hint.
+
+   https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases
+
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/fragment_item_posting.xml:67: Warning: Missing accessibility label: provide either a view with an android:labelFor that references this view or provide an android:hint [LabelFor]
+                    <AutoCompleteTextView
+                     ~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "LabelFor":
+   Editable text fields should provide an android:hint or, provided your
+   minSdkVersion is at least 17, they may be referenced by a view with a
+   android:labelFor attribute.
+
+   When using android:labelFor, be sure to provide an android:text or an
+   android:contentDescription.
+
+   If your view is labeled but by a label in a different layout which includes
+   this one, just suppress this warning from lint.
+
+/Users/reeceharding/ExcessEatsNew/app/src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostAdapter.kt:54: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                timeText.text = "Available until ${timeFormat.format(foodPost.pickupTime)}"
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostAdapter.kt:54: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                timeText.text = "Available until ${timeFormat.format(foodPost.pickupTime)}"
+                                 ~~~~~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostAdapter.kt:71: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                    distanceText.text = "${distance.roundToInt()} km away"
+                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostAdapter.kt:71: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                    distanceText.text = "${distance.roundToInt()} km away"
+                                                                 ~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt:88: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+            timeText.text = "Available until ${SimpleDateFormat("h:mm a", Locale.getDefault()).format(post.pickupTime)}"
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt:88: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+            timeText.text = "Available until ${SimpleDateFormat("h:mm a", Locale.getDefault()).format(post.pickupTime)}"
+                             ~~~~~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt:90: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+            postedByText.text = "Posted by: ${post.userId}"
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt:90: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+            postedByText.text = "Posted by: ${post.userId}"
+                                 ~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt:122: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                            binding.claimButton.text = "Claimed"
+                                                        ~~~~~~~
+
+   Explanation for issues of type "SetTextI18n":
+   When calling TextView#setText
+   * Never call Number#toString() to format numbers; it will not handle
+   fraction separators and locale-specific digits properly. Consider using
+   String#format with proper format specifications (%d or %f) instead.
+   * Do not pass a string literal (e.g. "Hello") to display text. Hardcoded
+   text can not be properly translated to other languages. Consider using
+   Android resource strings instead.
+   * Do not build messages by concatenating text chunks. Such messages can not
+   be properly translated.
+
+   https://developer.android.com/guide/topics/resources/localization.html
+
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/fragment_food_post_detail.xml:194: Warning: Hardcoded string "Claim Food", should use @string resource [HardcodedText]
+                        android:text="Claim Food"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/fragment_food_post_detail.xml:201: Warning: Hardcoded string "Get Directions", should use @string resource [HardcodedText]
+                        android:text="Get Directions"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/fragment_item_discovery.xml:46: Warning: Hardcoded string "Nearby Food Posts", should use @string resource [HardcodedText]
+                        android:text="Nearby Food Posts"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/fragment_item_discovery.xml:61: Warning: Hardcoded string "Search food posts...", should use @string resource [HardcodedText]
+                            android:hint="Search food posts..."
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/fragment_item_posting.xml:40: Warning: Hardcoded string "Post Available Food", should use @string resource [HardcodedText]
+                    android:text="Post Available Food"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/reeceharding/ExcessEatsNew/app/src/main/res/layout/item_food_post.xml:130: Warning: Hardcoded string "Claim", should use @string resource [HardcodedText]
+                android:text="Claim" />
+                ~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "HardcodedText":
+   Hardcoding text attributes directly in layout files is bad for several
+   reasons:
+
+   * When creating configuration variations (for example for landscape or
+   portrait) you have to repeat the actual text (and keep it up to date when
+   making changes)
+
+   * The application cannot be translated to other languages by just adding
+   new translations for existing string resources.
+
+   There are quickfixes to automatically extract this hardcoded string into a
+   resource lookup.
+
+0 errors, 65 warnings

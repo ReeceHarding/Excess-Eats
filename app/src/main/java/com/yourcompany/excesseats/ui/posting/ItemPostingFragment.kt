@@ -1,40 +1,125 @@
 package com.yourcompany.excesseats.ui.posting
 
+import android.app.Activity
 import android.app.TimePickerDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
 import com.yourcompany.excesseats.R
-import com.yourcompany.excesseats.data.model.Item
-import com.yourcompany.excesseats.data.model.FoodType
-import com.yourcompany.excesseats.data.repository.ItemRepository
+import com.yourcompany.excesseats.auth.LoginActivity
+import com.yourcompany.excesseats.data.model.FoodPost
+import com.yourcompany.excesseats.data.repository.FoodPostRepository
 import com.yourcompany.excesseats.databinding.FragmentItemPostingBinding
-import kotlinx.coroutines.launch
+import java.io.File
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 import java.util.UUID
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 class ItemPostingFragment : Fragment() {
+
     private var _binding: FragmentItemPostingBinding? = null
     private val binding get() = _binding!!
-    private val itemRepository = ItemRepository.getInstance()
-    private var selectedImageUri: Uri? = null
 
-    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-        uri?.let {
-            selectedImageUri = it
-            binding.imagePreview.setImageURI(it)
-            binding.imagePreview.visibility = View.VISIBLE
+    private var googleMap: GoogleMap? = null
+    private var selectedLocation: LatLng? = null
+    private var selectedAddress: String? = null
+    private var selectedTime: Date? = null
+    private var selectedImageUri: Uri? = null
+    private var currentPhotoPath: String? = null
+
+    private val repository = FoodPostRepository.getInstance()
+    private val auth = FirebaseAuth.getInstance()
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            launchCamera()
+        } else {
+            Toast.makeText(requireContext(), getString(R.string.permission_denied_camera), Toast.LENGTH_SHORT).show()
         }
     }
+
+    private val takePictureLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            currentPhotoPath?.let { path ->
+                val photoFile = File(path)
+                val photoUri = FileProvider.getUriForFile(
+                    requireContext(),
+                    "com.yourcompany.excesseats.fileprovider",
+                    photoFile
+                )
+                selectedImageUri = photoUri
+                showImagePreview(photoUri)
+            }
+        }
+    }
+
+    private val pickImageLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            result.data?.data?.let { uri ->
+                selectedImageUri = uri
+                showImagePreview(uri)
+            }
+        }
+    }
+
+    private val foodCategories = arrayOf(
+        "American",
+        "Asian Fusion",
+        "Bakery",
+        "Barbecue",
+        "Breakfast",
+        "Chinese",
+        "Desserts",
+        "Indian",
+        "Italian",
+        "Japanese",
+        "Korean",
+        "Mediterranean",
+        "Mexican",
+        "Middle Eastern",
+        "Pizza",
+        "Sandwiches",
+        "Seafood",
+        "Thai",
+        "Vegetarian",
+        "Other"
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,76 +132,298 @@ class ItemPostingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setupMap(savedInstanceState)
+        setupLocationAutocomplete()
+        setupTimeSelection()
         setupFoodTypeDropdown()
-        setupTimePickerDialog()
         setupImageUpload()
         setupSubmitButton()
     }
 
-    private fun setupFoodTypeDropdown() {
-        val foodTypes = resources.getStringArray(R.array.food_types)
-        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, foodTypes)
-        binding.foodTypeInput.setAdapter(adapter)
+    private fun setupMap(savedInstanceState: Bundle?) {
+        binding.mapView.onCreate(savedInstanceState)
+        binding.mapView.getMapAsync { map ->
+            googleMap = map
+            selectedLocation?.let { location ->
+                updateMapLocation(location)
+            }
+        }
     }
 
-    private fun setupTimePickerDialog() {
-        binding.pickupTimeInput.setOnClickListener {
-            val calendar = Calendar.getInstance()
-            val hour = calendar.get(Calendar.HOUR_OF_DAY)
-            val minute = calendar.get(Calendar.MINUTE)
+    private fun setupLocationAutocomplete() {
+        try {
+            // Initialize Places if it hasn't been initialized yet
+            if (!Places.isInitialized()) {
+                Places.initialize(requireContext(), getString(R.string.google_maps_key))
+            }
 
-            TimePickerDialog(
+            // Get the autocomplete fragment
+            val autocompleteFragment = childFragmentManager.findFragmentById(R.id.autocomplete_fragment)
+                    as? AutocompleteSupportFragment
+                    ?: return
+
+            // Specify the types of place data to return
+            autocompleteFragment.setPlaceFields(listOf(
+                Place.Field.ID,
+                Place.Field.NAME,
+                Place.Field.ADDRESS,
+                Place.Field.LAT_LNG
+            ))
+
+            // Set hint text
+            autocompleteFragment.setHint(getString(R.string.hint_location))
+
+            // Set up the place selection listener
+            autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
+                override fun onPlaceSelected(place: Place) {
+                    selectedLocation = place.latLng
+                    selectedAddress = place.address
+                    selectedLocation?.let { updateMapLocation(it) }
+                }
+
+                override fun onError(status: com.google.android.gms.common.api.Status) {
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.error_place_selection, status.statusMessage),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
+        } catch (e: Exception) {
+            Toast.makeText(
                 requireContext(),
-                { _, selectedHour, selectedMinute ->
-                    binding.pickupTimeInput.setText(String.format("%02d:%02d", selectedHour, selectedMinute))
-                },
-                hour,
-                minute,
-                true
+                getString(R.string.error_location_setup),
+                Toast.LENGTH_SHORT
             ).show()
         }
     }
 
+    private fun setupTimeSelection() {
+        binding.pickupTimeInput.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
+            val currentMinute = calendar.get(Calendar.MINUTE)
+
+            TimePickerDialog(
+                requireContext(),
+                { _, hourOfDay, minute ->
+                    val selectedCalendar = Calendar.getInstance()
+                    selectedCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                    selectedCalendar.set(Calendar.MINUTE, minute)
+
+                    // If selected time is in the past, add 24 hours
+                    if (selectedCalendar.before(calendar)) {
+                        selectedCalendar.add(Calendar.DAY_OF_MONTH, 1)
+                    }
+
+                    selectedTime = selectedCalendar.time
+                    val timeFormat = SimpleDateFormat("MMM d, h:mm a", Locale.getDefault())
+                    binding.pickupTimeInput.setText(timeFormat.format(selectedTime ?: Calendar.getInstance().time))
+                },
+                currentHour,
+                currentMinute,
+                false
+            ).show()
+        }
+    }
+
+    private fun setupFoodTypeDropdown() {
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_dropdown_item_1line,
+            foodCategories
+        )
+        binding.foodTypeInput.setAdapter(adapter)
+        binding.foodTypeInput.threshold = 1  // Show suggestions after 1 character
+    }
+
     private fun setupImageUpload() {
         binding.uploadImageButton.setOnClickListener {
-            getContent.launch("image/*")
+            showImagePickerDialog()
         }
+    }
+
+    private fun showImagePickerDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(getString(R.string.select_image_source))
+            .setItems(arrayOf(getString(R.string.camera), getString(R.string.gallery))) { _, which ->
+                when (which) {
+                    0 -> checkCameraPermissionAndLaunch()
+                    1 -> launchGallery()
+                }
+            }
+            .show()
+    }
+
+    private fun checkCameraPermissionAndLaunch() {
+        when {
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                android.Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                launchCamera()
+            }
+            shouldShowRequestPermissionRationale(android.Manifest.permission.CAMERA) -> {
+                showCameraPermissionRationale()
+            }
+            else -> {
+                requestPermissionLauncher.launch(android.Manifest.permission.CAMERA)
+            }
+        }
+    }
+
+    private fun showCameraPermissionRationale() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(getString(R.string.camera_permission_title))
+            .setMessage(getString(R.string.camera_permission_rationale))
+            .setPositiveButton(getString(R.string.ok)) { _, _ ->
+                requestPermissionLauncher.launch(android.Manifest.permission.CAMERA)
+            }
+            .setNegativeButton(getString(R.string.cancel), null)
+            .show()
+    }
+
+    private fun launchCamera() {
+        val photoFile = createImageFile()
+        photoFile.also { file ->
+            val photoURI = FileProvider.getUriForFile(
+                requireContext(),
+                "com.yourcompany.excesseats.fileprovider",
+                file
+            )
+            val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE).apply {
+                putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+            }
+            takePictureLauncher.launch(takePictureIntent)
+        }
+    }
+
+    private fun createImageFile(): File {
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val storageDir = requireContext().getExternalFilesDir(null)
+        return File.createTempFile(
+            "JPEG_${timeStamp}_",
+            ".jpg",
+            storageDir
+        ).apply {
+            currentPhotoPath = absolutePath
+        }
+    }
+
+    private fun launchGallery() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        pickImageLauncher.launch(intent)
+    }
+
+    private fun showImagePreview(uri: Uri) {
+        binding.imagePreview.visibility = View.VISIBLE
+        Glide.with(this)
+            .load(uri)
+            .centerCrop()
+            .into(binding.imagePreview)
     }
 
     private fun setupSubmitButton() {
         binding.submitButton.setOnClickListener {
+            val currentUser = auth.currentUser
+            if (currentUser == null) {
+                // User is not logged in, redirect to login
+                startActivity(Intent(requireContext(), LoginActivity::class.java))
+                return@setOnClickListener
+            }
+
+            // Show loading state
+            binding.submitButton.isEnabled = false
+            binding.progressBar.visibility = View.VISIBLE
+
             val title = binding.titleInput.text.toString()
             val foodType = binding.foodTypeInput.text.toString()
             val quantity = binding.quantityInput.text.toString()
-            val location = binding.locationInput.text.toString()
-            val pickupTime = binding.pickupTimeInput.text.toString()
             val description = binding.descriptionInput.text.toString()
-            val containersAvailable = binding.containerSwitch.isChecked
 
-            if (validateInput(title, foodType, quantity, location, pickupTime)) {
+            if (validateInput(title, foodType, quantity, description)) {
+                // Ensure we have a future pickup time
+                val pickupTime = selectedTime ?: run {
+                    val futureTime = Calendar.getInstance()
+                    futureTime.add(Calendar.HOUR_OF_DAY, 1) // Default to 1 hour from now
+                    futureTime.time
+                }
+
+                // Upload image to Firebase Storage if selected
                 lifecycleScope.launch {
-                    val item = Item(
-                        id = UUID.randomUUID().toString(),
-                        title = title,
-                        foodType = getFoodType(foodType),
-                        quantity = quantity,
-                        location = location,
-                        pickupTimeStart = convertTimeToMillis(pickupTime),
-                        description = description,
-                        containerAvailable = containersAvailable,
-                        imageUrl = selectedImageUri?.toString()
-                    )
+                    try {
+                        val imageUrl = selectedImageUri?.let { uri ->
+                            Log.d("ItemPostingFragment", "Starting image upload for URI: $uri")
+                            try {
+                                val storage = FirebaseStorage.getInstance()
+                                val storageRef = storage.reference
+                                val imageRef = storageRef.child("food_images/${UUID.randomUUID()}.jpg")
 
-                    val result = itemRepository.createItem(item)
-                    if (result.isSuccess) {
-                        Toast.makeText(context, "Food posted successfully!", Toast.LENGTH_SHORT).show()
-                        clearForm()
-                    } else {
-                        Toast.makeText(context, "Failed to post food", Toast.LENGTH_SHORT).show()
+                                // Get input stream from content resolver
+                                requireContext().contentResolver.openInputStream(uri)?.use { inputStream ->
+                                    Log.d("ItemPostingFragment", "Reading image data from URI")
+                                    val bytes = inputStream.readBytes()
+                                    Log.d("ItemPostingFragment", "Successfully read ${bytes.size} bytes")
+
+                                    Log.d("ItemPostingFragment", "Starting upload to Firebase Storage")
+                                    val uploadTask = imageRef.putBytes(bytes).await()
+                                    Log.d("ItemPostingFragment", "Upload completed, bytes transferred: ${uploadTask.bytesTransferred}")
+
+                                    val downloadUrl = imageRef.downloadUrl.await().toString()
+                                    Log.d("ItemPostingFragment", "Got download URL: $downloadUrl")
+                                    downloadUrl
+                                } ?: run {
+                                    Log.e("ItemPostingFragment", "Failed to open input stream for URI: $uri")
+                                    throw Exception("Failed to read image data")
+                                }
+                            } catch (e: Exception) {
+                                Log.e("ItemPostingFragment", "Error during image upload", e)
+                                throw e
+                            }
+                        }
+
+                        Log.d("ItemPostingFragment", "Final imageUrl for FoodPost: $imageUrl")
+
+                        val foodPost = FoodPost(
+                            id = UUID.randomUUID().toString(),
+                            title = title,
+                            description = description,
+                            foodType = foodType,
+                            quantity = quantity,
+                            location = selectedAddress ?: "",
+                            latitude = selectedLocation?.latitude ?: 0.0,
+                            longitude = selectedLocation?.longitude ?: 0.0,
+                            pickupTime = pickupTime.time,
+                            containersAvailable = binding.containerSwitch.isChecked,
+                            imageUrl = imageUrl ?: "",
+                            userId = currentUser.uid
+                        )
+
+                        // Save the post
+                        val result = repository.createPost(foodPost)
+                        result.onSuccess {
+                            Toast.makeText(requireContext(), "Food post created successfully!", Toast.LENGTH_SHORT).show()
+                            findNavController().navigateUp()
+                        }.onFailure { exception ->
+                            Toast.makeText(requireContext(), "Failed to create post: ${exception.message}", Toast.LENGTH_LONG).show()
+                        }
+                    } catch (e: Exception) {
+                        Toast.makeText(requireContext(), "Failed to upload image: ${e.message}", Toast.LENGTH_LONG).show()
+                    } finally {
+                        // Hide loading state
+                        binding.submitButton.isEnabled = true
+                        binding.progressBar.visibility = View.GONE
                     }
                 }
             }
+        }
+    }
+
+    private fun updateMapLocation(location: LatLng) {
+        googleMap?.apply {
+            clear()
+            addMarker(MarkerOptions().position(location))
+            moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15f))
         }
     }
 
@@ -124,67 +431,71 @@ class ItemPostingFragment : Fragment() {
         title: String,
         foodType: String,
         quantity: String,
-        location: String,
-        pickupTime: String
+        description: String
     ): Boolean {
-        when {
-            title.isEmpty() -> {
-                Toast.makeText(context, "Please enter a title", Toast.LENGTH_SHORT).show()
-                return false
-            }
-            foodType.isEmpty() -> {
-                Toast.makeText(context, "Please select a food type", Toast.LENGTH_SHORT).show()
-                return false
-            }
-            quantity.isEmpty() -> {
-                Toast.makeText(context, "Please enter quantity", Toast.LENGTH_SHORT).show()
-                return false
-            }
-            location.isEmpty() -> {
-                Toast.makeText(context, "Please enter location", Toast.LENGTH_SHORT).show()
-                return false
-            }
-            pickupTime.isEmpty() -> {
-                Toast.makeText(context, "Please select pickup time", Toast.LENGTH_SHORT).show()
-                return false
-            }
+        var isValid = true
+
+        if (title.isBlank()) {
+            binding.titleLayout.error = "Title is required"
+            isValid = false
         }
-        return true
-    }
 
-    private fun getFoodType(foodType: String): FoodType {
-        return when (foodType.uppercase()) {
-            "SANDWICHES" -> FoodType.PREPARED_MEAL
-            "PIZZA" -> FoodType.PREPARED_MEAL
-            "SALAD" -> FoodType.PRODUCE
-            "DESSERTS" -> FoodType.BAKED_GOODS
-            else -> FoodType.OTHER
+        if (foodType.isBlank()) {
+            binding.foodTypeLayout.error = "Food type is required"
+            isValid = false
         }
+
+        if (quantity.isBlank()) {
+            binding.quantityLayout.error = "Quantity is required"
+            isValid = false
+        }
+
+        if (description.isBlank()) {
+            binding.descriptionLayout.error = "Description is required"
+            isValid = false
+        }
+
+        if (selectedLocation == null) {
+            binding.locationLayout.error = "Location is required"
+            isValid = false
+        }
+
+        // Check if pickup time is selected and in the future
+        val now = Calendar.getInstance().time
+        if (selectedTime == null) {
+            binding.pickupTimeLayout.error = "Pickup time is required"
+            isValid = false
+        } else if (selectedTime!!.before(now)) {
+            binding.pickupTimeLayout.error = "Pickup time must be in the future"
+            isValid = false
+        }
+
+        return isValid
     }
 
-    private fun convertTimeToMillis(time: String): Long {
-        val parts = time.split(":")
-        val calendar = Calendar.getInstance()
-        calendar.set(Calendar.HOUR_OF_DAY, parts[0].toInt())
-        calendar.set(Calendar.MINUTE, parts[1].toInt())
-        return calendar.timeInMillis
+    override fun onResume() {
+        super.onResume()
+        binding.mapView.onResume()
     }
 
-    private fun clearForm() {
-        binding.titleInput.text?.clear()
-        binding.foodTypeInput.text?.clear()
-        binding.quantityInput.text?.clear()
-        binding.locationInput.text?.clear()
-        binding.pickupTimeInput.text?.clear()
-        binding.descriptionInput.text?.clear()
-        binding.containerSwitch.isChecked = false
-        binding.imagePreview.setImageURI(null)
-        binding.imagePreview.visibility = View.GONE
-        selectedImageUri = null
+    override fun onPause() {
+        super.onPause()
+        binding.mapView.onPause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // No need to cleanup mapView here as it's handled in onDestroyView
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        _binding?.mapView?.onLowMemory()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        binding.mapView.onDestroy()
         _binding = null
     }
 }

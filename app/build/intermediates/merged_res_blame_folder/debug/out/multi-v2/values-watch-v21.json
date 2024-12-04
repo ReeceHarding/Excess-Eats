@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.yourcompany.excesseats.app-mergeDebugResources-51:/values-watch-v21/values-watch-v21.xml",
+            "outputFile": "com.yourcompany.excesseats.app-mergeDebugResources-55:/values-watch-v21/values-watch-v21.xml",
             "map": [
                 {
-                    "source": "/Users/reeceharding/.gradle/caches/8.10.2/transforms/f30c9c1c4af8c358f007551f1af370ee/transformed/appcompat-1.6.1/res/values-watch-v21/values-watch-v21.xml",
+                    "source": "/Users/reeceharding/.gradle/caches/8.10.2/transforms/26ba17d4213c0a6bce18608be2868975/transformed/appcompat-1.6.1/res/values-watch-v21/values-watch-v21.xml",
                     "from": {
                         "startLines": "2,6,10",
                         "startColumns": "4,4,4",

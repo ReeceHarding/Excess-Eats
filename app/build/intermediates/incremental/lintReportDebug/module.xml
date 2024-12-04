@@ -4,11 +4,11 @@
     name=":app"
     type="APP"
     maven="ExcessEats:app:"
-    agpVersion="8.0.0"
+    agpVersion="8.1.0"
     buildFolder="build"
-    bootClassPath="/Users/reeceharding/Library/Android/sdk/platforms/android-33/android.jar:/Users/reeceharding/Library/Android/sdk/build-tools/30.0.3/core-lambda-stubs.jar"
-    javaSourceLevel="11"
-    compileTarget="android-33"
+    bootClassPath="/Users/reeceharding/Library/Android/sdk/platforms/android-34/android.jar:/Users/reeceharding/Library/Android/sdk/build-tools/33.0.1/core-lambda-stubs.jar"
+    javaSourceLevel="17"
+    compileTarget="android-34"
     neverShrinking="true">
   <lintOptions
       abortOnError="true"

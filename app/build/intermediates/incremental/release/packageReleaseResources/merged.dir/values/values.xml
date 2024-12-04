@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:ns1="http://schemas.android.com/tools">
+<resources>
+    <string-array name="food_types">
+        <item>Sandwiches</item>
+        <item>Pizza</item>
+        <item>Salad</item>
+        <item>Desserts</item>
+        <item>Other</item>
+    </string-array>
     <color name="black">#FF000000</color>
+    <color name="gray">#FF757575</color>
     <color name="ic_launcher_background">#FFFFFF</color>
+    <color name="light_gray">#FFF5F5F5</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -10,19 +19,38 @@
     <color name="white">#FFFFFFFF</color>
     <string name="action_back_to_login">Back to Login</string>
     <string name="action_login">Log In</string>
+    <string name="action_logout">Log Out</string>
     <string name="action_register">Register</string>
     <string name="app_name">ExcessEats</string>
-    <string name="com.google.firebase.crashlytics.mapping_file_id" ns1:ignore="UnusedResources,TypographyDashes" translatable="false">00000000000000000000000000000000</string>
-    <string name="gcm_defaultSenderId" translatable="false">123456789000</string>
-    <string name="google_api_key" translatable="false">YOUR-API-KEY</string>
-    <string name="google_app_id" translatable="false">1:123456789000:android:1234567890abcdef</string>
-    <string name="google_crash_reporting_api_key" translatable="false">YOUR-API-KEY</string>
+    <string name="button_post_food">Post Food</string>
+    <string name="button_upload_image">Upload Image</string>
+    <string name="camera">Camera</string>
+    <string name="camera_permission_rationale">Camera permission is needed to take pictures of the food items.</string>
+    <string name="camera_permission_title">Camera Permission Required</string>
+    <string name="cancel">Cancel</string>
+    <string name="error_location_setup">Error setting up location autocomplete</string>
+    <string name="error_place_selection">Error selecting place: %1$s</string>
+    <string name="gallery">Gallery</string>
     <string name="google_maps_key">AIzaSyAJ5IZslt0hKP3DjFUHg9dbOhZRNhcybYo</string>
-    <string name="google_storage_bucket" translatable="false">excess-eats.appspot.com</string>
+    <string name="hint_description">Provide any additional details about the food…</string>
     <string name="hint_display_name">Display Name</string>
     <string name="hint_email">Email</string>
+    <string name="hint_food_title">E.g., Leftover Sandwiches from Conference</string>
+    <string name="hint_food_type">Select food type</string>
+    <string name="hint_location">E.g., Student Union, Room 201</string>
     <string name="hint_password">Password</string>
-    <string name="project_id" translatable="false">excess-eats</string>
+    <string name="hint_pickup_time">Select pickup time</string>
+    <string name="hint_quantity">E.g., 20 servings</string>
+    <string name="label_containers_available">Containers available for pickup</string>
+    <string name="map_placeholder">Google Maps Placeholder</string>
+    <string name="message_no_items">No items available nearby</string>
+    <string name="message_no_notifications">No notifications yet</string>
+    <string name="message_post_coming_soon">Posting feature coming soon!</string>
+    <string name="message_profile_coming_soon">Profile customization coming soon!</string>
+    <string name="ok">OK</string>
+    <string name="permission_denied_camera">Camera permission denied. You can\'t take pictures.</string>
+    <string name="post_title">Post Available Food</string>
+    <string name="select_image_source">Select Image Source</string>
     <string name="title_detail">Details</string>
     <string name="title_discover">Discover</string>
     <string name="title_notifications">Notifications</string>

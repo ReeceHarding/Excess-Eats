@@ -21,10 +21,24 @@
     <string name="action_login">Log In</string>
     <string name="action_logout">Log Out</string>
     <string name="action_register">Register</string>
+    <string name="action_sign_in">Sign In</string>
     <string name="app_name">ExcessEats</string>
     <string name="button_post_food">Post Food</string>
     <string name="button_upload_image">Upload Image</string>
+    <string name="camera">Camera</string>
+    <string name="camera_permission_rationale">Camera permission is needed to take pictures of the food items.</string>
+    <string name="camera_permission_title">Camera Permission Required</string>
+    <string name="cancel">Cancel</string>
+    <string name="error_location_setup">Error setting up location autocomplete</string>
+    <string name="error_place_selection">Error selecting place: %1$s</string>
+    <string name="firebase_database_url" translatable="false">https://excess-eats-c1b6a-default-rtdb.firebaseio.com</string>
+    <string name="gallery">Gallery</string>
+    <string name="gcm_defaultSenderId" translatable="false">276976352856</string>
+    <string name="google_api_key" translatable="false">AIzaSyCIokxMuxQSFqlq3njQ55LA-44ZsLN0OYs</string>
+    <string name="google_app_id" translatable="false">1:276976352856:android:f3344b4c8f156c4983d42d</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCIokxMuxQSFqlq3njQ55LA-44ZsLN0OYs</string>
     <string name="google_maps_key">AIzaSyAJ5IZslt0hKP3DjFUHg9dbOhZRNhcybYo</string>
+    <string name="google_storage_bucket" translatable="false">excess-eats-c1b6a.firebasestorage.app</string>
     <string name="hint_description">Provide any additional details about the food…</string>
     <string name="hint_display_name">Display Name</string>
     <string name="hint_email">Email</string>
@@ -40,7 +54,12 @@
     <string name="message_no_notifications">No notifications yet</string>
     <string name="message_post_coming_soon">Posting feature coming soon!</string>
     <string name="message_profile_coming_soon">Profile customization coming soon!</string>
+    <string name="ok">OK</string>
+    <string name="permission_denied_camera">Camera permission denied. You can\'t take pictures.</string>
     <string name="post_title">Post Available Food</string>
+    <string name="project_id" translatable="false">excess-eats-c1b6a</string>
+    <string name="select_image_source">Select Image Source</string>
+    <string name="submit">Submit</string>
     <string name="title_detail">Details</string>
     <string name="title_discover">Discover</string>
     <string name="title_notifications">Notifications</string>

@@ -3,6 +3,7 @@ package com.yourcompany.excesseats.auth
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -21,6 +22,12 @@ class LoginActivity : AppCompatActivity() {
             super.onCreate(savedInstanceState)
             Log.d(TAG, "Starting onCreate")
 
+            // Check if user is already signed in
+            if (userRepository.getCurrentUser() != null) {
+                startMainActivity()
+                return
+            }
+
             binding = ActivityLoginBinding.inflate(layoutInflater)
             setContentView(binding.root)
             Log.d(TAG, "Layout inflated")
@@ -35,30 +42,36 @@ class LoginActivity : AppCompatActivity() {
                         return@setOnClickListener
                     }
 
+                    // Show loading state
+                    setLoading(true)
+
                     lifecycleScope.launch {
-                        val result = userRepository.getUserByEmail(email)
-                        when {
-                            result.isSuccess -> {
-                                val user = result.getOrNull()
-                                if (user != null) {
-                                    // In a real app, we would hash the password and compare
-                                    if (password == user.password) {
-                                        Log.d(TAG, "Login successful")
-                                        startMainActivity()
-                                    } else {
-                                        Log.w(TAG, "Incorrect password")
-                                        Toast.makeText(this@LoginActivity,
-                                            "Incorrect password",
-                                            Toast.LENGTH_SHORT).show()
-                                    }
+                        try {
+                            val result = userRepository.signIn(email, password)
+                            when {
+                                result.isSuccess -> {
+                                    Log.d(TAG, "Login successful")
+                                    startMainActivity()
+                                }
+                                result.isFailure -> {
+                                    val exception = result.exceptionOrNull()
+                                    Log.w(TAG, "Login failed", exception)
+                                    Toast.makeText(
+                                        this@LoginActivity,
+                                        exception?.message ?: "Login failed",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
                             }
-                            result.isFailure -> {
-                                Log.w(TAG, "User not found")
-                                Toast.makeText(this@LoginActivity,
-                                    "Email not registered. Please create an account.",
-                                    Toast.LENGTH_SHORT).show()
-                            }
+                        } catch (e: Exception) {
+                            Log.e(TAG, "Error during login", e)
+                            Toast.makeText(
+                                this@LoginActivity,
+                                "Error: ${e.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } finally {
+                            setLoading(false)
                         }
                     }
                 } else {
@@ -77,6 +90,12 @@ class LoginActivity : AppCompatActivity() {
             Log.e(TAG, "Error in onCreate", e)
             Toast.makeText(this, "Error starting app: ${e.message}", Toast.LENGTH_LONG).show()
         }
+    }
+
+    private fun setLoading(isLoading: Boolean) {
+        binding.btnLogin.isEnabled = !isLoading
+        binding.btnRegister.isEnabled = !isLoading
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun startMainActivity() {

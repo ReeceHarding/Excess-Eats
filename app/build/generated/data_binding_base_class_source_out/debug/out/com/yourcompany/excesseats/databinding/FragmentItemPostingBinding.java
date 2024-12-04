@@ -5,13 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.google.android.gms.maps.MapView;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
@@ -45,19 +46,19 @@ public final class FragmentItemPostingBinding implements ViewBinding {
   public final ImageView imagePreview;
 
   @NonNull
-  public final TextInputEditText locationInput;
-
-  @NonNull
   public final TextInputLayout locationLayout;
 
   @NonNull
-  public final FrameLayout mapContainer;
+  public final MapView mapView;
 
   @NonNull
   public final TextInputEditText pickupTimeInput;
 
   @NonNull
   public final TextInputLayout pickupTimeLayout;
+
+  @NonNull
+  public final ProgressBar progressBar;
 
   @NonNull
   public final TextInputEditText quantityInput;
@@ -84,9 +85,9 @@ public final class FragmentItemPostingBinding implements ViewBinding {
       @NonNull SwitchMaterial containerSwitch, @NonNull TextInputEditText descriptionInput,
       @NonNull TextInputLayout descriptionLayout, @NonNull AutoCompleteTextView foodTypeInput,
       @NonNull TextInputLayout foodTypeLayout, @NonNull ImageView imagePreview,
-      @NonNull TextInputEditText locationInput, @NonNull TextInputLayout locationLayout,
-      @NonNull FrameLayout mapContainer, @NonNull TextInputEditText pickupTimeInput,
-      @NonNull TextInputLayout pickupTimeLayout, @NonNull TextInputEditText quantityInput,
+      @NonNull TextInputLayout locationLayout, @NonNull MapView mapView,
+      @NonNull TextInputEditText pickupTimeInput, @NonNull TextInputLayout pickupTimeLayout,
+      @NonNull ProgressBar progressBar, @NonNull TextInputEditText quantityInput,
       @NonNull TextInputLayout quantityLayout, @NonNull MaterialButton submitButton,
       @NonNull TextInputEditText titleInput, @NonNull TextInputLayout titleLayout,
       @NonNull MaterialToolbar toolbar, @NonNull MaterialButton uploadImageButton) {
@@ -97,11 +98,11 @@ public final class FragmentItemPostingBinding implements ViewBinding {
     this.foodTypeInput = foodTypeInput;
     this.foodTypeLayout = foodTypeLayout;
     this.imagePreview = imagePreview;
-    this.locationInput = locationInput;
     this.locationLayout = locationLayout;
-    this.mapContainer = mapContainer;
+    this.mapView = mapView;
     this.pickupTimeInput = pickupTimeInput;
     this.pickupTimeLayout = pickupTimeLayout;
+    this.progressBar = progressBar;
     this.quantityInput = quantityInput;
     this.quantityLayout = quantityLayout;
     this.submitButton = submitButton;
@@ -174,21 +175,15 @@ public final class FragmentItemPostingBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.locationInput;
-      TextInputEditText locationInput = ViewBindings.findChildViewById(rootView, id);
-      if (locationInput == null) {
-        break missingId;
-      }
-
       id = R.id.locationLayout;
       TextInputLayout locationLayout = ViewBindings.findChildViewById(rootView, id);
       if (locationLayout == null) {
         break missingId;
       }
 
-      id = R.id.mapContainer;
-      FrameLayout mapContainer = ViewBindings.findChildViewById(rootView, id);
-      if (mapContainer == null) {
+      id = R.id.mapView;
+      MapView mapView = ViewBindings.findChildViewById(rootView, id);
+      if (mapView == null) {
         break missingId;
       }
 
@@ -201,6 +196,12 @@ public final class FragmentItemPostingBinding implements ViewBinding {
       id = R.id.pickupTimeLayout;
       TextInputLayout pickupTimeLayout = ViewBindings.findChildViewById(rootView, id);
       if (pickupTimeLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.progressBar;
+      ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
+      if (progressBar == null) {
         break missingId;
       }
 
@@ -248,9 +249,8 @@ public final class FragmentItemPostingBinding implements ViewBinding {
 
       return new FragmentItemPostingBinding((CoordinatorLayout) rootView, containerSwitch,
           descriptionInput, descriptionLayout, foodTypeInput, foodTypeLayout, imagePreview,
-          locationInput, locationLayout, mapContainer, pickupTimeInput, pickupTimeLayout,
-          quantityInput, quantityLayout, submitButton, titleInput, titleLayout, toolbar,
-          uploadImageButton);
+          locationLayout, mapView, pickupTimeInput, pickupTimeLayout, progressBar, quantityInput,
+          quantityLayout, submitButton, titleInput, titleLayout, toolbar, uploadImageButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

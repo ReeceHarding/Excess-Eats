@@ -1,16 +1,24 @@
 package com.yourcompany.excesseats.data.repository
 
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.getValue
 import com.yourcompany.excesseats.data.model.User
 import com.yourcompany.excesseats.data.model.Preference
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.tasks.await
 
 class UserRepository private constructor() {
-    // In-memory storage
-    private val users = mutableMapOf<String, User>()
-    private val preferences = mutableMapOf<String, Preference>()
-    private val userFlow = MutableStateFlow<Map<String, User>>(emptyMap())
+    private val auth = FirebaseAuth.getInstance()
+    private val database = FirebaseDatabase.getInstance()
+    private val usersRef = database.getReference("users")
+    private val preferencesRef = database.getReference("preferences")
 
     companion object {
         @Volatile
@@ -23,98 +31,159 @@ class UserRepository private constructor() {
         }
     }
 
-    suspend fun createUser(user: User): Result<User> = try {
-        users[user.id] = user
-        userFlow.emit(users.toMap())
-        Result.success(user)
-    } catch (e: Exception) {
-        Result.failure(e)
+    suspend fun createUser(user: User): Result<User> {
+        return try {
+            // Create authentication account
+            val authResult = auth.createUserWithEmailAndPassword(user.email, user.password).await()
+            val firebaseUser = authResult.user
+                ?: return Result.failure(Exception("Failed to create authentication account"))
+
+            // Create user profile in database (without password)
+            val userProfile = user.copy(
+                id = firebaseUser.uid,
+                password = "" // Don't store password in database
+            )
+            usersRef.child(firebaseUser.uid).setValue(userProfile).await()
+
+            Result.success(userProfile)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
     }
 
-    suspend fun updateUser(user: User): Result<User> = try {
-        users[user.id] = user
-        userFlow.emit(users.toMap())
-        Result.success(user)
-    } catch (e: Exception) {
-        Result.failure(e)
-    }
+    suspend fun signIn(email: String, password: String): Result<User> {
+        return try {
+            val authResult = auth.signInWithEmailAndPassword(email, password).await()
+            val firebaseUser = authResult.user
+                ?: return Result.failure(Exception("Failed to sign in"))
 
-    suspend fun getUser(userId: String): Result<User> = try {
-        val user = users[userId]
-        if (user != null) {
+            val snapshot = usersRef.child(firebaseUser.uid).get().await()
+            val user = snapshot.getValue<User>()
+                ?: return Result.failure(Exception("User profile not found"))
+
             Result.success(user)
-        } else {
-            Result.failure(Exception("User not found"))
+        } catch (e: Exception) {
+            Result.failure(e)
         }
-    } catch (e: Exception) {
-        Result.failure(e)
     }
 
-    suspend fun getUserByEmail(email: String): Result<User> = try {
-        val user = users.values.find { it.email == email }
-        if (user != null) {
+    suspend fun signOut() {
+        auth.signOut()
+    }
+
+    fun getCurrentUser(): FirebaseUser? {
+        return auth.currentUser
+    }
+
+    suspend fun updateUser(user: User): Result<User> {
+        return try {
+            val currentUser = auth.currentUser
+                ?: return Result.failure(Exception("No authenticated user"))
+
+            // Update authentication profile if needed
+            if (user.email != currentUser.email) {
+                currentUser.updateEmail(user.email).await()
+            }
+
+            // Update user profile in database (without password)
+            val userProfile = user.copy(password = "")
+            usersRef.child(currentUser.uid).setValue(userProfile).await()
+
+            Result.success(userProfile)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    suspend fun getUser(userId: String): Result<User> {
+        return try {
+            val snapshot = usersRef.child(userId).get().await()
+            val user = snapshot.getValue<User>()
+                ?: return Result.failure(Exception("User not found"))
+
             Result.success(user)
-        } else {
-            Result.failure(Exception("User not found"))
+        } catch (e: Exception) {
+            Result.failure(e)
         }
-    } catch (e: Exception) {
-        Result.failure(e)
     }
 
-    suspend fun deleteUser(userId: String): Result<Unit> = try {
-        users.remove(userId)
-        userFlow.emit(users.toMap())
-        Result.success(Unit)
-    } catch (e: Exception) {
-        Result.failure(e)
-    }
+    suspend fun getUserByEmail(email: String): Result<User> {
+        return try {
+            val snapshot = usersRef.orderByChild("email").equalTo(email).get().await()
+            val user = snapshot.children.firstOrNull()?.getValue<User>()
+                ?: return Result.failure(Exception("User not found"))
 
-    suspend fun updateUserPreferences(preferences: Preference): Result<Preference> = try {
-        this.preferences[preferences.userId] = preferences
-        Result.success(preferences)
-    } catch (e: Exception) {
-        Result.failure(e)
-    }
-
-    suspend fun getUserPreferences(userId: String): Result<Preference> = try {
-        val prefs = preferences[userId]
-        if (prefs != null) {
-            Result.success(prefs)
-        } else {
-            Result.failure(Exception("Preferences not found"))
-        }
-    } catch (e: Exception) {
-        Result.failure(e)
-    }
-
-    fun observeUser(userId: String): Flow<Result<User>> = userFlow.map { users ->
-        val user = users[userId]
-        if (user != null) {
             Result.success(user)
-        } else {
-            Result.failure(Exception("User not found"))
+        } catch (e: Exception) {
+            Result.failure(e)
         }
     }
 
-    suspend fun updateUserLocation(
-        userId: String,
-        latitude: Double,
-        longitude: Double,
-        locationString: String
-    ): Result<Unit> = try {
-        val user = users[userId]?.copy(
-            latitude = latitude,
-            longitude = longitude,
-            location = locationString
-        )
-        if (user != null) {
-            users[userId] = user
-            userFlow.emit(users.toMap())
+    suspend fun deleteUser(userId: String): Result<Unit> {
+        return try {
+            val currentUser = auth.currentUser
+                ?: return Result.failure(Exception("No authenticated user"))
+
+            if (currentUser.uid != userId) {
+                return Result.failure(Exception("Cannot delete other users"))
+            }
+
+            // Delete from authentication
+            currentUser.delete().await()
+
+            // Delete from database
+            usersRef.child(userId).removeValue().await()
+            preferencesRef.child(userId).removeValue().await()
+
             Result.success(Unit)
-        } else {
-            Result.failure(Exception("User not found"))
+        } catch (e: Exception) {
+            Result.failure(e)
         }
-    } catch (e: Exception) {
-        Result.failure(e)
+    }
+
+    suspend fun updateUserPreferences(preferences: Preference): Result<Preference> {
+        return try {
+            val currentUser = auth.currentUser
+                ?: return Result.failure(Exception("No authenticated user"))
+
+            preferencesRef.child(currentUser.uid).setValue(preferences).await()
+            Result.success(preferences)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    suspend fun getUserPreferences(userId: String): Result<Preference> {
+        return try {
+            val snapshot = preferencesRef.child(userId).get().await()
+            val preferences = snapshot.getValue<Preference>()
+                ?: return Result.failure(Exception("Preferences not found"))
+
+            Result.success(preferences)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    fun observeUser(userId: String): Flow<Result<User>> {
+        return callbackFlow {
+            val listener = object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val user = snapshot.getValue<User>()
+                    if (user != null) {
+                        trySend(Result.success(user))
+                    } else {
+                        trySend(Result.failure(Exception("User not found")))
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    trySend(Result.failure(error.toException()))
+                }
+            }
+
+            usersRef.child(userId).addValueEventListener(listener)
+            awaitClose { usersRef.child(userId).removeEventListener(listener) }
+        }
     }
 }

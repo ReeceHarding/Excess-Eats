@@ -19,6 +19,7 @@
     <string name="action_register">Register</string>
     <string name="action_back_to_login">Back to Login</string>
     <string name="action_logout">Log Out</string>
+    <string name="action_sign_in">Sign In</string>
 
     <!-- Messages -->
     <string name="message_no_items">No items available nearby</string>
@@ -38,6 +39,7 @@
     <string name="button_upload_image">Upload Image</string>
     <string name="button_post_food">Post Food</string>
     <string name="map_placeholder">Google Maps Placeholder</string>
+    <string name="submit">Submit</string>
 
     <!-- Food Types -->
     <string-array name="food_types">
@@ -47,4 +49,18 @@
         <item>Desserts</item>
         <item>Other</item>
     </string-array>
+
+    <!-- Error Messages -->
+    <string name="error_place_selection">Error selecting place: %1$s</string>
+    <string name="error_location_setup">Error setting up location autocomplete</string>
+
+    <!-- Image Upload -->
+    <string name="select_image_source">Select Image Source</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera_permission_title">Camera Permission Required</string>
+    <string name="camera_permission_rationale">Camera permission is needed to take pictures of the food items.</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="permission_denied_camera">Camera permission denied. You can\'t take pictures.</string>
 </resources>

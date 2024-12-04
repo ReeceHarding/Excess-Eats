@@ -29,18 +29,51 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:text="@string/message_profile_coming_soon"
-                android:textAppearance="?attr/textAppearanceBody1" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnLogout"
+            <!-- Logged In State -->
+            <LinearLayout
+                android:id="@+id/loggedInLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/action_logout" />
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/message_profile_coming_soon"
+                    android:textAppearance="?attr/textAppearanceBody1" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_logout" />
+
+            </LinearLayout>
+
+            <!-- Logged Out State -->
+            <LinearLayout
+                android:id="@+id/loggedOutLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:text="Please sign in to view your profile"
+                    android:textAppearance="?attr/textAppearanceBody1" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSignIn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_sign_in" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
