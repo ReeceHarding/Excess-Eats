@@ -14,6 +14,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.Priority
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -25,6 +29,13 @@ import com.yourcompany.excesseats.data.repository.FoodPostRepository
 import com.yourcompany.excesseats.databinding.FragmentItemDiscoveryBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import android.content.Context
+import android.location.LocationManager
+import android.content.Intent
+import android.provider.Settings
+import android.os.Looper
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices.getFusedLocationProviderClient
 
 private const val TAG = "ItemDiscoveryFragment"
 
@@ -45,7 +56,7 @@ class ItemDiscoveryFragment : Fragment() {
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1001
-        private const val SEARCH_RADIUS_KM = 10.0
+        private const val SEARCH_RADIUS_KM = 3000.0
     }
 
     override fun onCreateView(
@@ -109,6 +120,19 @@ class ItemDiscoveryFragment : Fragment() {
 
     private fun checkLocationPermission() {
         Log.d(TAG, "Checking location permission")
+        
+        if (!isLocationEnabled()) {
+            Log.d(TAG, "Location is disabled")
+            Toast.makeText(
+                requireContext(),
+                "Please enable location services",
+                Toast.LENGTH_LONG
+            ).show()
+            // Open location settings
+            startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+            return
+        }
+
         if (ContextCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -129,29 +153,42 @@ class ItemDiscoveryFragment : Fragment() {
     private fun getCurrentLocation() {
         Log.d(TAG, "Getting current location")
         try {
+            val locationRequest = LocationRequest.Builder(10000) // 10 seconds interval
+                .setPriority(Priority.PRIORITY_HIGH_ACCURACY)
+                .build()
+
+            fusedLocationClient.requestLocationUpdates(locationRequest, object : LocationCallback() {
+                override fun onLocationResult(locationResult: LocationResult) {
+                    locationResult.lastLocation?.let { location ->
+                        Log.d(TAG, "Got real-time location: ${location.latitude}, ${location.longitude}")
+                        currentLocation = LatLng(location.latitude, location.longitude)
+                        updateMapLocation(currentLocation)
+                        adapter.userLocation = currentLocation
+                        loadPosts()
+                        // Remove updates after getting location
+                        fusedLocationClient.removeLocationUpdates(this)
+                    }
+                }
+            }, Looper.getMainLooper())
+
+            // Also try getting last known location as backup
             fusedLocationClient.lastLocation.addOnSuccessListener { location ->
                 if (location != null) {
-                    Log.d(TAG, "Got location: ${location.latitude}, ${location.longitude}")
+                    Log.d(TAG, "Got last known location: ${location.latitude}, ${location.longitude}")
                     currentLocation = LatLng(location.latitude, location.longitude)
                     updateMapLocation(currentLocation)
                     adapter.userLocation = currentLocation
                     loadPosts()
-                } else {
-                    Log.w(TAG, "Location is null")
-                    loadPosts() // Load all posts without location filtering
                 }
-            }.addOnFailureListener { e ->
-                Log.e(TAG, "Error getting location", e)
-                loadPosts() // Load all posts without location filtering
             }
         } catch (e: SecurityException) {
-            Log.e(TAG, "Error getting location", e)
+            Log.e(TAG, "Security exception getting location", e)
             Toast.makeText(
                 requireContext(),
                 "Location permission is required to show nearby food posts",
                 Toast.LENGTH_LONG
             ).show()
-            loadPosts() // Load all posts without location filtering
+            loadPosts()
         }
     }
 
@@ -198,17 +235,19 @@ class ItemDiscoveryFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             isLoading = true
             Log.d(TAG, "Loading posts. Current location: $currentLocation")
-
+            
             if (currentLocation != null) {
                 Log.d(TAG, "Loading nearby posts within ${SEARCH_RADIUS_KM}km")
                 repository.getNearbyPosts(currentLocation!!, radiusKm = SEARCH_RADIUS_KM)
                     .collectLatest { result: Result<List<FoodPost>> ->
+                        Log.d(TAG, "Received nearby posts result: $result")
                         handlePostsResult(result)
                     }
             } else {
                 Log.d(TAG, "Loading all posts (no location available)")
                 repository.getAllPosts()
                     .collectLatest { result: Result<List<FoodPost>> ->
+                        Log.d(TAG, "Received all posts result: $result")
                         handlePostsResult(result)
                     }
             }
@@ -275,6 +314,15 @@ class ItemDiscoveryFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         _binding?.mapView?.onResume()
+        
+        // Recheck location when returning to the fragment
+        if (isLocationEnabled() && ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            getCurrentLocation()
+        }
     }
 
     override fun onStart() {
@@ -329,5 +377,11 @@ class ItemDiscoveryFragment : Fragment() {
             }
             else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         }
+    }
+
+    private fun isLocationEnabled(): Boolean {
+        val locationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
+                locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
     }
 }

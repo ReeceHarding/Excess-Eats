@@ -4,7 +4,7 @@
             "outputFile": "com.yourcompany.excesseats.app-mergeDebugResources-55:/values-h720dp-v13/values-h720dp-v13.xml",
             "map": [
                 {
-                    "source": "/Users/reeceharding/.gradle/caches/8.10.2/transforms/26ba17d4213c0a6bce18608be2868975/transformed/appcompat-1.6.1/res/values-h720dp-v13/values-h720dp-v13.xml",
+                    "source": "C:\\Users\\zhuos\\.gradle\\caches\\8.10.2\\transforms\\26ba17d4213c0a6bce18608be2868975\\transformed\\appcompat-1.6.1\\res\\values-h720dp-v13\\values-h720dp-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

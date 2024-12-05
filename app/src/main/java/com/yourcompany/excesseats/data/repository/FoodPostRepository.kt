@@ -98,18 +98,7 @@ class FoodPostRepository private constructor() {
     fun getNearbyPosts(location: LatLng, radiusKm: Double): Flow<Result<List<FoodPost>>> = callbackFlow {
         val listener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                Log.d("FoodPostRepository", "Got ${snapshot.childrenCount} posts from Firebase")
-                val posts = snapshot.children
-                    .mapNotNull { it.getValue<FoodPost>() }
-                    .filter { post ->
-                        val distance = calculateDistance(
-                            location.latitude, location.longitude,
-                            post.latitude, post.longitude
-                        )
-                        Log.d("FoodPostRepository", "Post ${post.title} is ${distance}km away")
-                        distance <= radiusKm
-                    }
-                Log.d("FoodPostRepository", "Found ${posts.size} posts within ${radiusKm}km")
+                val posts = snapshot.children.mapNotNull { it.getValue<FoodPost>() }
                 trySend(Result.success(posts))
             }
 
