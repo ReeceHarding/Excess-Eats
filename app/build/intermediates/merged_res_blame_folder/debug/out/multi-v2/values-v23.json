@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.yourcompany.excesseats.app-mergeDebugResources-55:/values-v23/values-v23.xml",
+            "outputFile": "com.yourcompany.excesseats.app-mergeDebugResources-62:/values-v23/values-v23.xml",
             "map": [
                 {
                     "source": "C:\\Users\\zhuos\\.gradle\\caches\\8.10.2\\transforms\\0f26842c2a73f13963d517584d511e2d\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",

@@ -10,6 +10,7 @@ data class FoodPost(
     val description: String = "",
     val foodType: String = "",
     val quantity: String = "",
+    val remainingQuantity: Int = 1,
     val location: String = "",
     val latitude: Double = 0.0,
     val longitude: Double = 0.0,

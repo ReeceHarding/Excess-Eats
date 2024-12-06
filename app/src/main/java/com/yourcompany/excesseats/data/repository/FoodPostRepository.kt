@@ -26,6 +26,7 @@ class FoodPostRepository private constructor() {
     companion object {
         @Volatile
         private var instance: FoodPostRepository? = null
+        internal const val TAG = "FoodPostRepository"
 
         fun getInstance(): FoodPostRepository {
             return instance ?: synchronized(this) {
@@ -35,8 +36,11 @@ class FoodPostRepository private constructor() {
     }
 
     suspend fun createPost(post: FoodPost): Result<FoodPost> = try {
-        postsRef.child(post.id).setValue(post).await()
-        Result.success(post)
+        val initialQuantity = post.quantity.split(" ")[0].toIntOrNull() ?: 1
+        
+        val postWithQuantity = post.copy(remainingQuantity = initialQuantity)
+        postsRef.child(post.id).setValue(postWithQuantity).await()
+        Result.success(postWithQuantity)
     } catch (e: Exception) {
         Result.failure(e)
     }
@@ -60,6 +64,7 @@ class FoodPostRepository private constructor() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 Log.d("FoodPostRepository", "Got ${snapshot.childrenCount} posts from Firebase")
                 val posts = snapshot.children.mapNotNull { it.getValue<FoodPost>() }
+                    .filter { it.remainingQuantity > 0 }
                 Log.d("FoodPostRepository", "Mapped to ${posts.size} FoodPost objects")
                 posts.forEach { post ->
                     Log.d("FoodPostRepository", "Post: ${post.title} at ${post.latitude}, ${post.longitude}")
@@ -82,7 +87,7 @@ class FoodPostRepository private constructor() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val posts = snapshot.children
                     .mapNotNull { it.getValue<FoodPost>() }
-                    .filter { it.userId == userId }
+                    .filter { it.userId == userId && it.remainingQuantity > 0 }
                 trySend(Result.success(posts))
             }
 
@@ -99,6 +104,7 @@ class FoodPostRepository private constructor() {
         val listener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val posts = snapshot.children.mapNotNull { it.getValue<FoodPost>() }
+                    .filter { it.remainingQuantity > 0 }
                 trySend(Result.success(posts))
             }
 
@@ -132,20 +138,36 @@ class FoodPostRepository private constructor() {
         awaitClose { postsRef.child(postId).removeEventListener(listener) }
     }
 
-    suspend fun claimFoodPost(postId: String): Result<Unit> = try {
-        val snapshot = postsRef.child(postId).get().await()
-        val post = snapshot.getValue<FoodPost>()
+    suspend fun claimFoodPost(postId: String): Result<Unit> {
+        return try {
+            try {
+                val snapshot = postsRef.child(postId).get().await()
+                val post = snapshot.getValue<FoodPost>() ?: throw NoSuchElementException("Post not found")
 
-        if (post == null) {
-            Result.failure(NoSuchElementException("Food post not found"))
-        } else if (post.isClaimed) {
-            Result.failure(IllegalStateException("Food post already claimed"))
-        } else {
-            postsRef.child(postId).setValue(post.copy(isClaimed = true)).await()
-            Result.success(Unit)
+                if (post.remainingQuantity <= 0) {
+                    return Result.failure(IllegalStateException("Food post fully claimed"))
+                }
+
+                val newQuantity = post.remainingQuantity - 1
+                val updates = if (newQuantity > 0) {
+                    mapOf("remainingQuantity" to newQuantity)
+                } else {
+                    mapOf(
+                        "remainingQuantity" to 0,
+                        "isClaimed" to true
+                    )
+                }
+
+                postsRef.child(postId).updateChildren(updates).await()
+                Result.success(Unit)
+            } catch (e: Exception) {
+                Log.e(TAG, "Error claiming food post", e)
+                Result.failure(e)
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Fatal error claiming food post", e)
+            Result.failure(e)
         }
-    } catch (e: Exception) {
-        Result.failure(e)
     }
 
     private fun calculateDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
@@ -162,5 +184,37 @@ class FoodPostRepository private constructor() {
 
         val c = 2 * Math.atan2(sqrt(a), sqrt(1 - a))
         return earthRadius * c
+    }
+
+    suspend fun migrateExistingPosts() = try {
+        val snapshot = postsRef.get().await()
+        val updates = mutableMapOf<String, Any>()
+        
+        snapshot.children.forEach { postSnapshot ->
+            val post = postSnapshot.getValue<FoodPost>()
+            if (post != null) {
+                // Parse the quantity string to get initial quantity
+                // Example: "10 servings" -> 10
+                val quantityStr = post.quantity.split(" ")[0]
+                val initialQuantity = quantityStr.toIntOrNull() ?: 1
+                
+                // Only update if remainingQuantity isn't set or if post is claimed
+                if (postSnapshot.child("remainingQuantity").value == null) {
+                    val remainingQuantity = if (post.isClaimed) 0 else initialQuantity
+                    updates["${post.id}/remainingQuantity"] = remainingQuantity
+                }
+            }
+        }
+        
+        // Perform all updates in a single batch
+        if (updates.isNotEmpty()) {
+            postsRef.updateChildren(updates).await()
+            Log.d("FoodPostRepository", "Successfully migrated ${updates.size} posts")
+        }
+        
+        Result.success(Unit)
+    } catch (e: Exception) {
+        Log.e("FoodPostRepository", "Error migrating posts", e)
+        Result.failure(e)
     }
 }

@@ -109,6 +109,19 @@ class FoodPostAdapter(
                     distanceText.text = "${distance.roundToInt()} km away"
                 }
 
+                // Update quantity text to show remaining
+                val quantityString = if (foodPost.remainingQuantity > 0) {
+                    "${foodPost.remainingQuantity} left of ${foodPost.quantity}"
+                } else {
+                    "Fully claimed"
+                }
+                quantityText.text = quantityString
+                
+                // Disable claim button if fully claimed
+                claimButton.isEnabled = foodPost.remainingQuantity > 0
+                claimButton.text = if (foodPost.remainingQuantity > 0) "Claim" else "Claimed"
+                
+                // Add back the click listener
                 claimButton.setOnClickListener {
                     onItemClick(foodPost)
                 }

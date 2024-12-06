@@ -4,56 +4,73 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.yourcompany.excesseats.data.repository.FoodPostRepository
 import com.yourcompany.excesseats.databinding.ActivityMainBinding
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
-    private val TAG = "MainActivity"
+    private var _binding: ActivityMainBinding? = null
+    private val binding get() = _binding!!
+
+    companion object {
+        private const val TAG = "MainActivity"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         try {
             super.onCreate(savedInstanceState)
             Log.d(TAG, "Starting onCreate")
 
-            binding = ActivityMainBinding.inflate(layoutInflater)
+            _binding = ActivityMainBinding.inflate(layoutInflater)
             setContentView(binding.root)
-            Log.d(TAG, "Layout inflated")
 
-            val navHostFragment = supportFragmentManager
-                .findFragmentById(R.id.nav_host_fragment) as? NavHostFragment
-            Log.d(TAG, "NavHostFragment found: ${navHostFragment != null}")
-
-            if (navHostFragment == null) {
-                Toast.makeText(this, "Error initializing navigation", Toast.LENGTH_LONG).show()
-                Log.e(TAG, "NavHostFragment is null")
-                return
-            }
-
-            val navController = navHostFragment.navController
-            Log.d(TAG, "NavController initialized")
-
-            binding.bottomNavigation.setupWithNavController(navController)
-            Log.d(TAG, "Bottom navigation setup complete")
-
-            // Set up navigation error handling
-            navController.addOnDestinationChangedListener { _, destination, _ ->
-                Log.d(TAG, "Navigation changed to: ${destination.label}")
-            }
+            setupNavigation()
+            migrateDatabase()
         } catch (e: Exception) {
             Log.e(TAG, "Error in onCreate", e)
             Toast.makeText(this, "Error starting app: ${e.message}", Toast.LENGTH_LONG).show()
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        Log.d(TAG, "onResume called")
+    private fun setupNavigation() {
+        try {
+            val navHostFragment = supportFragmentManager
+                .findFragmentById(R.id.nav_host_fragment) as? NavHostFragment
+            
+            if (navHostFragment == null) {
+                Log.e(TAG, "NavHostFragment is null")
+                Toast.makeText(this, "Error initializing navigation", Toast.LENGTH_LONG).show()
+                return
+            }
+
+            val navController = navHostFragment.navController
+
+            binding.bottomNavigation.setupWithNavController(navController)
+            binding.bottomNavigation.setOnItemReselectedListener { /* Prevent reselection reload */ }
+        } catch (e: Exception) {
+            Log.e(TAG, "Error setting up navigation", e)
+        }
     }
 
-    override fun onPause() {
-        super.onPause()
-        Log.d(TAG, "onPause called")
+    private fun migrateDatabase() {
+        lifecycleScope.launch {
+            try {
+                val repository = FoodPostRepository.getInstance()
+                repository.migrateExistingPosts()
+                    .onFailure { e ->
+                        Log.e(TAG, "Failed to migrate posts", e)
+                    }
+            } catch (e: Exception) {
+                Log.e(TAG, "Error migrating database", e)
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

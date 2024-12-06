@@ -24,7 +24,9 @@ drawable ic_post
 drawable ic_profile
 drawable ic_search
 drawable ic_time
+id action_foodPostDetailFragment_to_navigation_discover
 id action_itemDiscoveryFragment_to_foodPostDetailFragment
+id action_notifications_to_foodPostDetail
 id autocomplete_fragment
 id bottom_navigation
 id btnLogin
@@ -40,6 +42,7 @@ id descriptionText
 id directionsButton
 id distanceText
 id emptyView
+id errorFragment
 id etDisplayName
 id etEmail
 id etPassword
@@ -58,6 +61,7 @@ id locationText
 id loggedInLayout
 id loggedOutLayout
 id mapView
+id messageText
 id nav_graph
 id nav_host_fragment
 id navigation_discover
@@ -65,6 +69,7 @@ id navigation_notifications
 id navigation_post
 id navigation_profile
 id notificationsFragment
+id notificationsRecyclerView
 id pickupTimeInput
 id pickupTimeLayout
 id postedByText
@@ -72,7 +77,6 @@ id progressBar
 id quantityInput
 id quantityLayout
 id quantityText
-id recyclerView
 id searchInput
 id searchLayout
 id submitButton
@@ -92,6 +96,7 @@ layout fragment_item_posting
 layout fragment_notifications
 layout fragment_user_profile
 layout item_food_post
+layout item_notification
 layout list_item
 menu bottom_nav_menu
 menu bottom_navigation_menu

@@ -3,7 +3,9 @@ package com.yourcompany.excesseats.ui.discovery
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -16,6 +18,8 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 import com.yourcompany.excesseats.R
 import com.yourcompany.excesseats.data.model.FoodPost
 import com.yourcompany.excesseats.data.repository.FoodPostRepository
@@ -34,6 +38,10 @@ class FoodPostDetailFragment : Fragment() {
     private val args: FoodPostDetailFragmentArgs by navArgs()
     private val repository = FoodPostRepository.getInstance()
     private var isClaimed = false
+
+    companion object {
+        private const val TAG = "FoodPostDetailFragment"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -83,25 +91,36 @@ class FoodPostDetailFragment : Fragment() {
     }
 
     private fun updateUI(post: FoodPost) {
-        binding.apply {
-            titleText.text = post.title
-            foodTypeChip.text = post.foodType
-            locationText.text = post.location
-            timeText.text = "Available until ${SimpleDateFormat("h:mm a", Locale.getDefault()).format(Date(post.pickupTime))}"
-            quantityText.text = post.quantity
-            postedByText.text = "Posted by: ${post.userId}"
-            containerText.text = if (post.containersAvailable) "Containers available" else "Bring your own container"
-            descriptionText.text = post.description
+        binding?.apply {
+            try {
+                titleText.text = post.title ?: ""
+                foodTypeChip.text = post.foodType ?: ""
+                locationText.text = post.location ?: ""
+                timeText.text = if (post.pickupTime != 0L) {
+                    "Available until ${SimpleDateFormat("h:mm a", Locale.getDefault()).format(Date(post.pickupTime))}"
+                } else ""
+                quantityText.text = "${post.remainingQuantity} left of ${post.quantity}"
+                postedByText.text = "Posted by: ${post.userId}"
+                containerText.text = if (post.containersAvailable) "Containers available" else "Bring your own container"
+                descriptionText.text = post.description ?: ""
 
-            // Load food image
-            Glide.with(requireContext())
-                .load(post.imageUrl)
-                .placeholder(android.R.drawable.ic_menu_gallery)
-                .error(android.R.drawable.ic_menu_gallery)
-                .centerCrop()
-                .into(foodImageView)
+                claimButton.isEnabled = post.remainingQuantity > 0
+                claimButton.text = if (post.remainingQuantity > 0) "Claim Food" else "Fully Claimed"
 
-            updateMapLocation()
+                post.imageUrl?.let { url ->
+                    if (url.isNotEmpty()) {
+                        Glide.with(requireContext())
+                            .load(url)
+                            .placeholder(android.R.drawable.ic_menu_gallery)
+                            .error(android.R.drawable.ic_menu_gallery)
+                            .centerCrop()
+                            .into(foodImageView)
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Error updating UI", e)
+                Toast.makeText(context, "Error loading post details", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -128,6 +147,7 @@ class FoodPostDetailFragment : Fragment() {
                             "Successfully claimed food!",
                             Toast.LENGTH_SHORT
                         ).show()
+                        findNavController().navigateUp()
                     }.onFailure { exception ->
                         Toast.makeText(
                             requireContext(),

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.yourcompany.excesseats.app-mergeDebugResources-55:/values-h320dp-port-v13/values-h320dp-port-v13.xml",
+            "outputFile": "com.yourcompany.excesseats.app-mergeDebugResources-62:/values-h320dp-port-v13/values-h320dp-port-v13.xml",
             "map": [
                 {
                     "source": "C:\\Users\\zhuos\\.gradle\\caches\\8.10.2\\transforms\\e53e2a76520555feb719060000b2a03a\\transformed\\material-1.10.0\\res\\values-h320dp-port-v13\\values-h320dp-port-v13.xml",
