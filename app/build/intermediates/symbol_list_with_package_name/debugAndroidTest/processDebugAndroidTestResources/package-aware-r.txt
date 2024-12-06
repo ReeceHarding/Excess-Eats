@@ -1,0 +1,3 @@
+com.cs407.excesseats.test
+style WhiteBackgroundDialogTheme
+style WhiteBackgroundTheme

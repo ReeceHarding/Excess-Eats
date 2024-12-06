@@ -1,0 +1,2 @@
+com.cs407.excesseats.test:style/WhiteBackgroundTheme = 0x7f010001
+com.cs407.excesseats.test:style/WhiteBackgroundDialogTheme = 0x7f010000

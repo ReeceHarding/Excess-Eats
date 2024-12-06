@@ -1,0 +1,36 @@
+R_DEF: Internal format may change without notice
+local
+array menu_options
+color black
+color white
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+drawable toggle_background
+drawable toggle_button_selector
+id btnAction
+id btnDeleteAccount
+id btnLoginToggle
+id btnLogout
+id btnRegisterToggle
+id etEmail
+id etPassword
+id tabLayout
+id titleContainer
+id toggleButtonsContainer
+id tvEmailLabel
+id tvPasswordLabel
+id tvSubtitle
+id tvTitle
+id viewPager
+layout activity_login
+layout activity_main
+layout fragment_find_food
+layout fragment_post_food
+layout fragment_profile
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+style Base.Theme.ExcessEats
+style Theme.ExcessEats
+xml backup_rules
+xml data_extraction_rules

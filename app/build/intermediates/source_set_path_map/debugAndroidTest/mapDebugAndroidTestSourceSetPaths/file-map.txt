@@ -1,0 +1,6 @@
+com.cs407.excesseats.test.app-tracing-1.2.0-0 C:\Users\zhuos\.gradle\caches\8.9\transforms\93bb1d6fc205b68af9fcda53a0886c8e\transformed\tracing-1.2.0\res
+com.cs407.excesseats.test.app-core-1.6.1-1 C:\Users\zhuos\.gradle\caches\8.9\transforms\9db19b33806b0a979bdb730b64a4bb9e\transformed\core-1.6.1\res
+com.cs407.excesseats.test.app-androidTest-2 C:\Users\zhuos\AndroidStudioProjects\ExcessEats2\app\build\generated\res\resValues\androidTest\debug
+com.cs407.excesseats.test.app-mergeDebugAndroidTestResources-3 C:\Users\zhuos\AndroidStudioProjects\ExcessEats2\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.cs407.excesseats.test.app-mergeDebugAndroidTestResources-4 C:\Users\zhuos\AndroidStudioProjects\ExcessEats2\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.cs407.excesseats.test.app-debugAndroidTest-5 C:\Users\zhuos\AndroidStudioProjects\ExcessEats2\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
