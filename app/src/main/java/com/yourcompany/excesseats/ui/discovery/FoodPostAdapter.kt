@@ -13,7 +13,6 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.google.android.gms.maps.model.LatLng
-import com.yourcompany.excesseats.R
 import com.yourcompany.excesseats.data.model.FoodPost
 import com.yourcompany.excesseats.databinding.ItemFoodPostBinding
 import java.text.SimpleDateFormat
@@ -69,35 +68,38 @@ class FoodPostAdapter(
                     Log.d("FoodPostAdapter", "Empty imageUrl, showing placeholder")
                     foodImageView.setImageResource(android.R.drawable.ic_menu_gallery)
                 } else {
-                    Log.d("FoodPostAdapter", "Attempting to load image with Glide from URL: ${foodPost.imageUrl}")
-                    Glide.with(foodImageView)
-                        .load(foodPost.imageUrl)
-                        .placeholder(android.R.drawable.ic_menu_gallery)
-                        .error(android.R.drawable.ic_menu_gallery)
-                        .listener(object : RequestListener<Drawable> {
-                            override fun onLoadFailed(
-                                e: GlideException?,
-                                model: Any?,
-                                target: Target<Drawable>,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                Log.e("FoodPostAdapter", "Failed to load image for post ${foodPost.id} from URL ${foodPost.imageUrl}", e)
-                                e?.logRootCauses("FoodPostAdapter")
-                                return false
-                            }
+                    try {
+                        Glide.with(foodImageView)
+                            .load(foodPost.imageUrl)
+                            .placeholder(android.R.drawable.ic_menu_gallery)
+                            .error(android.R.drawable.ic_dialog_alert)
+                            .listener(object : RequestListener<Drawable> {
+                                override fun onLoadFailed(
+                                    e: GlideException?,
+                                    model: Any?,
+                                    target: Target<Drawable>,
+                                    isFirstResource: Boolean
+                                ): Boolean {
+                                    Log.e("FoodPostAdapter", "Failed to load image for post ${foodPost.id}", e)
+                                    return false
+                                }
 
-                            override fun onResourceReady(
-                                resource: Drawable,
-                                model: Any,
-                                target: Target<Drawable>,
-                                dataSource: DataSource,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                Log.d("FoodPostAdapter", "Successfully loaded image for post ${foodPost.id} from URL ${foodPost.imageUrl}")
-                                return false
-                            }
-                        })
-                        .into(foodImageView)
+                                override fun onResourceReady(
+                                    resource: Drawable,
+                                    model: Any,
+                                    target: Target<Drawable>,
+                                    dataSource: DataSource,
+                                    isFirstResource: Boolean
+                                ): Boolean {
+                                    Log.d("FoodPostAdapter", "Successfully loaded image for post ${foodPost.id}")
+                                    return false
+                                }
+                            })
+                            .into(foodImageView)
+                    } catch (e: Exception) {
+                        Log.e("FoodPostAdapter", "Error setting up image load", e)
+                        foodImageView.setImageResource(android.R.drawable.ic_dialog_alert)
+                    }
                 }
 
                 // Calculate and display distance if user location is available
@@ -116,11 +118,11 @@ class FoodPostAdapter(
                     "Fully claimed"
                 }
                 quantityText.text = quantityString
-                
+
                 // Disable claim button if fully claimed
                 claimButton.isEnabled = foodPost.remainingQuantity > 0
                 claimButton.text = if (foodPost.remainingQuantity > 0) "Claim" else "Claimed"
-                
+
                 // Add back the click listener
                 claimButton.setOnClickListener {
                     onItemClick(foodPost)

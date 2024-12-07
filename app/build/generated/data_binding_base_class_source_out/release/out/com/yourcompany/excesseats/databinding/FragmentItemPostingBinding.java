@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -57,6 +58,9 @@ public final class FragmentItemPostingBinding implements ViewBinding {
   public final TextInputLayout pickupTimeLayout;
 
   @NonNull
+  public final ProgressBar progressBar;
+
+  @NonNull
   public final TextInputEditText quantityInput;
 
   @NonNull
@@ -83,10 +87,10 @@ public final class FragmentItemPostingBinding implements ViewBinding {
       @NonNull TextInputLayout foodTypeLayout, @NonNull ImageView imagePreview,
       @NonNull TextInputLayout locationLayout, @NonNull MapView mapView,
       @NonNull TextInputEditText pickupTimeInput, @NonNull TextInputLayout pickupTimeLayout,
-      @NonNull TextInputEditText quantityInput, @NonNull TextInputLayout quantityLayout,
-      @NonNull MaterialButton submitButton, @NonNull TextInputEditText titleInput,
-      @NonNull TextInputLayout titleLayout, @NonNull MaterialToolbar toolbar,
-      @NonNull MaterialButton uploadImageButton) {
+      @NonNull ProgressBar progressBar, @NonNull TextInputEditText quantityInput,
+      @NonNull TextInputLayout quantityLayout, @NonNull MaterialButton submitButton,
+      @NonNull TextInputEditText titleInput, @NonNull TextInputLayout titleLayout,
+      @NonNull MaterialToolbar toolbar, @NonNull MaterialButton uploadImageButton) {
     this.rootView = rootView;
     this.containerSwitch = containerSwitch;
     this.descriptionInput = descriptionInput;
@@ -98,6 +102,7 @@ public final class FragmentItemPostingBinding implements ViewBinding {
     this.mapView = mapView;
     this.pickupTimeInput = pickupTimeInput;
     this.pickupTimeLayout = pickupTimeLayout;
+    this.progressBar = progressBar;
     this.quantityInput = quantityInput;
     this.quantityLayout = quantityLayout;
     this.submitButton = submitButton;
@@ -194,6 +199,12 @@ public final class FragmentItemPostingBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.progressBar;
+      ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
+      if (progressBar == null) {
+        break missingId;
+      }
+
       id = R.id.quantityInput;
       TextInputEditText quantityInput = ViewBindings.findChildViewById(rootView, id);
       if (quantityInput == null) {
@@ -238,8 +249,8 @@ public final class FragmentItemPostingBinding implements ViewBinding {
 
       return new FragmentItemPostingBinding((CoordinatorLayout) rootView, containerSwitch,
           descriptionInput, descriptionLayout, foodTypeInput, foodTypeLayout, imagePreview,
-          locationLayout, mapView, pickupTimeInput, pickupTimeLayout, quantityInput, quantityLayout,
-          submitButton, titleInput, titleLayout, toolbar, uploadImageButton);
+          locationLayout, mapView, pickupTimeInput, pickupTimeLayout, progressBar, quantityInput,
+          quantityLayout, submitButton, titleInput, titleLayout, toolbar, uploadImageButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

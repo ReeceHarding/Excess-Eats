@@ -1,13 +1,17 @@
+/*
 package com.yourcompany.excesseats.ui.notifications
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.yourcompany.excesseats.data.model.Notification
+import com.yourcompany.excesseats.data.model.NotificationType
 import com.yourcompany.excesseats.data.repository.NotificationRepository
 import com.yourcompany.excesseats.databinding.FragmentNotificationsBinding
 import kotlinx.coroutines.flow.collectLatest
@@ -17,7 +21,7 @@ class NotificationsFragment : Fragment() {
     private var _binding: FragmentNotificationsBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: NotificationAdapter
-    private lateinit var repository: NotificationRepository
+    private val repository = NotificationRepository.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,41 +34,53 @@ class NotificationsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        repository = NotificationRepository.getInstance(requireContext())
         setupRecyclerView()
         loadNotifications()
     }
 
     private fun setupRecyclerView() {
         adapter = NotificationAdapter { notification ->
-            // Handle notification click
-            notification.postId?.let { postId ->
-                findNavController().navigate(
-                    NotificationsFragmentDirections.actionNotificationsToFoodPostDetail(
-                        postId = postId,
-                        title = notification.title,
-                        latitude = 0f, // You'll need to get these from the post
-                        longitude = 0f
-                    )
-                )
-                // Mark as read
-                lifecycleScope.launch {
-                    repository.markAsRead(notification.id)
-                }
-            }
+            handleNotificationClick(notification)
         }
 
         binding.notificationsRecyclerView.apply {
-            layoutManager = LinearLayoutManager(context)
-            this.adapter = this@NotificationsFragment.adapter
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = this@NotificationsFragment.adapter
         }
     }
 
     private fun loadNotifications() {
-        lifecycleScope.launch {
-            repository.getAllNotifications().collectLatest { notifications ->
-                adapter.submitList(notifications)
-                binding.emptyView.visibility = if (notifications.isEmpty()) View.VISIBLE else View.GONE
+        viewLifecycleOwner.lifecycleScope.launch {
+            repository.getNotifications().collectLatest { result ->
+                result.onSuccess { notifications ->
+                    adapter.submitList(notifications)
+                    binding.emptyView.visibility = if (notifications.isEmpty()) View.VISIBLE else View.GONE
+                    binding.notificationsRecyclerView.visibility = if (notifications.isEmpty()) View.GONE else View.VISIBLE
+                }.onFailure { exception ->
+                    Toast.makeText(
+                        requireContext(),
+                        "Error loading notifications: ${exception.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+    }
+
+    private fun handleNotificationClick(notification: Notification) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repository.markAsRead(notification.id)
+
+            when (notification.type) {
+                NotificationType.FOOD_CLAIMED, NotificationType.NEW_FOOD_NEARBY -> {
+                    notification.relatedPostId?.let { postId ->
+                        // Navigate to food post detail
+                        // Note: You'll need to implement this navigation
+                    }
+                }
+                else -> {
+                    // Handle other notification types
+                }
             }
         }
     }
@@ -74,3 +90,4 @@ class NotificationsFragment : Fragment() {
         _binding = null
     }
 }
+*/

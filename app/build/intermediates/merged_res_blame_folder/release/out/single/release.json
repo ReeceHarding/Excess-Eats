@@ -1,126 +1,154 @@
 [
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/layout_list_item.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/layout/list_item.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/drawable_ic_discover.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/drawable/ic_discover.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_discover.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/drawable/ic_discover.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/layout_activity_main.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/layout/activity_main.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/drawable_ic_time.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/drawable/ic_time.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/layout_fragment_user_profile.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/layout/fragment_user_profile.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/layout_fragment_user_profile.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/layout/fragment_user_profile.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/layout_activity_main.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/layout/activity_main.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/layout_activity_register.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/layout/activity_register.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/drawable_ic_directions.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/drawable/ic_directions.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_meals.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/drawable/ic_meals.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/drawable_ic_notifications.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/drawable/ic_notifications.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_container.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/drawable/ic_container.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/layout_list_item.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/layout/list_item.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/layout_fragment_food_post_detail.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/layout/fragment_food_post_detail.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/drawable_ic_post.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/drawable/ic_post.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_notifications.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/drawable/ic_notifications.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/menu_bottom_navigation_menu.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/menu/bottom_navigation_menu.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/layout_fragment_item_discovery.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/layout/fragment_item_discovery.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/drawable_ic_food.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/drawable/ic_food.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/xml_data_extraction_rules.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/xml_data_extraction_rules.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/xml/data_extraction_rules.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_camera.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/drawable/ic_camera.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/drawable_ic_location.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/drawable/ic_location.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/layout_activity_login.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/layout/activity_login.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/layout_item_food_post.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/layout/item_food_post.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_person.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/drawable/ic_person.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/layout_fragment_item_discovery.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/layout/fragment_item_discovery.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_location.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/drawable/ic_location.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/layout_activity_login.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/layout/activity_login.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_time.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/drawable/ic_time.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/layout_fragment_notifications.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/layout/fragment_notifications.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_post.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/drawable/ic_post.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/drawable_ic_back.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/drawable/ic_back.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_food.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/drawable/ic_food.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/layout_fragment_item_posting.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/layout/fragment_item_posting.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/layout_activity_register.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/layout/activity_register.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/drawable/ic_launcher_foreground.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_profile.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/drawable/ic_profile.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/drawable_ic_person.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/drawable/ic_person.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/xml_file_paths.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/xml/file_paths.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/drawable_ic_search.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/drawable/ic_search.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/layout_fragment_item_posting.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/layout/fragment_item_posting.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/xml_file_paths.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/xml/file_paths.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/layout_fragment_notifications.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/layout/fragment_notifications.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_back.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/drawable/ic_back.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/drawable_ic_profile.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/drawable/ic_profile.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_waste.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/drawable/ic_waste.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/navigation_nav_graph.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/navigation/nav_graph.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_directions.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/drawable/ic_directions.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/layout_fragment_food_post_detail.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/layout/fragment_food_post_detail.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/drawable_ic_container.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/drawable/ic_container.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/xml_backup_rules.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/xml/backup_rules.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/menu_bottom_nav_menu.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/menu/bottom_nav_menu.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/menu_bottom_navigation_menu.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/menu/bottom_navigation_menu.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-54:/xml_backup_rules.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-55:/xml/backup_rules.xml"
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_email.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/drawable/ic_email.xml"
+    },
+    {
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/layout_item_food_post.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/layout/item_food_post.xml"
+    },
+    {
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/navigation_nav_graph.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/navigation/nav_graph.xml"
+    },
+    {
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/drawable_circle_background.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/drawable/circle_background.xml"
+    },
+    {
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_phone.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/drawable/ic_phone.xml"
+    },
+    {
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/menu_bottom_nav_menu.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/menu/bottom_nav_menu.xml"
+    },
+    {
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/layout_item_notification.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/layout/item_notification.xml"
+    },
+    {
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_search.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-65:/drawable/ic_search.xml"
     }
 ]

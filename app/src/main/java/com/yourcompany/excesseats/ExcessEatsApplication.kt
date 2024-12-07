@@ -5,10 +5,14 @@ import android.util.Log
 import com.google.android.libraries.places.api.Places
 import com.google.firebase.FirebaseApp
 import com.google.firebase.database.FirebaseDatabase
+import com.yourcompany.excesseats.utils.Logger
 
 class ExcessEatsApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+
+        // Enable debug logging in debug builds
+        Logger.setDebugEnabled(BuildConfig.DEBUG)
 
         // Initialize Firebase
         FirebaseApp.initializeApp(this)
@@ -21,7 +25,7 @@ class ExcessEatsApplication : Application() {
 
         // Set up global error handler
         Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
-            Log.e("ExcessEats", "Uncaught exception in thread $thread", throwable)
+            Logger.e("Uncaught exception in thread $thread", throwable)
         }
     }
 }

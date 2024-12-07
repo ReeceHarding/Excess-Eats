@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.yourcompany.excesseats.app-mergeReleaseResources-52:/values-v24/values-v24.xml",
+            "outputFile": "com.yourcompany.excesseats.app-mergeReleaseResources-62:/values-v24/values-v24.xml",
             "map": [
                 {
                     "source": "/Users/reeceharding/.gradle/caches/8.10.2/transforms/26ba17d4213c0a6bce18608be2868975/transformed/appcompat-1.6.1/res/values-v24/values-v24.xml",

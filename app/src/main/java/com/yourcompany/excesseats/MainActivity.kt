@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         try {
             val navHostFragment = supportFragmentManager
                 .findFragmentById(R.id.nav_host_fragment) as? NavHostFragment
-            
+
             if (navHostFragment == null) {
                 Log.e(TAG, "NavHostFragment is null")
                 Toast.makeText(this, "Error initializing navigation", Toast.LENGTH_LONG).show()

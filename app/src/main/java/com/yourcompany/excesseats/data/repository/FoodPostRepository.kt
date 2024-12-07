@@ -22,6 +22,7 @@ import android.util.Log
 class FoodPostRepository private constructor() {
     private val database = FirebaseDatabase.getInstance()
     private val postsRef = database.getReference("posts")
+    private val userRepository = UserRepository.getInstance()
 
     companion object {
         @Volatile
@@ -36,12 +37,10 @@ class FoodPostRepository private constructor() {
     }
 
     suspend fun createPost(post: FoodPost): Result<FoodPost> = try {
-        val initialQuantity = post.quantity.split(" ")[0].toIntOrNull() ?: 1
-        
-        val postWithQuantity = post.copy(remainingQuantity = initialQuantity)
-        postsRef.child(post.id).setValue(postWithQuantity).await()
-        Result.success(postWithQuantity)
+        postsRef.child(post.id).setValue(post).await()
+        Result.success(post)
     } catch (e: Exception) {
+        Log.e(TAG, "Error creating post", e)
         Result.failure(e)
     }
 
@@ -138,34 +137,40 @@ class FoodPostRepository private constructor() {
         awaitClose { postsRef.child(postId).removeEventListener(listener) }
     }
 
-    suspend fun claimFoodPost(postId: String): Result<Unit> {
+    suspend fun claimFoodPost(postId: String, userId: String): Result<Unit> {
         return try {
-            try {
-                val snapshot = postsRef.child(postId).get().await()
-                val post = snapshot.getValue<FoodPost>() ?: throw NoSuchElementException("Post not found")
+            val snapshot = postsRef.child(postId).get().await()
+            val post = snapshot.getValue<FoodPost>() ?: throw NoSuchElementException("Post not found")
 
-                if (post.remainingQuantity <= 0) {
-                    return Result.failure(IllegalStateException("Food post fully claimed"))
-                }
-
-                val newQuantity = post.remainingQuantity - 1
-                val updates = if (newQuantity > 0) {
-                    mapOf("remainingQuantity" to newQuantity)
-                } else {
-                    mapOf(
-                        "remainingQuantity" to 0,
-                        "isClaimed" to true
-                    )
-                }
-
-                postsRef.child(postId).updateChildren(updates).await()
-                Result.success(Unit)
-            } catch (e: Exception) {
-                Log.e(TAG, "Error claiming food post", e)
-                Result.failure(e)
+            if (post.remainingQuantity <= 0) {
+                return Result.failure(IllegalStateException("Food post fully claimed"))
             }
+
+            val newQuantity = post.remainingQuantity - 1
+            val updates = if (newQuantity > 0) {
+                mapOf(
+                    "remainingQuantity" to newQuantity,
+                    "claimedBy" to userId,
+                    "claimedAt" to System.currentTimeMillis()
+                )
+            } else {
+                mapOf(
+                    "remainingQuantity" to 0,
+                    "isClaimed" to true,
+                    "claimedBy" to userId,
+                    "claimedAt" to System.currentTimeMillis()
+                )
+            }
+
+            // Update the post first
+            postsRef.child(postId).updateChildren(updates).await()
+
+            // Then update user stats
+            userRepository.updateUserStats(userId, post.copy(remainingQuantity = 1)) // Only count 1 serving for stats
+
+            Result.success(Unit)
         } catch (e: Exception) {
-            Log.e(TAG, "Fatal error claiming food post", e)
+            Log.e(TAG, "Error claiming food post", e)
             Result.failure(e)
         }
     }
@@ -189,7 +194,7 @@ class FoodPostRepository private constructor() {
     suspend fun migrateExistingPosts() = try {
         val snapshot = postsRef.get().await()
         val updates = mutableMapOf<String, Any>()
-        
+
         snapshot.children.forEach { postSnapshot ->
             val post = postSnapshot.getValue<FoodPost>()
             if (post != null) {
@@ -197,7 +202,7 @@ class FoodPostRepository private constructor() {
                 // Example: "10 servings" -> 10
                 val quantityStr = post.quantity.split(" ")[0]
                 val initialQuantity = quantityStr.toIntOrNull() ?: 1
-                
+
                 // Only update if remainingQuantity isn't set or if post is claimed
                 if (postSnapshot.child("remainingQuantity").value == null) {
                     val remainingQuantity = if (post.isClaimed) 0 else initialQuantity
@@ -205,13 +210,13 @@ class FoodPostRepository private constructor() {
                 }
             }
         }
-        
+
         // Perform all updates in a single batch
         if (updates.isNotEmpty()) {
             postsRef.updateChildren(updates).await()
             Log.d("FoodPostRepository", "Successfully migrated ${updates.size} posts")
         }
-        
+
         Result.success(Unit)
     } catch (e: Exception) {
         Log.e("FoodPostRepository", "Error migrating posts", e)

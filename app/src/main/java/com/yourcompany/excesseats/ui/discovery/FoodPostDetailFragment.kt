@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -20,9 +22,12 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
+import com.google.android.material.chip.Chip
 import com.yourcompany.excesseats.R
+import com.yourcompany.excesseats.data.model.FoodCategory
 import com.yourcompany.excesseats.data.model.FoodPost
 import com.yourcompany.excesseats.data.repository.FoodPostRepository
+import com.yourcompany.excesseats.data.repository.UserRepository
 import com.yourcompany.excesseats.databinding.FragmentFoodPostDetailBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -36,7 +41,8 @@ class FoodPostDetailFragment : Fragment() {
     private val binding get() = _binding!!
     private var googleMap: GoogleMap? = null
     private val args: FoodPostDetailFragmentArgs by navArgs()
-    private val repository = FoodPostRepository.getInstance()
+    private val foodPostRepository = FoodPostRepository.getInstance()
+    private val userRepository = UserRepository.getInstance()
     private var isClaimed = false
 
     companion object {
@@ -54,10 +60,9 @@ class FoodPostDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupToolbar()
+        setupViews()
         setupMap(savedInstanceState)
         loadFoodPost()
-        setupButtons()
     }
 
     private fun setupToolbar() {
@@ -76,7 +81,7 @@ class FoodPostDetailFragment : Fragment() {
 
     private fun loadFoodPost() {
         lifecycleScope.launch {
-            repository.getFoodPost(args.postId).collectLatest { result ->
+            foodPostRepository.getFoodPost(args.postId).collectLatest { result ->
                 result.onSuccess { post ->
                     updateUI(post)
                 }.onFailure { exception ->
@@ -91,71 +96,82 @@ class FoodPostDetailFragment : Fragment() {
     }
 
     private fun updateUI(post: FoodPost) {
-        binding?.apply {
-            try {
-                titleText.text = post.title ?: ""
-                foodTypeChip.text = post.foodType ?: ""
-                locationText.text = post.location ?: ""
+        try {
+            binding.apply {
+                titleText.text = post.title.orEmpty()
+                foodTypeChip.text = post.foodType.orEmpty()
+                locationText.text = post.location.orEmpty()
                 timeText.text = if (post.pickupTime != 0L) {
                     "Available until ${SimpleDateFormat("h:mm a", Locale.getDefault()).format(Date(post.pickupTime))}"
                 } else ""
                 quantityText.text = "${post.remainingQuantity} left of ${post.quantity}"
                 postedByText.text = "Posted by: ${post.userId}"
                 containerText.text = if (post.containersAvailable) "Containers available" else "Bring your own container"
-                descriptionText.text = post.description ?: ""
+                descriptionText.text = post.description.orEmpty()
 
-                claimButton.isEnabled = post.remainingQuantity > 0
-                claimButton.text = if (post.remainingQuantity > 0) "Claim Food" else "Fully Claimed"
-
-                post.imageUrl?.let { url ->
-                    if (url.isNotEmpty()) {
-                        Glide.with(requireContext())
-                            .load(url)
-                            .placeholder(android.R.drawable.ic_menu_gallery)
-                            .error(android.R.drawable.ic_menu_gallery)
-                            .centerCrop()
-                            .into(foodImageView)
-                    }
+                claimButton.isEnabled = !post.isClaimed && post.remainingQuantity > 0
+                claimButton.text = when {
+                    post.isClaimed -> "Claimed"
+                    post.remainingQuantity <= 0 -> "Fully Claimed"
+                    else -> "Claim Food"
                 }
-            } catch (e: Exception) {
-                Log.e(TAG, "Error updating UI", e)
-                Toast.makeText(context, "Error loading post details", Toast.LENGTH_SHORT).show()
+
+                if (!post.imageUrl.isNullOrEmpty()) {
+                    Glide.with(requireContext())
+                        .load(post.imageUrl)
+                        .placeholder(android.R.drawable.ic_menu_gallery)
+                        .error(android.R.drawable.ic_menu_report_image)
+                        .centerCrop()
+                        .into(foodImageView)
+                }
             }
+            updateMapLocation()
+        } catch (e: Exception) {
+            Log.e(TAG, "Error updating UI", e)
+            Toast.makeText(context, "Error loading post details", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun updateMapLocation() {
-        googleMap?.let { map ->
-            val location = LatLng(args.latitude.toDouble(), args.longitude.toDouble())
-            map.clear()
-            map.addMarker(MarkerOptions().position(location).title(args.title))
-            map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15f))
+        try {
+            googleMap?.let { map ->
+                val location = LatLng(args.latitude.toDouble(), args.longitude.toDouble())
+                map.clear()
+                map.addMarker(MarkerOptions().position(location).title(args.title))
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15f))
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Error updating map", e)
+        }
+    }
+
+    private fun setupViews() {
+        setupToolbar()
+        setupFoodTypeChip()
+        setupButtons()
+        setupImageView()
+    }
+
+    private fun setupFoodTypeChip() {
+        binding.foodTypeChip.apply {
+            isCheckable = false
+            isClickable = false
+        }
+    }
+
+    private fun setupImageView() {
+        binding.foodImageView.apply {
+            scaleType = ImageView.ScaleType.CENTER_CROP
+            setOnClickListener {
+                // TODO: Implement image zoom/preview
+            }
         }
     }
 
     private fun setupButtons() {
         binding.claimButton.setOnClickListener {
             if (!isClaimed) {
-                lifecycleScope.launch {
-                    val result = repository.claimFoodPost(args.postId)
-                    result.onSuccess {
-                        isClaimed = true
-                        binding.claimButton.text = "Claimed"
-                        binding.claimButton.isEnabled = false
-                        Toast.makeText(
-                            requireContext(),
-                            "Successfully claimed food!",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        findNavController().navigateUp()
-                    }.onFailure { exception ->
-                        Toast.makeText(
-                            requireContext(),
-                            "Failed to claim food: ${exception.message}",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
+                claimFood()
             }
         }
 
@@ -173,6 +189,35 @@ class FoodPostDetailFragment : Fragment() {
                     "Google Maps app is not installed",
                     Toast.LENGTH_SHORT
                 ).show()
+            }
+        }
+    }
+
+    private fun claimFood() {
+        val currentUser = userRepository.getCurrentUser()
+        if (currentUser == null) {
+            Toast.makeText(context, "Please log in to claim food", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        lifecycleScope.launch {
+            try {
+                val result = foodPostRepository.claimFoodPost(args.postId, currentUser.uid)
+                when {
+                    result.isSuccess -> {
+                        isClaimed = true
+                        binding.claimButton.text = "Claimed"
+                        binding.claimButton.isEnabled = false
+                        Toast.makeText(context, "Successfully claimed food!", Toast.LENGTH_SHORT).show()
+                        findNavController().navigateUp()
+                    }
+                    result.isFailure -> {
+                        val error = result.exceptionOrNull()
+                        Toast.makeText(context, "Error: ${error?.message}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } catch (e: Exception) {
+                Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }

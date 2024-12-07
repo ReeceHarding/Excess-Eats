@@ -64,9 +64,16 @@
     <string name="common_open_on_phone">Opna í símanum</string>
     <string name="common_signin_button_text">Skrá inn</string>
     <string name="common_signin_button_text_long">Skrá inn með Google</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"Tengill afritaður á klippiborð"</string>
     <string name="error_icon_content_description">Villa</string>
     <string name="exposed_dropdown_menu_content_description">Sýna fellivalmynd</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Afrita tengil"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Opna í vafra"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Deila tengli"</string>
     <string name="icon_content_description">Gluggatákn</string>
+    <string msgid="475402237100444685" name="installation_cancelled">"Hætt við uppsetningu."</string>
+    <string msgid="863287960437940689" name="installation_failed">"Uppsetning mistókst."</string>
+    <string msgid="5968445461040787716" name="installing_module">"Setur upp einingu:"</string>
     <string name="item_view_role_description">Flipi</string>
     <string name="material_clock_toggle_content_description">Velja f.h. eða e.h.</string>
     <string name="material_hour_24h_suffix">%1$s klst.</string>
@@ -125,6 +132,7 @@
     <string name="mtrl_timepicker_confirm">Í lagi</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Fara upp"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Opna yfirlitsskúffu"</string>
+    <string msgid="4702104660890557116" name="ok">"Í lagi"</string>
     <string name="password_toggle_content_description">Sýna aðgangsorð</string>
     <string name="places_autocomplete_clear_button">Hreinsa leit</string>
     <string name="places_autocomplete_label">Velja stað</string>
@@ -134,6 +142,8 @@
     <string name="places_powered_by_google">Keyrt af Google</string>
     <string name="places_search_error">Ekki er hægt að hlaða leitarniðurstöður.</string>
     <string name="places_try_again">Reyna aftur</string>
+    <string msgid="8366783942222789124" name="progress">"Framvinda:"</string>
+    <string msgid="1065327189183624288" name="retry">"Reyna aftur"</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Leit"</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
 </resources>

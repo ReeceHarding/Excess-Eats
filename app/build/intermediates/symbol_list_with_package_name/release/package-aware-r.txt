@@ -637,6 +637,8 @@ attr gapBetweenBars
 attr gestureInsetBottomIgnored
 attr goIcon
 attr graph
+attr graphPackage
+attr graphResName
 attr guidelineUseRtl
 attr haloColor
 attr haloRadius
@@ -916,6 +918,7 @@ attr mock_labelBackgroundColor
 attr mock_labelColor
 attr mock_showDiagonals
 attr mock_showLabel
+attr moduleName
 attr motionDebug
 attr motionDurationExtraLong1
 attr motionDurationExtraLong2
@@ -1034,6 +1037,7 @@ attr pressedTranslationZ
 attr primaryActivityName
 attr progressBarPadding
 attr progressBarStyle
+attr progressDestination
 attr quantizeMotionInterpolator
 attr quantizeMotionPhase
 attr quantizeMotionSteps
@@ -1437,6 +1441,10 @@ color bright_foreground_inverse_material_dark
 color bright_foreground_inverse_material_light
 color bright_foreground_material_dark
 color bright_foreground_material_light
+color browser_actions_bg_grey
+color browser_actions_divider_color
+color browser_actions_text_color
+color browser_actions_title_color
 color button_material_dark
 color button_material_light
 color call_notification_answer_color
@@ -2603,6 +2611,8 @@ dimen abc_text_size_subtitle_material_toolbar
 dimen abc_text_size_title_material
 dimen abc_text_size_title_material_toolbar
 dimen appcompat_dialog_background_inset
+dimen browser_actions_context_menu_max_width
+dimen browser_actions_context_menu_min_padding
 dimen cardview_compat_inset_shadow
 dimen cardview_default_elevation
 dimen cardview_default_radius
@@ -3420,6 +3430,7 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable circle_background
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -3454,11 +3465,13 @@ drawable ic_call_answer_video
 drawable ic_call_answer_video_low
 drawable ic_call_decline
 drawable ic_call_decline_low
+drawable ic_camera
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
 drawable ic_container
 drawable ic_directions
 drawable ic_discover
+drawable ic_email
 drawable ic_food
 drawable ic_keyboard_black_24dp
 drawable ic_launcher_foreground
@@ -3466,17 +3479,20 @@ drawable ic_location
 drawable ic_m3_chip_check
 drawable ic_m3_chip_checked_circle
 drawable ic_m3_chip_close
+drawable ic_meals
 drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_notifications
 drawable ic_person
+drawable ic_phone
 drawable ic_post
 drawable ic_profile
 drawable ic_search
 drawable ic_search_black_24
 drawable ic_time
+drawable ic_waste
 drawable m3_appbar_background
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
@@ -3620,6 +3636,7 @@ id action_bar_title
 id action_container
 id action_context_bar
 id action_divider
+id action_foodPostDetailFragment_to_navigation_discover
 id action_image
 id action_itemDiscoveryFragment_to_foodPostDetailFragment
 id action_menu_divider
@@ -3663,8 +3680,12 @@ id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
+id browser_actions_header_text
+id browser_actions_menu_item_icon
+id browser_actions_menu_item_text
+id browser_actions_menu_items
+id browser_actions_menu_view
 id btnLogin
-id btnLogout
 id btnRegister
 id buttonPanel
 id cache_measures
@@ -3724,6 +3745,7 @@ id design_menu_item_action_area
 id design_menu_item_action_area_stub
 id design_menu_item_text
 id design_navigation_view
+id dfn_progress_fragment
 id dialog_button
 id dimensions
 id direct
@@ -3748,17 +3770,21 @@ id easeInOut
 id easeOut
 id east
 id edge
+id editProfileImageButton
 id edit_query
 id elastic
+id emailEditText
 id embed
 id emptyView
 id end
 id endToStart
 id enterAlways
 id enterAlwaysCollapsed
+id errorFragment
 id etDisplayName
 id etEmail
 id etPassword
+id etPhone
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -3814,6 +3840,7 @@ id immediateStop
 id included
 id indeterminate
 id info
+id installation_progress
 id invisible
 id inward
 id italic
@@ -3836,6 +3863,7 @@ id list_item
 id locale
 id locationLayout
 id locationText
+id logoutButton
 id ltr
 id m3_side_sheet
 id mapView
@@ -3864,7 +3892,9 @@ id material_timepicker_ok_button
 id material_timepicker_view
 id material_value_index
 id matrix
+id mealsClaimedText
 id message
+id messageText
 id middle
 id mini
 id month_grid
@@ -3898,6 +3928,7 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
+id nameEditText
 id nav_controller_view_tag
 id nav_graph
 id nav_host_fragment
@@ -3924,7 +3955,7 @@ id north
 id notification_background
 id notification_main_column
 id notification_main_column_container
-id notificationsFragment
+id notificationsRecyclerView
 id off
 id on
 id onInterceptTouchReturnSwipe
@@ -3956,6 +3987,7 @@ id path
 id pathRelative
 id peekHeight
 id percent
+id phoneEditText
 id pickupTimeInput
 id pickupTimeLayout
 id pin
@@ -3981,15 +4013,19 @@ id position
 id postLayout
 id postedByText
 id pressed
+id profileImage
+id progressBar
+id progress_action
 id progress_circular
 id progress_horizontal
+id progress_icon
+id progress_title
 id quantityInput
 id quantityLayout
 id quantityText
 id radio
 id ratio
 id rectangles
-id recyclerView
 id report_drawn
 id reverseSawtooth
 id right
@@ -4000,6 +4036,7 @@ id rounded
 id row_index_key
 id rtl
 id satellite
+id saveButton
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -4134,6 +4171,7 @@ id view_tree_saved_state_registry_owner
 id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
+id wasteSavedText
 id west
 id wide
 id withText
@@ -4263,6 +4301,8 @@ layout abc_tooltip
 layout activity_login
 layout activity_main
 layout activity_register
+layout browser_actions_context_menu_page
+layout browser_actions_context_menu_row
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -4279,12 +4319,14 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dynamic_feature_install_fragment
 layout fragment_food_post_detail
 layout fragment_item_discovery
 layout fragment_item_posting
 layout fragment_notifications
 layout fragment_user_profile
 layout item_food_post
+layout item_notification
 layout list_item
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
@@ -4361,6 +4403,8 @@ mipmap ic_launcher
 mipmap ic_launcher_round
 navigation nav_graph
 plurals mtrl_badge_content_description
+raw firebase_common_keep
+raw keep
 raw places_keep
 string abc_action_bar_home_description
 string abc_action_bar_up_description
@@ -4393,6 +4437,7 @@ string action_back_to_login
 string action_login
 string action_logout
 string action_register
+string action_sign_in
 string androidx_startup
 string app_name
 string appbar_scrolling_view_behavior
@@ -4437,6 +4482,7 @@ string common_google_play_services_wear_update_text
 string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
+string copy_toast_msg
 string dest_title
 string error_a11y_label
 string error_icon_content_description
@@ -4445,8 +4491,17 @@ string error_place_selection
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string fallback_menu_item_copy_link
+string fallback_menu_item_open_in_browser
+string fallback_menu_item_share_link
+string firebase_database_url
 string gallery
+string gcm_defaultSenderId
+string google_api_key
+string google_app_id
+string google_crash_reporting_api_key
 string google_maps_key
+string google_storage_bucket
 string hide_bottom_view_on_scroll_behavior
 string hint_description
 string hint_display_name
@@ -4458,6 +4513,9 @@ string hint_password
 string hint_pickup_time
 string hint_quantity
 string icon_content_description
+string installation_cancelled
+string installation_failed
+string installing_module
 string item_view_role_description
 string label_containers_available
 string m3_exceed_max_badge_text_suffix
@@ -4583,6 +4641,9 @@ string places_powered_by_google
 string places_search_error
 string places_try_again
 string post_title
+string progress
+string project_id
+string retry
 string search_menu_title
 string searchbar_scrolling_view_behavior
 string searchview_clear_text_content_description
@@ -4591,6 +4652,7 @@ string select_image_source
 string side_sheet_accessibility_pane_title
 string side_sheet_behavior
 string status_bar_notification_info_overflow
+string submit
 string title_detail
 string title_discover
 string title_notifications
@@ -5229,6 +5291,7 @@ style Theme_MaterialComponents_Light_NoActionBar
 style Theme_MaterialComponents_Light_NoActionBar_Bridge
 style Theme_MaterialComponents_NoActionBar
 style Theme_MaterialComponents_NoActionBar_Bridge
+style Theme_PlayCore_Transparent
 style ThemeOverlay_AppCompat
 style ThemeOverlay_AppCompat_ActionBar
 style ThemeOverlay_AppCompat_Dark
@@ -5772,6 +5835,10 @@ styleable CustomAttribute attributeName customBoolean customColorDrawableValue c
 styleable DialogFragmentNavigator android_name
 styleable DrawerArrowToggle arrowHeadLength arrowShaftLength barLength color drawableSize gapBetweenBars spinBars thickness
 styleable DrawerLayout elevation
+styleable DynamicActivityNavigator moduleName
+styleable DynamicFragmentNavigator moduleName
+styleable DynamicGraphNavigator moduleName progressDestination
+styleable DynamicIncludeGraphNavigator graphPackage graphResName moduleName
 styleable ExtendedFloatingActionButton collapsedSize elevation extendMotionSpec extendStrategy hideMotionSpec showMotionSpec shrinkMotionSpec
 styleable ExtendedFloatingActionButton_Behavior_Layout behavior_autoHide behavior_autoShrink
 styleable FloatingActionButton android_enabled backgroundTint backgroundTintMode borderWidth elevation ensureMinTouchTargetSize fabCustomSize fabSize hideMotionSpec hoveredFocusedTranslationZ maxImageSize pressedTranslationZ rippleColor shapeAppearance shapeAppearanceOverlay showMotionSpec useCompatPadding
@@ -5894,3 +5961,4 @@ styleable include constraintSet
 xml backup_rules
 xml data_extraction_rules
 xml file_paths
+xml image_share_filepaths

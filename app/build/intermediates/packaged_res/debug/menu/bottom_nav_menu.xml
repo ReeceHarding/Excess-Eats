@@ -10,10 +10,12 @@
         android:icon="@drawable/ic_post"
         android:title="@string/title_post" />
 
+    <!-- Commenting out notifications for now
     <item
         android:id="@+id/notificationsFragment"
         android:icon="@drawable/ic_notifications"
         android:title="@string/title_notifications" />
+    -->
 
     <item
         android:id="@+id/userProfileFragment"
