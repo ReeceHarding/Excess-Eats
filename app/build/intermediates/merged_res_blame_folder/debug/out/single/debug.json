@@ -64,10 +64,6 @@
         "source": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/drawable/ic_discover.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-merged_res-64:/xml_file_paths.xml.flat",
-        "source": "com.yourcompany.excesseats.app-main-66:/xml/file_paths.xml"
-    },
-    {
         "merged": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_container.xml.flat",
         "source": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/drawable/ic_container.xml"
     },
@@ -108,12 +104,12 @@
         "source": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/activity_register.xml"
     },
     {
-        "merged": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_post.xml.flat",
-        "source": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/drawable/ic_post.xml"
-    },
-    {
         "merged": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-merged_res-64:/layout_fragment_food_post_detail.xml.flat",
         "source": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/fragment_food_post_detail.xml"
+    },
+    {
+        "merged": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_post.xml.flat",
+        "source": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/drawable/ic_post.xml"
     },
     {
         "merged": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_meals.xml.flat",
@@ -130,6 +126,10 @@
     {
         "merged": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-merged_res-64:/navigation_nav_graph.xml.flat",
         "source": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/navigation/nav_graph.xml"
+    },
+    {
+        "merged": "com.yourcompany.excesseats.app-merged_res-64:/layout_item_food_post.xml.flat",
+        "source": "com.yourcompany.excesseats.app-main-66:/layout/item_food_post.xml"
     },
     {
         "merged": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-merged_res-64:/drawable_ic_notifications.xml.flat",

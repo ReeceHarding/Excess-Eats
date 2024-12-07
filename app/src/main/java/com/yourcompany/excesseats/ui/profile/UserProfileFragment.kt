@@ -1,6 +1,7 @@
 package com.yourcompany.excesseats.ui.profile
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,18 +9,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.yourcompany.excesseats.auth.LoginActivity
 import com.yourcompany.excesseats.data.model.UserProfile
 import com.yourcompany.excesseats.data.repository.UserRepository
 import com.yourcompany.excesseats.databinding.FragmentUserProfileBinding
+import com.yourcompany.excesseats.utils.Logger
 import kotlinx.coroutines.launch
 
 class UserProfileFragment : Fragment() {
     private var _binding: FragmentUserProfileBinding? = null
     private val binding get() = _binding!!
     private val userRepository = UserRepository.getInstance()
+
+    private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        uri?.let { handleImageSelection(it) }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,8 +48,7 @@ class UserProfileFragment : Fragment() {
         binding.apply {
             // Profile image click handler
             editProfileImageButton.setOnClickListener {
-                // TODO: Implement image picker
-                Toast.makeText(context, "Profile picture upload coming soon", Toast.LENGTH_SHORT).show()
+                pickImage.launch("image/*")
             }
 
             // Phone number formatting
@@ -59,21 +66,24 @@ class UserProfileFragment : Fragment() {
                     // Remove all non-digits
                     val digits = s.toString().replace(Regex("[^\\d]"), "")
 
-                    // Limit to 10 digits
-                    val truncatedDigits = digits.take(maxLength)
-
-                    // Format as (###) ###-####
+                    // Format the phone number
                     val formatted = when {
-                        truncatedDigits.length >= 7 -> {
-                            "(${truncatedDigits.substring(0,3)}) ${truncatedDigits.substring(3,6)}-${truncatedDigits.substring(6)}"
+                        digits.length >= 10 -> {
+                            val areaCode = digits.substring(0, 3)
+                            val prefix = digits.substring(3, 6)
+                            val number = digits.substring(6, minOf(10, digits.length))
+                            "($areaCode) $prefix-$number"
                         }
-                        truncatedDigits.length >= 4 -> {
-                            "(${truncatedDigits.substring(0,3)}) ${truncatedDigits.substring(3)}"
+                        digits.length >= 6 -> {
+                            val areaCode = digits.substring(0, 3)
+                            val prefix = digits.substring(3, digits.length)
+                            "($areaCode) $prefix"
                         }
-                        truncatedDigits.length >= 1 -> {
-                            "(${truncatedDigits}"
+                        digits.length >= 3 -> {
+                            val areaCode = digits.substring(0, digits.length)
+                            "($areaCode"
                         }
-                        else -> ""
+                        else -> digits
                     }
 
                     s.replace(0, s.length, formatted)
@@ -96,6 +106,35 @@ class UserProfileFragment : Fragment() {
         }
     }
 
+    private fun handleImageSelection(uri: Uri) {
+        val currentUser = userRepository.getCurrentUser() ?: return
+
+        lifecycleScope.launch {
+            try {
+                binding.profileImage.isEnabled = false
+                binding.editProfileImageButton.isEnabled = false
+
+                val result = userRepository.uploadProfileImage(currentUser.uid, uri)
+                result.onSuccess { imageUrl ->
+                    Glide.with(requireContext())
+                        .load(imageUrl)
+                        .circleCrop()
+                        .into(binding.profileImage)
+                    Toast.makeText(context, "Profile picture updated successfully", Toast.LENGTH_SHORT).show()
+                }.onFailure { exception ->
+                    Toast.makeText(context, "Failed to upload image: ${exception.message}", Toast.LENGTH_SHORT).show()
+                    Logger.e("Failed to upload profile image", exception)
+                }
+            } catch (e: Exception) {
+                Toast.makeText(context, "Error uploading image: ${e.message}", Toast.LENGTH_SHORT).show()
+                Logger.e("Error uploading profile image", e)
+            } finally {
+                binding.profileImage.isEnabled = true
+                binding.editProfileImageButton.isEnabled = true
+            }
+        }
+    }
+
     private fun loadUserProfile() {
         val currentUser = userRepository.getCurrentUser() ?: run {
             navigateToLogin()
@@ -109,6 +148,7 @@ class UserProfileFragment : Fragment() {
                 updateUI(profile)
             } catch (e: Exception) {
                 Toast.makeText(context, "Error loading profile: ${e.message}", Toast.LENGTH_SHORT).show()
+                Logger.e("Error loading profile", e)
             }
         }
     }
@@ -119,9 +159,27 @@ class UserProfileFragment : Fragment() {
             emailEditText.setText(profile.email)
             phoneEditText.setText(profile.phone)
 
+            // Load profile image if available
+            val currentUser = userRepository.getCurrentUser()
+            if (currentUser != null) {
+                lifecycleScope.launch {
+                    try {
+                        val user = userRepository.getUser(currentUser.uid).getOrNull()
+                        user?.profileImageUrl?.let { imageUrl ->
+                            Glide.with(requireContext())
+                                .load(imageUrl)
+                                .circleCrop()
+                                .into(profileImage)
+                        }
+                    } catch (e: Exception) {
+                        Logger.e("Error loading profile image", e)
+                    }
+                }
+            }
+
             // Update stats
             mealsClaimedText.text = profile.stats.mealsClaimedCount.toString()
-            wasteSavedText.text = "${profile.stats.wasteSavedPounds} lbs"
+            wasteSavedText.text = String.format("%.1f lbs", profile.stats.wasteSavedPounds)
         }
     }
 
@@ -141,6 +199,7 @@ class UserProfileFragment : Fragment() {
                 Toast.makeText(context, "Profile updated successfully", Toast.LENGTH_SHORT).show()
             } catch (e: Exception) {
                 Toast.makeText(context, "Error updating profile: ${e.message}", Toast.LENGTH_SHORT).show()
+                Logger.e("Error updating profile", e)
             }
         }
     }

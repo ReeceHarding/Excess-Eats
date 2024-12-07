@@ -1,14 +1,13 @@
 package com.yourcompany.excesseats.ui.discovery
 
 import android.Manifest
-import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.LocationManager
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
 import android.os.Bundle
-import android.os.Looper
-import android.provider.Settings
-import android.util.Log
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,38 +18,66 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.location.*
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
+import com.google.android.material.chip.Chip
+import com.google.android.material.slider.Slider
 import com.yourcompany.excesseats.data.model.FoodPost
 import com.yourcompany.excesseats.data.repository.FoodPostRepository
 import com.yourcompany.excesseats.databinding.FragmentItemDiscoveryBinding
 import com.yourcompany.excesseats.ui.discovery.adapters.FoodPostAdapter
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlin.math.cos
+import kotlin.math.sin
 
 class ItemDiscoveryFragment : Fragment() {
     private var _binding: FragmentItemDiscoveryBinding? = null
     private val binding get() = _binding!!
-
-    private lateinit var foodPostAdapter: FoodPostAdapter
     private var googleMap: GoogleMap? = null
-    private var currentLocation: LatLng? = null
-    private var isLoading = false
-    private val repository = FoodPostRepository.getInstance()
     private val foodPosts = mutableListOf<FoodPost>()
-    private val fusedLocationClient by lazy {
-        LocationServices.getFusedLocationProviderClient(requireActivity())
+    private val selectedFoodTypes = mutableSetOf<String>()
+    private val foodPostRepository = FoodPostRepository.getInstance()
+    private var currentLocation: LatLng? = null
+    private var maxDistance: Int = 25 // Default 25km
+    private var userMarker: Marker? = null
+
+    private val foodPostAdapter = FoodPostAdapter { post ->
+        val action = ItemDiscoveryFragmentDirections.actionItemDiscoveryFragmentToFoodPostDetailFragment(
+            postId = post.id,
+            title = post.title,
+            latitude = post.latitude.toFloat(),
+            longitude = post.longitude.toFloat()
+        )
+        findNavController().navigate(action)
     }
-    private var locationCallback: LocationCallback? = null
+
+    private val foodTypes = arrayOf(
+        "American",
+        "Asian Fusion",
+        "Bakery",
+        "Barbecue",
+        "Breakfast",
+        "Chinese",
+        "Desserts",
+        "Indian",
+        "Italian",
+        "Japanese",
+        "Korean",
+        "Mediterranean",
+        "Mexican",
+        "Middle Eastern",
+        "Pizza",
+        "Sandwiches",
+        "Seafood",
+        "Thai",
+        "Vegetarian",
+        "Other"
+    )
 
     companion object {
-        private const val TAG = "ItemDiscoveryFragment"
-        private const val LOCATION_PERMISSION_REQUEST_CODE = 1001
-        private const val SEARCH_RADIUS_KM = 3000.0
+        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
 
     override fun onCreateView(
@@ -64,37 +91,63 @@ class ItemDiscoveryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerView()
-        setupSearch()
+        setupViews()
         setupMap(savedInstanceState)
-        checkLocationPermission()
+        setupLocationUpdates()
+        observePosts()
     }
 
-    private fun setupRecyclerView() {
-        foodPostAdapter = FoodPostAdapter(
-            onItemClick = { foodPost ->
-                findNavController().navigate(
-                    ItemDiscoveryFragmentDirections.actionItemDiscoveryFragmentToFoodPostDetailFragment(
-                        postId = foodPost.id,
-                        title = foodPost.title,
-                        latitude = foodPost.latitude.toFloat(),
-                        longitude = foodPost.longitude.toFloat()
-                    )
-                )
-            },
-            userLocation = currentLocation
-        )
+    private fun setupViews() {
+        // Setup RecyclerView
         binding.foodPostsRecyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context)
             adapter = foodPostAdapter
+        }
+
+        // Setup search
+        binding.searchInput.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                applyFilters()
+            }
+        })
+
+        // Setup distance slider
+        binding.distanceSlider.apply {
+            value = maxDistance.toFloat()
+            addOnChangeListener { _, value, _ ->
+                maxDistance = value.toInt()
+                binding.distanceText.text = "$maxDistance km"
+                applyFilters()
+            }
+        }
+
+        // Setup food type filters
+        setupFoodTypeFilters()
+    }
+
+    private fun setupFoodTypeFilters() {
+        binding.foodTypeChipGroup.apply {
+            removeAllViews() // Clear existing chips
+            foodTypes.forEach { foodType ->
+                addView(createChip(foodType))
+            }
         }
     }
 
-    private fun setupSearch() {
-        binding.searchInput.setOnEditorActionListener { textView, _, _ ->
-            filterPosts(textView.text.toString())
-            true
+    private fun createChip(foodType: String): Chip {
+        return Chip(requireContext()).apply {
+            text = foodType
+            isCheckable = true
+            setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    selectedFoodTypes.add(foodType)
+                } else {
+                    selectedFoodTypes.remove(foodType)
+                }
+                applyFilters()
+            }
         }
     }
 
@@ -102,152 +155,55 @@ class ItemDiscoveryFragment : Fragment() {
         binding.mapView.onCreate(savedInstanceState)
         binding.mapView.getMapAsync { map ->
             googleMap = map
-            updateMapLocation(currentLocation)
+            checkLocationPermission()
         }
     }
 
-    private fun checkLocationPermission() {
-        if (!isLocationEnabled()) {
-            Toast.makeText(
-                requireContext(),
-                "Please enable location services",
-                Toast.LENGTH_LONG
-            ).show()
-            startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
-            return
+    private fun setupLocationUpdates() {
+        if (checkLocationPermission()) {
+            val fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+            try {
+                fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+                    location?.let {
+                        currentLocation = LatLng(it.latitude, it.longitude)
+                        googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation!!, 12f))
+                        observeNearbyPosts(currentLocation!!)
+                    }
+                }
+            } catch (e: SecurityException) {
+                Toast.makeText(context, "Error getting location", Toast.LENGTH_SHORT).show()
+            }
         }
+    }
 
+    private fun checkLocationPermission(): Boolean {
         if (ContextCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
+            ) != PackageManager.PERMISSION_GRANTED
         ) {
-            getCurrentLocation()
-        } else {
             ActivityCompat.requestPermissions(
                 requireActivity(),
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 LOCATION_PERMISSION_REQUEST_CODE
             )
+            return false
         }
+        return true
     }
 
-    private fun getCurrentLocation() {
-        try {
-            val locationRequest = LocationRequest.Builder(10000)
-                .setPriority(Priority.PRIORITY_HIGH_ACCURACY)
-                .build()
-
-            locationCallback = object : LocationCallback() {
-                override fun onLocationResult(locationResult: LocationResult) {
-                    locationResult.lastLocation?.let { location ->
-                        if (view != null && isAdded) {
-                            currentLocation = LatLng(location.latitude, location.longitude)
-                            updateMapLocation(currentLocation)
-                            foodPostAdapter.userLocation = currentLocation
-                            loadPosts()
-                            removeLocationUpdates()
-                        }
-                    }
-                }
-            }
-
-            locationCallback?.let { callback ->
-                fusedLocationClient.requestLocationUpdates(
-                    locationRequest,
-                    callback,
-                    Looper.getMainLooper()
-                )
-            }
-
-            fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-                if (location != null && view != null && isAdded) {
-                    currentLocation = LatLng(location.latitude, location.longitude)
-                    updateMapLocation(currentLocation)
-                    foodPostAdapter.userLocation = currentLocation
-                    loadPosts()
-                }
-            }
-        } catch (e: SecurityException) {
-            if (view != null && isAdded) {
-                Toast.makeText(
-                    requireContext(),
-                    "Location permission is required to show nearby food posts",
-                    Toast.LENGTH_LONG
-                ).show()
-                loadPosts()
+    private fun observePosts() {
+        lifecycleScope.launch {
+            foodPostRepository.getAllPosts().collect { result ->
+                handlePostsResult(result)
             }
         }
     }
 
-    private fun removeLocationUpdates() {
-        locationCallback?.let { callback ->
-            fusedLocationClient.removeLocationUpdates(callback)
-        }
-        locationCallback = null
-    }
-
-    private fun updateMapLocation(location: LatLng?) {
-        location?.let {
-            googleMap?.apply {
-                clear()
-                moveCamera(CameraUpdateFactory.newLatLngZoom(it, 12f))
-                addMarker(
-                    MarkerOptions()
-                        .position(it)
-                        .title("Your Location")
-                )
-                updateMapWithPosts()
-            }
-        }
-    }
-
-    private fun updateMapWithPosts() {
-        googleMap?.apply {
-            val userMarker = currentLocation?.let {
-                MarkerOptions()
-                    .position(it)
-                    .title("Your Location")
-            }
-
-            clear()
-            userMarker?.let { addMarker(it) }
-
-            foodPosts.forEach { post ->
-                val postLocation = LatLng(post.latitude, post.longitude)
-                addMarker(
-                    MarkerOptions()
-                        .position(postLocation)
-                        .title(post.title)
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
-                )
-            }
-        }
-    }
-
-    private fun loadPosts() {
-        if (view == null || !isAdded) return
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            try {
-                isLoading = true
-                if (currentLocation != null) {
-                    repository.getNearbyPosts(currentLocation!!, radiusKm = SEARCH_RADIUS_KM)
-                        .collectLatest { result ->
-                            if (view != null && isAdded) {
-                                handlePostsResult(result)
-                            }
-                        }
-                } else {
-                    repository.getAllPosts()
-                        .collectLatest { result ->
-                            if (view != null && isAdded) {
-                                handlePostsResult(result)
-                            }
-                        }
-                }
-            } finally {
-                isLoading = false
+    private fun observeNearbyPosts(location: LatLng) {
+        lifecycleScope.launch {
+            foodPostRepository.getNearbyPosts(location, maxDistance.toDouble()).collect { result ->
+                handlePostsResult(result)
             }
         }
     }
@@ -256,8 +212,7 @@ class ItemDiscoveryFragment : Fragment() {
         result.onSuccess { posts ->
             foodPosts.clear()
             foodPosts.addAll(posts)
-            foodPostAdapter.submitList(posts)
-            updateMapWithPosts()
+            applyFilters()
         }.onFailure { error ->
             Toast.makeText(
                 requireContext(),
@@ -267,43 +222,78 @@ class ItemDiscoveryFragment : Fragment() {
         }
     }
 
-    private fun filterPosts(query: String) {
-        val filteredPosts = if (query.isEmpty()) {
+    private fun applyFilters() {
+        val filteredPosts = getFilteredPosts()
+        foodPostAdapter.submitList(filteredPosts)
+        updateMapWithPosts()
+    }
+
+    private fun getFilteredPosts(): List<FoodPost> {
+        val query = binding.searchInput.text.toString()
+        var filteredPosts = if (query.isEmpty() && selectedFoodTypes.isEmpty()) {
             foodPosts
         } else {
             foodPosts.filter { post ->
-                post.title.contains(query, ignoreCase = true) ||
-                        post.description.contains(query, ignoreCase = true) ||
-                        post.foodType.contains(query, ignoreCase = true)
+                val matchesSearch = query.isEmpty() || (
+                    post.title.contains(query, ignoreCase = true) ||
+                    post.description.contains(query, ignoreCase = true) ||
+                    post.foodType.contains(query, ignoreCase = true) ||
+                    post.location.contains(query, ignoreCase = true) ||
+                    post.quantity.contains(query, ignoreCase = true)
+                )
+
+                val matchesFoodType = selectedFoodTypes.isEmpty() || selectedFoodTypes.contains(post.foodType)
+
+                matchesSearch && matchesFoodType
             }
         }
-        foodPostAdapter.submitList(filteredPosts)
-    }
 
-    private fun isLocationEnabled(): Boolean {
-        val locationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
-                locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        when (requestCode) {
-            LOCATION_PERMISSION_REQUEST_CODE -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    getCurrentLocation()
-                } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Location permission denied. Some features may be limited.",
-                        Toast.LENGTH_LONG
-                    ).show()
-                    loadPosts()
-                }
+        // Apply distance filter if location is available
+        currentLocation?.let { location ->
+            filteredPosts = filteredPosts.filter { post ->
+                calculateDistance(
+                    location.latitude, location.longitude,
+                    post.latitude, post.longitude
+                ) <= maxDistance
             }
+        }
+
+        return filteredPosts
+    }
+
+    private fun calculateDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
+        val r = 6371.0 // Earth's radius in kilometers
+        val dLat = Math.toRadians(lat2 - lat1)
+        val dLon = Math.toRadians(lon2 - lon1)
+        val a = sin(dLat / 2) * sin(dLat / 2) +
+                cos(Math.toRadians(lat1)) * cos(Math.toRadians(lat2)) *
+                sin(dLon / 2) * sin(dLon / 2)
+        val c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+        return r * c
+    }
+
+    private fun updateMapWithPosts() {
+        googleMap?.clear()
+
+        // Add user location marker (red)
+        currentLocation?.let { location ->
+            userMarker = googleMap?.addMarker(
+                MarkerOptions()
+                    .position(location)
+                    .title("Your Location")
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+            )
+        }
+
+        // Add food post markers (green)
+        getFilteredPosts().forEach { post ->
+            googleMap?.addMarker(
+                MarkerOptions()
+                    .position(LatLng(post.latitude, post.longitude))
+                    .title(post.title)
+                    .snippet("${post.getRemainingServings()} servings left")
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+            )
         }
     }
 
@@ -317,18 +307,19 @@ class ItemDiscoveryFragment : Fragment() {
         binding.mapView.onPause()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         binding.mapView.onDestroy()
+        _binding = null
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        binding.mapView.onSaveInstanceState(outState)
     }
 
     override fun onLowMemory() {
         super.onLowMemory()
         binding.mapView.onLowMemory()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

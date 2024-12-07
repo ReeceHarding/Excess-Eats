@@ -4,12 +4,16 @@
         "source": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/activity_login.xml"
     },
     {
+        "merged": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_notifications.xml",
+        "source": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/fragment_notifications.xml"
+    },
+    {
         "merged": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_item_posting.xml",
         "source": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/fragment_item_posting.xml"
     },
     {
-        "merged": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_notifications.xml",
-        "source": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/fragment_notifications.xml"
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/item_food_post.xml",
+        "source": "com.yourcompany.excesseats.app-main-66:/layout/item_food_post.xml"
     },
     {
         "merged": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/item_food_post.xml",
@@ -42,9 +46,5 @@
     {
         "merged": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/activity_main.xml",
         "source": "/Users/reeceharding/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/activity_main.xml"
-    },
-    {
-        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/activity_register.xml",
-        "source": "com.yourcompany.excesseats.app-main-66:/layout/activity_register.xml"
     }
 ]

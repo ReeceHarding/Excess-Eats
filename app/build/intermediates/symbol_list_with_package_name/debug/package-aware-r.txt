@@ -3705,6 +3705,8 @@ id checked
 id chronometer
 id circle_center
 id claimButton
+id claimedChip
+id claimedOverlay
 id clear_text
 id clip_horizontal
 id clip_vertical
@@ -3755,6 +3757,7 @@ id disableIntraAutoTransition
 id disablePostScroll
 id disableScroll
 id disjoint
+id distanceSlider
 id distanceText
 id dragAnticlockwise
 id dragClockwise
@@ -3805,6 +3808,7 @@ id foodImageView
 id foodPostDetailFragment
 id foodPostsRecyclerView
 id foodTypeChip
+id foodTypeChipGroup
 id foodTypeInput
 id foodTypeLayout
 id foodTypeText
@@ -3941,7 +3945,6 @@ id navigation_bar_item_large_label_view
 id navigation_bar_item_small_label_view
 id navigation_discover
 id navigation_header_container
-id navigation_notifications
 id navigation_post
 id navigation_profile
 id never

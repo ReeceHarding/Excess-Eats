@@ -3,6 +3,7 @@ package com.yourcompany.excesseats.ui.discovery
 import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -13,6 +14,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.google.android.gms.maps.model.LatLng
+import com.google.firebase.auth.FirebaseAuth
 import com.yourcompany.excesseats.data.model.FoodPost
 import com.yourcompany.excesseats.databinding.ItemFoodPostBinding
 import java.text.SimpleDateFormat
@@ -25,6 +27,7 @@ class FoodPostAdapter(
 ) : ListAdapter<FoodPost, FoodPostAdapter.ViewHolder>(FoodPostDiffCallback()) {
 
     private val timeFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
+    private val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemFoodPostBinding.inflate(
@@ -45,17 +48,7 @@ class FoodPostAdapter(
         private val binding: ItemFoodPostBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        init {
-            binding.root.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    onItemClick(getItem(position))
-                }
-            }
-        }
-
         fun bind(foodPost: FoodPost) {
-            Log.d("FoodPostAdapter", "Binding food post: ${foodPost.title}")
             binding.apply {
                 titleText.text = foodPost.title
                 locationText.text = foodPost.location
@@ -63,9 +56,7 @@ class FoodPostAdapter(
                 foodTypeText.text = foodPost.foodType
 
                 // Load food image
-                Log.d("FoodPostAdapter", "Loading image from URL: ${foodPost.imageUrl}")
                 if (foodPost.imageUrl.isEmpty()) {
-                    Log.d("FoodPostAdapter", "Empty imageUrl, showing placeholder")
                     foodImageView.setImageResource(android.R.drawable.ic_menu_gallery)
                 } else {
                     try {
@@ -73,31 +64,9 @@ class FoodPostAdapter(
                             .load(foodPost.imageUrl)
                             .placeholder(android.R.drawable.ic_menu_gallery)
                             .error(android.R.drawable.ic_dialog_alert)
-                            .listener(object : RequestListener<Drawable> {
-                                override fun onLoadFailed(
-                                    e: GlideException?,
-                                    model: Any?,
-                                    target: Target<Drawable>,
-                                    isFirstResource: Boolean
-                                ): Boolean {
-                                    Log.e("FoodPostAdapter", "Failed to load image for post ${foodPost.id}", e)
-                                    return false
-                                }
-
-                                override fun onResourceReady(
-                                    resource: Drawable,
-                                    model: Any,
-                                    target: Target<Drawable>,
-                                    dataSource: DataSource,
-                                    isFirstResource: Boolean
-                                ): Boolean {
-                                    Log.d("FoodPostAdapter", "Successfully loaded image for post ${foodPost.id}")
-                                    return false
-                                }
-                            })
                             .into(foodImageView)
                     } catch (e: Exception) {
-                        Log.e("FoodPostAdapter", "Error setting up image load", e)
+                        Log.e("FoodPostAdapter", "Error loading image", e)
                         foodImageView.setImageResource(android.R.drawable.ic_dialog_alert)
                     }
                 }
@@ -112,46 +81,57 @@ class FoodPostAdapter(
                 }
 
                 // Update quantity text to show remaining
-                val quantityString = if (foodPost.remainingQuantity > 0) {
-                    "${foodPost.remainingQuantity} left of ${foodPost.quantity}"
+                val remainingServings = foodPost.getRemainingServings()
+                val quantityString = if (remainingServings > 0) {
+                    "$remainingServings left of ${foodPost.quantity}"
                 } else {
                     "Fully claimed"
                 }
                 quantityText.text = quantityString
 
-                // Disable claim button if fully claimed
-                claimButton.isEnabled = foodPost.remainingQuantity > 0
-                claimButton.text = if (foodPost.remainingQuantity > 0) "Claim" else "Claimed"
+                // Handle claimed status
+                currentUserId?.let { userId ->
+                    val isClaimedByCurrentUser = foodPost.isClaimedByUser(userId)
+                    claimedChip.visibility = if (isClaimedByCurrentUser) View.VISIBLE else View.GONE
+                    claimedOverlay.visibility = if (isClaimedByCurrentUser) View.VISIBLE else View.GONE
 
-                // Add back the click listener
-                claimButton.setOnClickListener {
+                    // Update claim button state
+                    claimButton.apply {
+                        isEnabled = remainingServings > 0 && !isClaimedByCurrentUser
+                        text = when {
+                            isClaimedByCurrentUser -> "Claimed by you"
+                            remainingServings <= 0 -> "Fully claimed"
+                            else -> "Claim"
+                        }
+                    }
+                }
+
+                // Add click listener
+                root.setOnClickListener {
                     onItemClick(foodPost)
                 }
             }
         }
     }
 
-    private fun calculateDistance(
-        lat1: Double, lon1: Double,
-        lat2: Double, lon2: Double
-    ): Double {
+    private fun calculateDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
         val r = 6371 // Earth's radius in kilometers
         val dLat = Math.toRadians(lat2 - lat1)
         val dLon = Math.toRadians(lon2 - lon1)
-        val a = kotlin.math.sin(dLat / 2) * kotlin.math.sin(dLat / 2) +
-                kotlin.math.cos(Math.toRadians(lat1)) * kotlin.math.cos(Math.toRadians(lat2)) *
-                kotlin.math.sin(dLon / 2) * kotlin.math.sin(dLon / 2)
-        val c = 2 * kotlin.math.atan2(kotlin.math.sqrt(a), kotlin.math.sqrt(1 - a))
+        val a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2)
+        val c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
         return r * c
     }
+}
 
-    private class FoodPostDiffCallback : DiffUtil.ItemCallback<FoodPost>() {
-        override fun areItemsTheSame(oldItem: FoodPost, newItem: FoodPost): Boolean {
-            return oldItem.id == newItem.id
-        }
+private class FoodPostDiffCallback : DiffUtil.ItemCallback<FoodPost>() {
+    override fun areItemsTheSame(oldItem: FoodPost, newItem: FoodPost): Boolean {
+        return oldItem.id == newItem.id
+    }
 
-        override fun areContentsTheSame(oldItem: FoodPost, newItem: FoodPost): Boolean {
-            return oldItem == newItem
-        }
+    override fun areContentsTheSame(oldItem: FoodPost, newItem: FoodPost): Boolean {
+        return oldItem == newItem
     }
 }

@@ -425,6 +425,7 @@ class ItemPostingFragment : Fragment() {
                             description = description,
                             foodType = foodType,
                             quantity = quantity,
+                            remainingQuantity = quantity.split(" ")[0].toIntOrNull() ?: 1,
                             location = selectedAddress ?: "",
                             latitude = selectedLocation?.latitude ?: 0.0,
                             longitude = selectedLocation?.longitude ?: 0.0,

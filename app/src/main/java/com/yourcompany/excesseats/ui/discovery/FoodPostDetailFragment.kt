@@ -29,7 +29,7 @@ import com.yourcompany.excesseats.data.model.FoodPost
 import com.yourcompany.excesseats.data.repository.FoodPostRepository
 import com.yourcompany.excesseats.data.repository.UserRepository
 import com.yourcompany.excesseats.databinding.FragmentFoodPostDetailBinding
-import kotlinx.coroutines.flow.collectLatest
+import com.yourcompany.excesseats.utils.Logger
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -81,38 +81,52 @@ class FoodPostDetailFragment : Fragment() {
 
     private fun loadFoodPost() {
         lifecycleScope.launch {
-            foodPostRepository.getFoodPost(args.postId).collectLatest { result ->
-                result.onSuccess { post ->
-                    updateUI(post)
-                }.onFailure { exception ->
-                    Toast.makeText(
-                        requireContext(),
-                        "Error loading food post: ${exception.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+            foodPostRepository.getFoodPost(args.postId).onSuccess { post ->
+                updateUI(post)
+            }.onFailure { exception ->
+                Toast.makeText(
+                    requireContext(),
+                    "Error loading food post: ${exception.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
 
     private fun updateUI(post: FoodPost) {
         try {
+            val currentUser = userRepository.getCurrentUser()
             binding.apply {
-                titleText.text = post.title.orEmpty()
-                foodTypeChip.text = post.foodType.orEmpty()
-                locationText.text = post.location.orEmpty()
+                titleText.text = post.title
+                foodTypeChip.text = post.foodType
+                locationText.text = post.location
                 timeText.text = if (post.pickupTime != 0L) {
                     "Available until ${SimpleDateFormat("h:mm a", Locale.getDefault()).format(Date(post.pickupTime))}"
                 } else ""
-                quantityText.text = "${post.remainingQuantity} left of ${post.quantity}"
-                postedByText.text = "Posted by: ${post.userId}"
-                containerText.text = if (post.containersAvailable) "Containers available" else "Bring your own container"
-                descriptionText.text = post.description.orEmpty()
 
-                claimButton.isEnabled = !post.isClaimed && post.remainingQuantity > 0
+                // Always show remaining servings
+                val remainingServings = post.getRemainingServings()
+                quantityText.text = "$remainingServings left of ${post.quantity}"
+
+                // Fetch user's name
+                lifecycleScope.launch {
+                    userRepository.getUser(post.userId).onSuccess { user ->
+                        postedByText.text = "Posted by: ${user.name}"
+                    }.onFailure { exception ->
+                        postedByText.text = "Posted by: Anonymous"
+                        Logger.e("Error fetching user", exception)
+                    }
+                }
+
+                containerText.text = if (post.containersAvailable) "Containers available" else "Bring your own container"
+                descriptionText.text = post.description
+
+                // Update claim button state
+                val hasUserClaimed = currentUser?.let { post.isClaimedByUser(it.uid) } ?: false
+                claimButton.isEnabled = !hasUserClaimed && remainingServings > 0
                 claimButton.text = when {
-                    post.isClaimed -> "Claimed"
-                    post.remainingQuantity <= 0 -> "Fully Claimed"
+                    hasUserClaimed -> "You've already claimed this"
+                    remainingServings <= 0 -> "No servings left"
                     else -> "Claim Food"
                 }
 
@@ -127,7 +141,7 @@ class FoodPostDetailFragment : Fragment() {
             }
             updateMapLocation()
         } catch (e: Exception) {
-            Log.e(TAG, "Error updating UI", e)
+            Logger.e("Error updating UI", e)
             Toast.makeText(context, "Error loading post details", Toast.LENGTH_SHORT).show()
         }
     }
@@ -147,9 +161,9 @@ class FoodPostDetailFragment : Fragment() {
 
     private fun setupViews() {
         setupToolbar()
-        setupFoodTypeChip()
-        setupButtons()
-        setupImageView()
+        binding.claimButton.setOnClickListener {
+            claimFood()
+        }
     }
 
     private fun setupFoodTypeChip() {
@@ -202,7 +216,7 @@ class FoodPostDetailFragment : Fragment() {
 
         lifecycleScope.launch {
             try {
-                val result = foodPostRepository.claimFoodPost(args.postId, currentUser.uid)
+                val result = foodPostRepository.claimPost(args.postId, currentUser.uid)
                 when {
                     result.isSuccess -> {
                         isClaimed = true

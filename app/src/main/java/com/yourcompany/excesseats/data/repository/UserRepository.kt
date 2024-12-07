@@ -7,6 +7,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
+import com.google.firebase.storage.FirebaseStorage
 import com.yourcompany.excesseats.data.model.User
 import com.yourcompany.excesseats.data.model.Preference
 import com.yourcompany.excesseats.data.model.UserProfile
@@ -16,12 +17,15 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
+import android.net.Uri
 
 class UserRepository private constructor() {
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseDatabase.getInstance()
+    private val storage = FirebaseStorage.getInstance()
     private val usersRef = database.getReference("users")
     private val preferencesRef = database.getReference("preferences")
+    private val profileImagesRef = storage.reference.child("profile_images")
 
     companion object {
         @Volatile
@@ -260,6 +264,25 @@ class UserRepository private constructor() {
             statsRef.updateChildren(updates).await()
         } catch (e: Exception) {
             throw e
+        }
+    }
+
+    suspend fun uploadProfileImage(userId: String, imageUri: Uri): Result<String> {
+        return try {
+            val imageRef = profileImagesRef.child("$userId.jpg")
+
+            // Upload the image
+            val uploadTask = imageRef.putFile(imageUri).await()
+
+            // Get the download URL
+            val downloadUrl = imageRef.downloadUrl.await().toString()
+
+            // Update the user's profile with the image URL
+            usersRef.child(userId).child("profileImageUrl").setValue(downloadUrl).await()
+
+            Result.success(downloadUrl)
+        } catch (e: Exception) {
+            Result.failure(e)
         }
     }
 }

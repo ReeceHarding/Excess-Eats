@@ -3704,6 +3704,8 @@ int id checked 0x7f09007e
 int id chronometer 0x7f09007f
 int id circle_center 0x7f090080
 int id claimButton 0x7f090081
+int id claimedChip 0x7f090263
+int id claimedOverlay 0x7f090264
 int id clear_text 0x7f090082
 int id clip_horizontal 0x7f090083
 int id clip_vertical 0x7f090084
@@ -3754,6 +3756,7 @@ int id disableIntraAutoTransition 0x7f0900b0
 int id disablePostScroll 0x7f0900b1
 int id disableScroll 0x7f0900b2
 int id disjoint 0x7f0900b3
+int id distanceSlider 0x7f09025f
 int id distanceText 0x7f0900b4
 int id dragAnticlockwise 0x7f0900b5
 int id dragClockwise 0x7f0900b6
@@ -3804,6 +3807,7 @@ int id foodImageView 0x7f0900e2
 int id foodPostDetailFragment 0x7f0900e3
 int id foodPostsRecyclerView 0x7f0900e4
 int id foodTypeChip 0x7f0900e5
+int id foodTypeChipGroup 0x7f090262
 int id foodTypeInput 0x7f0900e6
 int id foodTypeLayout 0x7f0900e7
 int id foodTypeText 0x7f0900e8
@@ -3940,7 +3944,6 @@ int id navigation_bar_item_large_label_view 0x7f09016a
 int id navigation_bar_item_small_label_view 0x7f09016b
 int id navigation_discover 0x7f09016c
 int id navigation_header_container 0x7f09016d
-int id navigation_notifications 0x7f09016e
 int id navigation_post 0x7f09016f
 int id navigation_profile 0x7f090170
 int id never 0x7f090171

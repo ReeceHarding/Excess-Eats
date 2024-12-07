@@ -37,12 +37,15 @@ id bottom_navigation
 id btnLogin
 id btnRegister
 id claimButton
+id claimedChip
+id claimedOverlay
 id containerSwitch
 id containerText
 id descriptionInput
 id descriptionLayout
 id descriptionText
 id directionsButton
+id distanceSlider
 id distanceText
 id editProfileImageButton
 id emailEditText
@@ -56,6 +59,7 @@ id foodImageView
 id foodPostDetailFragment
 id foodPostsRecyclerView
 id foodTypeChip
+id foodTypeChipGroup
 id foodTypeInput
 id foodTypeLayout
 id foodTypeText
@@ -72,7 +76,6 @@ id nameEditText
 id nav_graph
 id nav_host_fragment
 id navigation_discover
-id navigation_notifications
 id navigation_post
 id navigation_profile
 id notificationsRecyclerView

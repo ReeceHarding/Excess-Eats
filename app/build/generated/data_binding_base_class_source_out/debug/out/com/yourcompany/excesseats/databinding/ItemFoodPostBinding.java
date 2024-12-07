@@ -12,6 +12,7 @@ import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.chip.Chip;
 import com.yourcompany.excesseats.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -23,6 +24,12 @@ public final class ItemFoodPostBinding implements ViewBinding {
 
   @NonNull
   public final MaterialButton claimButton;
+
+  @NonNull
+  public final Chip claimedChip;
+
+  @NonNull
+  public final View claimedOverlay;
 
   @NonNull
   public final TextView distanceText;
@@ -46,12 +53,14 @@ public final class ItemFoodPostBinding implements ViewBinding {
   public final TextView titleText;
 
   private ItemFoodPostBinding(@NonNull MaterialCardView rootView,
-      @NonNull MaterialButton claimButton, @NonNull TextView distanceText,
-      @NonNull ImageView foodImageView, @NonNull TextView foodTypeText,
-      @NonNull TextView locationText, @NonNull TextView quantityText, @NonNull TextView timeText,
-      @NonNull TextView titleText) {
+      @NonNull MaterialButton claimButton, @NonNull Chip claimedChip, @NonNull View claimedOverlay,
+      @NonNull TextView distanceText, @NonNull ImageView foodImageView,
+      @NonNull TextView foodTypeText, @NonNull TextView locationText,
+      @NonNull TextView quantityText, @NonNull TextView timeText, @NonNull TextView titleText) {
     this.rootView = rootView;
     this.claimButton = claimButton;
+    this.claimedChip = claimedChip;
+    this.claimedOverlay = claimedOverlay;
     this.distanceText = distanceText;
     this.foodImageView = foodImageView;
     this.foodTypeText = foodTypeText;
@@ -91,6 +100,18 @@ public final class ItemFoodPostBinding implements ViewBinding {
       id = R.id.claimButton;
       MaterialButton claimButton = ViewBindings.findChildViewById(rootView, id);
       if (claimButton == null) {
+        break missingId;
+      }
+
+      id = R.id.claimedChip;
+      Chip claimedChip = ViewBindings.findChildViewById(rootView, id);
+      if (claimedChip == null) {
+        break missingId;
+      }
+
+      id = R.id.claimedOverlay;
+      View claimedOverlay = ViewBindings.findChildViewById(rootView, id);
+      if (claimedOverlay == null) {
         break missingId;
       }
 
@@ -136,8 +157,9 @@ public final class ItemFoodPostBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemFoodPostBinding((MaterialCardView) rootView, claimButton, distanceText,
-          foodImageView, foodTypeText, locationText, quantityText, timeText, titleText);
+      return new ItemFoodPostBinding((MaterialCardView) rootView, claimButton, claimedChip,
+          claimedOverlay, distanceText, foodImageView, foodTypeText, locationText, quantityText,
+          timeText, titleText);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
