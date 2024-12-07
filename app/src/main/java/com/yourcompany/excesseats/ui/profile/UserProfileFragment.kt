@@ -13,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.yourcompany.excesseats.R
 import com.yourcompany.excesseats.auth.LoginActivity
 import com.yourcompany.excesseats.data.model.UserProfile
 import com.yourcompany.excesseats.data.repository.UserRepository
@@ -46,9 +47,13 @@ class UserProfileFragment : Fragment() {
 
     private fun setupViews() {
         binding.apply {
-            // Profile image click handler
+            // Profile image click handlers
+            profileImage.setOnClickListener {
+                openImagePicker()
+            }
+
             editProfileImageButton.setOnClickListener {
-                pickImage.launch("image/*")
+                openImagePicker()
             }
 
             // Phone number formatting
@@ -106,6 +111,10 @@ class UserProfileFragment : Fragment() {
         }
     }
 
+    private fun openImagePicker() {
+        pickImage.launch("image/*")
+    }
+
     private fun handleImageSelection(uri: Uri) {
         val currentUser = userRepository.getCurrentUser() ?: return
 
@@ -119,6 +128,7 @@ class UserProfileFragment : Fragment() {
                     Glide.with(requireContext())
                         .load(imageUrl)
                         .circleCrop()
+                        .placeholder(R.drawable.ic_person)
                         .into(binding.profileImage)
                     Toast.makeText(context, "Profile picture updated successfully", Toast.LENGTH_SHORT).show()
                 }.onFailure { exception ->
@@ -169,6 +179,7 @@ class UserProfileFragment : Fragment() {
                             Glide.with(requireContext())
                                 .load(imageUrl)
                                 .circleCrop()
+                                .placeholder(R.drawable.ic_person)
                                 .into(profileImage)
                         }
                     } catch (e: Exception) {

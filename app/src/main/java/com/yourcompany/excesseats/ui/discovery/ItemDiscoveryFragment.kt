@@ -315,7 +315,9 @@ class ItemDiscoveryFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        binding.mapView.onSaveInstanceState(outState)
+        _binding?.let { binding ->
+            binding.mapView.onSaveInstanceState(outState)
+        }
     }
 
     override fun onLowMemory() {
