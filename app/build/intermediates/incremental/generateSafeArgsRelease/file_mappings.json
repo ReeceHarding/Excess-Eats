@@ -1,1 +1,1 @@
-[{"navFile":"src/main/res/navigation/nav_graph.xml","javaFiles":["com.yourcompany.excesseats.ui.discovery.ItemDiscoveryFragmentDirections","com.yourcompany.excesseats.ui.discovery.FoodPostDetailFragmentArgs"]}]
+[{"navFile":"src/main/res/navigation/nav_graph.xml","javaFiles":["com.yourcompany.excesseats.ui.discovery.ItemDiscoveryFragmentDirections","com.yourcompany.excesseats.ui.discovery.FoodPostDetailFragmentDirections","com.yourcompany.excesseats.ui.discovery.FoodPostDetailFragmentArgs"]}]

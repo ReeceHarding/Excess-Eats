@@ -1,3 +1,4 @@
+/*
 package com.yourcompany.excesseats.ui.notifications
 
 import android.view.LayoutInflater
@@ -12,7 +13,7 @@ import java.util.Date
 import java.util.Locale
 
 class NotificationAdapter(
-    private val onNotificationClick: (Notification) -> Unit
+    private val onItemClick: (Notification) -> Unit
 ) : ListAdapter<Notification, NotificationAdapter.ViewHolder>(NotificationDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,19 +33,27 @@ class NotificationAdapter(
         private val binding: ItemNotificationBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        private val dateFormat = SimpleDateFormat("MMM d, h:mm a", Locale.getDefault())
+        init {
+            binding.root.setOnClickListener {
+                val position = layoutPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onItemClick(getItem(position))
+                }
+            }
+        }
 
         fun bind(notification: Notification) {
             binding.apply {
                 titleText.text = notification.title
                 messageText.text = notification.message
-                timeText.text = dateFormat.format(Date(notification.timestamp))
+                timeText.text = formatTimestamp(notification.timestamp)
                 root.alpha = if (notification.isRead) 0.6f else 1.0f
-                
-                root.setOnClickListener {
-                    onNotificationClick(notification)
-                }
             }
+        }
+
+        private fun formatTimestamp(timestamp: Long): String {
+            val date = Date(timestamp)
+            return SimpleDateFormat("MMM d, h:mm a", Locale.getDefault()).format(date)
         }
     }
 
@@ -57,4 +66,5 @@ class NotificationAdapter(
             return oldItem == newItem
         }
     }
-} 
+}
+*/

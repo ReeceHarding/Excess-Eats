@@ -4,14 +4,13 @@ package com.yourcompany.excesseats.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
-import com.google.android.material.appbar.MaterialToolbar;
 import com.yourcompany.excesseats.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -19,29 +18,24 @@ import java.lang.String;
 
 public final class FragmentNotificationsBinding implements ViewBinding {
   @NonNull
-  private final CoordinatorLayout rootView;
+  private final FrameLayout rootView;
 
   @NonNull
   public final TextView emptyView;
 
   @NonNull
-  public final RecyclerView recyclerView;
+  public final RecyclerView notificationsRecyclerView;
 
-  @NonNull
-  public final MaterialToolbar toolbar;
-
-  private FragmentNotificationsBinding(@NonNull CoordinatorLayout rootView,
-      @NonNull TextView emptyView, @NonNull RecyclerView recyclerView,
-      @NonNull MaterialToolbar toolbar) {
+  private FragmentNotificationsBinding(@NonNull FrameLayout rootView, @NonNull TextView emptyView,
+      @NonNull RecyclerView notificationsRecyclerView) {
     this.rootView = rootView;
     this.emptyView = emptyView;
-    this.recyclerView = recyclerView;
-    this.toolbar = toolbar;
+    this.notificationsRecyclerView = notificationsRecyclerView;
   }
 
   @Override
   @NonNull
-  public CoordinatorLayout getRoot() {
+  public FrameLayout getRoot() {
     return rootView;
   }
 
@@ -72,20 +66,14 @@ public final class FragmentNotificationsBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.recyclerView;
-      RecyclerView recyclerView = ViewBindings.findChildViewById(rootView, id);
-      if (recyclerView == null) {
+      id = R.id.notificationsRecyclerView;
+      RecyclerView notificationsRecyclerView = ViewBindings.findChildViewById(rootView, id);
+      if (notificationsRecyclerView == null) {
         break missingId;
       }
 
-      id = R.id.toolbar;
-      MaterialToolbar toolbar = ViewBindings.findChildViewById(rootView, id);
-      if (toolbar == null) {
-        break missingId;
-      }
-
-      return new FragmentNotificationsBinding((CoordinatorLayout) rootView, emptyView, recyclerView,
-          toolbar);
+      return new FragmentNotificationsBinding((FrameLayout) rootView, emptyView,
+          notificationsRecyclerView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

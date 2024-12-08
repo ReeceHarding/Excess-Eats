@@ -8,14 +8,34 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <!-- Features -->
     <uses-feature android:name="android.hardware.camera" android:required="false" />
     <uses-feature android:name="android.hardware.location" android:required="false" />
     <uses-feature android:name="android.hardware.location.gps" android:required="false" />
+
+    <!-- Queries -->
+    <queries>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.GET_CONTENT" />
+            <data android:mimeType="image/*" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.PICK" />
+            <data android:mimeType="image/*" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.OPEN_DOCUMENT" />
+            <data android:mimeType="image/*" />
+        </intent>
+        <package android:name="com.google.android.apps.photos" />
+        <provider android:authorities="com.google.android.apps.photos.contentprovider" />
+    </queries>
 
     <application
         android:name=".ExcessEatsApplication"
@@ -27,6 +47,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ExcessEats"
+        android:requestLegacyExternalStorage="true"
         tools:targetApi="31">
 
         <!-- FileProvider -->
@@ -58,7 +79,10 @@
 
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            android:label="@string/app_name">
+        </activity>
 
         <!-- Maps API Key -->
         <meta-data

@@ -64,9 +64,16 @@
     <string name="common_open_on_phone">Fungua kwenye simu</string>
     <string name="common_signin_button_text">Ingia katika akaunti</string>
     <string name="common_signin_button_text_long">Ingia katika akaunti ukitumia Google</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"Imenakili kiungo kwenye ubao wa kunakili"</string>
     <string name="error_icon_content_description">Hitilafu</string>
     <string name="exposed_dropdown_menu_content_description">Onyesha menyu kunjuzi</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Nakili kiungo"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Fungua katika kivinjari"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Shiriki kiungo"</string>
     <string name="icon_content_description">Aikoni ya Kidirisha</string>
+    <string msgid="475402237100444685" name="installation_cancelled">"Usakinishaji umeghairiwa."</string>
+    <string msgid="863287960437940689" name="installation_failed">"Imeshindwa kusakinisha."</string>
+    <string msgid="5968445461040787716" name="installing_module">"Inasakinisha sehemu:"</string>
     <string name="item_view_role_description">Kichupo</string>
     <string name="material_clock_toggle_content_description">Chagua AM au PM</string>
     <string name="material_hour_24h_suffix">Saa %1$s</string>
@@ -125,6 +132,7 @@
     <string name="mtrl_timepicker_confirm">Sawa</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Sogeza juu"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Fungua droo ya kusogeza"</string>
+    <string msgid="4702104660890557116" name="ok">"Sawa"</string>
     <string name="password_toggle_content_description">Onyesha nenosiri</string>
     <string name="places_autocomplete_clear_button">Futa utafutaji</string>
     <string name="places_autocomplete_label">Chagua eneo</string>
@@ -134,6 +142,8 @@
     <string name="places_powered_by_google">Inaendeshwa na Google</string>
     <string name="places_search_error">Imeshindwa kupakia matokeo ya utafutaji.</string>
     <string name="places_try_again">Jaribu tena</string>
+    <string msgid="8366783942222789124" name="progress">"Maendeleo:"</string>
+    <string msgid="1065327189183624288" name="retry">"Jaribu tena"</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Tafuta"</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
 </resources>

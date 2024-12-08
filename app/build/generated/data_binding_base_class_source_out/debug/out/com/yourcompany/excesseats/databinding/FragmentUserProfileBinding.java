@@ -4,7 +4,9 @@ package com.yourcompany.excesseats.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -12,6 +14,7 @@ import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.yourcompany.excesseats.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -22,30 +25,52 @@ public final class FragmentUserProfileBinding implements ViewBinding {
   private final CoordinatorLayout rootView;
 
   @NonNull
-  public final MaterialButton btnLogout;
+  public final ImageButton editProfileImageButton;
 
   @NonNull
-  public final MaterialButton btnSignIn;
+  public final TextInputEditText emailEditText;
 
   @NonNull
-  public final LinearLayout loggedInLayout;
+  public final MaterialButton logoutButton;
 
   @NonNull
-  public final LinearLayout loggedOutLayout;
+  public final TextView mealsClaimedText;
+
+  @NonNull
+  public final TextInputEditText nameEditText;
+
+  @NonNull
+  public final TextInputEditText phoneEditText;
+
+  @NonNull
+  public final ImageView profileImage;
+
+  @NonNull
+  public final MaterialButton saveButton;
 
   @NonNull
   public final MaterialToolbar toolbar;
 
+  @NonNull
+  public final TextView wasteSavedText;
+
   private FragmentUserProfileBinding(@NonNull CoordinatorLayout rootView,
-      @NonNull MaterialButton btnLogout, @NonNull MaterialButton btnSignIn,
-      @NonNull LinearLayout loggedInLayout, @NonNull LinearLayout loggedOutLayout,
-      @NonNull MaterialToolbar toolbar) {
+      @NonNull ImageButton editProfileImageButton, @NonNull TextInputEditText emailEditText,
+      @NonNull MaterialButton logoutButton, @NonNull TextView mealsClaimedText,
+      @NonNull TextInputEditText nameEditText, @NonNull TextInputEditText phoneEditText,
+      @NonNull ImageView profileImage, @NonNull MaterialButton saveButton,
+      @NonNull MaterialToolbar toolbar, @NonNull TextView wasteSavedText) {
     this.rootView = rootView;
-    this.btnLogout = btnLogout;
-    this.btnSignIn = btnSignIn;
-    this.loggedInLayout = loggedInLayout;
-    this.loggedOutLayout = loggedOutLayout;
+    this.editProfileImageButton = editProfileImageButton;
+    this.emailEditText = emailEditText;
+    this.logoutButton = logoutButton;
+    this.mealsClaimedText = mealsClaimedText;
+    this.nameEditText = nameEditText;
+    this.phoneEditText = phoneEditText;
+    this.profileImage = profileImage;
+    this.saveButton = saveButton;
     this.toolbar = toolbar;
+    this.wasteSavedText = wasteSavedText;
   }
 
   @Override
@@ -75,27 +100,51 @@ public final class FragmentUserProfileBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.btnLogout;
-      MaterialButton btnLogout = ViewBindings.findChildViewById(rootView, id);
-      if (btnLogout == null) {
+      id = R.id.editProfileImageButton;
+      ImageButton editProfileImageButton = ViewBindings.findChildViewById(rootView, id);
+      if (editProfileImageButton == null) {
         break missingId;
       }
 
-      id = R.id.btnSignIn;
-      MaterialButton btnSignIn = ViewBindings.findChildViewById(rootView, id);
-      if (btnSignIn == null) {
+      id = R.id.emailEditText;
+      TextInputEditText emailEditText = ViewBindings.findChildViewById(rootView, id);
+      if (emailEditText == null) {
         break missingId;
       }
 
-      id = R.id.loggedInLayout;
-      LinearLayout loggedInLayout = ViewBindings.findChildViewById(rootView, id);
-      if (loggedInLayout == null) {
+      id = R.id.logoutButton;
+      MaterialButton logoutButton = ViewBindings.findChildViewById(rootView, id);
+      if (logoutButton == null) {
         break missingId;
       }
 
-      id = R.id.loggedOutLayout;
-      LinearLayout loggedOutLayout = ViewBindings.findChildViewById(rootView, id);
-      if (loggedOutLayout == null) {
+      id = R.id.mealsClaimedText;
+      TextView mealsClaimedText = ViewBindings.findChildViewById(rootView, id);
+      if (mealsClaimedText == null) {
+        break missingId;
+      }
+
+      id = R.id.nameEditText;
+      TextInputEditText nameEditText = ViewBindings.findChildViewById(rootView, id);
+      if (nameEditText == null) {
+        break missingId;
+      }
+
+      id = R.id.phoneEditText;
+      TextInputEditText phoneEditText = ViewBindings.findChildViewById(rootView, id);
+      if (phoneEditText == null) {
+        break missingId;
+      }
+
+      id = R.id.profileImage;
+      ImageView profileImage = ViewBindings.findChildViewById(rootView, id);
+      if (profileImage == null) {
+        break missingId;
+      }
+
+      id = R.id.saveButton;
+      MaterialButton saveButton = ViewBindings.findChildViewById(rootView, id);
+      if (saveButton == null) {
         break missingId;
       }
 
@@ -105,8 +154,15 @@ public final class FragmentUserProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentUserProfileBinding((CoordinatorLayout) rootView, btnLogout, btnSignIn,
-          loggedInLayout, loggedOutLayout, toolbar);
+      id = R.id.wasteSavedText;
+      TextView wasteSavedText = ViewBindings.findChildViewById(rootView, id);
+      if (wasteSavedText == null) {
+        break missingId;
+      }
+
+      return new FragmentUserProfileBinding((CoordinatorLayout) rootView, editProfileImageButton,
+          emailEditText, logoutButton, mealsClaimedText, nameEditText, phoneEditText, profileImage,
+          saveButton, toolbar, wasteSavedText);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

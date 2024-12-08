@@ -2,6 +2,8 @@ package com.yourcompany.excesseats.auth
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -28,12 +30,15 @@ class RegisterActivity : AppCompatActivity() {
             setContentView(binding.root)
             Log.d(TAG, "Layout inflated")
 
+            setupPhoneNumberFormatting()
+
             binding.btnRegister.setOnClickListener {
                 val email = binding.etEmail.text.toString()
                 val password = binding.etPassword.text.toString()
-                val displayName = binding.etDisplayName.text.toString()
+                val name = binding.etDisplayName.text.toString()
+                val phone = binding.etPhone.text.toString()
 
-                if (email.isNotEmpty() && password.isNotEmpty() && displayName.isNotEmpty()) {
+                if (email.isNotEmpty() && password.isNotEmpty() && name.isNotEmpty() && phone.isNotEmpty()) {
                     // Simple validation
                     if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                         Toast.makeText(this, "Please enter a valid email", Toast.LENGTH_SHORT).show()
@@ -41,6 +46,10 @@ class RegisterActivity : AppCompatActivity() {
                     }
                     if (password.length < 6) {
                         Toast.makeText(this, "Password must be at least 6 characters", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    }
+                    if (!isValidPhoneNumber(phone)) {
+                        Toast.makeText(this, "Please enter a valid phone number", Toast.LENGTH_SHORT).show()
                         return@setOnClickListener
                     }
 
@@ -52,7 +61,8 @@ class RegisterActivity : AppCompatActivity() {
                         id = UUID.randomUUID().toString(), // This will be replaced with Firebase UID
                         email = email,
                         password = password,
-                        displayName = displayName
+                        name = name,
+                        phone = phone.replace(Regex("[^0-9]"), "") // Store only digits
                     )
 
                     lifecycleScope.launch {
@@ -98,6 +108,42 @@ class RegisterActivity : AppCompatActivity() {
             Log.e(TAG, "Error in onCreate", e)
             Toast.makeText(this, "Error starting app: ${e.message}", Toast.LENGTH_LONG).show()
         }
+    }
+
+    private fun setupPhoneNumberFormatting() {
+        var isFormatting = false
+        binding.etPhone.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                if (isFormatting) return
+                isFormatting = true
+
+                // Remove all non-digit characters
+                val digits = s.toString().replace(Regex("[^0-9]"), "")
+
+                // Format the phone number
+                val formatted = when {
+                    digits.length <= 3 -> digits
+                    digits.length <= 6 -> "(${digits.substring(0, 3)}) ${digits.substring(3)}"
+                    else -> "(${digits.substring(0, 3)}) ${digits.substring(3, 6)}-${digits.substring(6, minOf(digits.length, 10))}"
+                }
+
+                // Update the text if it's different
+                if (formatted != s.toString()) {
+                    s?.replace(0, s.length, formatted)
+                }
+
+                isFormatting = false
+            }
+        })
+    }
+
+    private fun isValidPhoneNumber(phone: String): Boolean {
+        val digits = phone.replace(Regex("[^0-9]"), "")
+        return digits.length == 10
     }
 
     private fun setLoading(isLoading: Boolean) {

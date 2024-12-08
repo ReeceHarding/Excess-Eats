@@ -2,10 +2,10 @@ package com.yourcompany.excesseats.data.model
 
 data class User(
     val id: String = "",
+    val name: String = "",
     val email: String = "",
     val password: String = "",
-    val displayName: String = "",
-    val phoneNumber: String = "",
+    val phone: String = "",
     val profileImageUrl: String? = null,
     val location: String = "",
     val latitude: Double = 0.0,

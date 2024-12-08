@@ -37,6 +37,9 @@ public final class ItemFoodPostBinding implements ViewBinding {
   public final TextView locationText;
 
   @NonNull
+  public final TextView quantityText;
+
+  @NonNull
   public final TextView timeText;
 
   @NonNull
@@ -45,13 +48,15 @@ public final class ItemFoodPostBinding implements ViewBinding {
   private ItemFoodPostBinding(@NonNull MaterialCardView rootView,
       @NonNull MaterialButton claimButton, @NonNull TextView distanceText,
       @NonNull ImageView foodImageView, @NonNull TextView foodTypeText,
-      @NonNull TextView locationText, @NonNull TextView timeText, @NonNull TextView titleText) {
+      @NonNull TextView locationText, @NonNull TextView quantityText, @NonNull TextView timeText,
+      @NonNull TextView titleText) {
     this.rootView = rootView;
     this.claimButton = claimButton;
     this.distanceText = distanceText;
     this.foodImageView = foodImageView;
     this.foodTypeText = foodTypeText;
     this.locationText = locationText;
+    this.quantityText = quantityText;
     this.timeText = timeText;
     this.titleText = titleText;
   }
@@ -113,6 +118,12 @@ public final class ItemFoodPostBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.quantityText;
+      TextView quantityText = ViewBindings.findChildViewById(rootView, id);
+      if (quantityText == null) {
+        break missingId;
+      }
+
       id = R.id.timeText;
       TextView timeText = ViewBindings.findChildViewById(rootView, id);
       if (timeText == null) {
@@ -126,7 +137,7 @@ public final class ItemFoodPostBinding implements ViewBinding {
       }
 
       return new ItemFoodPostBinding((MaterialCardView) rootView, claimButton, distanceText,
-          foodImageView, foodTypeText, locationText, timeText, titleText);
+          foodImageView, foodTypeText, locationText, quantityText, timeText, titleText);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

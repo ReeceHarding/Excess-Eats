@@ -64,9 +64,16 @@
     <string name="common_open_on_phone">Ava telefonis</string>
     <string name="common_signin_button_text">Logi sisse</string>
     <string name="common_signin_button_text_long">Logi sisse Google\'i kontoga</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"Link kopeeriti lõikelauale"</string>
     <string name="error_icon_content_description">Viga</string>
     <string name="exposed_dropdown_menu_content_description">Kuva rippmenüü</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Kopeeri link"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Ava brauseris"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Jaga linki"</string>
     <string name="icon_content_description">Dialoogi ikoon</string>
+    <string msgid="475402237100444685" name="installation_cancelled">"Installimine on tühistatud."</string>
+    <string msgid="863287960437940689" name="installation_failed">"Installimine ebaõnnestus."</string>
+    <string msgid="5968445461040787716" name="installing_module">"Installimismoodul:"</string>
     <string name="item_view_role_description">Vaheleht</string>
     <string name="material_clock_toggle_content_description">Valige AM või PM</string>
     <string name="material_hour_24h_suffix">%1$s tundi</string>
@@ -125,6 +132,7 @@
     <string name="mtrl_timepicker_confirm">OK</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Navigeeri üles"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Navigeerimissahtli avamine"</string>
+    <string msgid="4702104660890557116" name="ok">"OK"</string>
     <string name="password_toggle_content_description">Parooli kuvamine</string>
     <string name="places_autocomplete_clear_button">Tühjenda otsing</string>
     <string name="places_autocomplete_label">Koha valimine</string>
@@ -134,6 +142,8 @@
     <string name="places_powered_by_google">Töötab Google\'i platvormil</string>
     <string name="places_search_error">Otsingutulemusi ei saa laadida.</string>
     <string name="places_try_again">Proovi uuesti</string>
+    <string msgid="8366783942222789124" name="progress">"Edenemine:"</string>
+    <string msgid="1065327189183624288" name="retry">"Proovi uuesti"</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Otsing"</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
 </resources>

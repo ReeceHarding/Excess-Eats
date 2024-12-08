@@ -7,18 +7,25 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
+import com.google.firebase.storage.FirebaseStorage
 import com.yourcompany.excesseats.data.model.User
 import com.yourcompany.excesseats.data.model.Preference
+import com.yourcompany.excesseats.data.model.UserProfile
+import com.yourcompany.excesseats.data.model.UserStats
+import com.yourcompany.excesseats.data.model.FoodPost
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
+import android.net.Uri
 
 class UserRepository private constructor() {
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseDatabase.getInstance()
+    private val storage = FirebaseStorage.getInstance()
     private val usersRef = database.getReference("users")
     private val preferencesRef = database.getReference("preferences")
+    private val profileImagesRef = storage.reference.child("profile_images")
 
     companion object {
         @Volatile
@@ -184,6 +191,98 @@ class UserRepository private constructor() {
 
             usersRef.child(userId).addValueEventListener(listener)
             awaitClose { usersRef.child(userId).removeEventListener(listener) }
+        }
+    }
+
+    suspend fun getUserProfile(userId: String): UserProfile {
+        return try {
+            val snapshot = usersRef.child(userId).get().await()
+            val user = snapshot.getValue<User>()
+                ?: throw Exception("User not found")
+
+            // Get user stats from a separate node
+            val statsSnapshot = usersRef.child(userId).child("stats").get().await()
+            val stats = if (statsSnapshot.exists()) {
+                UserStats(
+                    mealsClaimedCount = statsSnapshot.child("mealsClaimedCount").getValue<Int>() ?: 0,
+                    wasteSavedPounds = statsSnapshot.child("wasteSavedPounds").getValue<Double>() ?: 0.0
+                )
+            } else {
+                UserStats()
+            }
+
+            // Convert User to UserProfile
+            UserProfile(
+                id = user.id,
+                name = user.name,
+                email = user.email,
+                phone = user.phone,
+                stats = stats
+            )
+        } catch (e: Exception) {
+            throw e
+        }
+    }
+
+    suspend fun updateUserProfile(profile: UserProfile) {
+        try {
+            val currentUser = auth.currentUser
+                ?: throw Exception("No authenticated user")
+
+            // Update only the profile fields in the user document
+            val updates = hashMapOf<String, Any>(
+                "name" to profile.name,
+                "email" to profile.email,
+                "phone" to profile.phone
+            )
+
+            // Update authentication email if it changed
+            if (profile.email != currentUser.email) {
+                currentUser.updateEmail(profile.email).await()
+            }
+
+            // Update profile in database
+            usersRef.child(currentUser.uid).updateChildren(updates).await()
+        } catch (e: Exception) {
+            throw e
+        }
+    }
+
+    suspend fun updateUserStats(userId: String, foodPost: FoodPost) {
+        try {
+            val statsRef = usersRef.child(userId).child("stats")
+            val currentStats = statsRef.get().await()
+
+            val currentMealsClaimed = currentStats.child("mealsClaimedCount").getValue<Int?>() ?: 0
+            val currentWasteSaved = currentStats.child("wasteSavedPounds").getValue<Double?>() ?: 0.0
+
+            val updates = hashMapOf<String, Any>(
+                "mealsClaimedCount" to (currentMealsClaimed + foodPost.remainingQuantity),
+                "wasteSavedPounds" to (currentWasteSaved + foodPost.getEstimatedWeight())
+            )
+
+            statsRef.updateChildren(updates).await()
+        } catch (e: Exception) {
+            throw e
+        }
+    }
+
+    suspend fun uploadProfileImage(userId: String, imageUri: Uri): Result<String> {
+        return try {
+            val imageRef = profileImagesRef.child("$userId.jpg")
+
+            // Upload the image
+            val uploadTask = imageRef.putFile(imageUri).await()
+
+            // Get the download URL
+            val downloadUrl = imageRef.downloadUrl.await().toString()
+
+            // Update the user's profile with the image URL
+            usersRef.child(userId).child("profileImageUrl").setValue(downloadUrl).await()
+
+            Result.success(downloadUrl)
+        } catch (e: Exception) {
+            Result.failure(e)
         }
     }
 }

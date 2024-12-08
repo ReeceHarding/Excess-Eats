@@ -92,9 +92,22 @@ class ItemPostingFragment : Fragment() {
     ) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             result.data?.data?.let { uri ->
-                selectedImageUri = uri
-                showImagePreview(uri)
+                try {
+                    Log.d("ItemPostingFragment", "Document selected: $uri")
+                    // Take persistable URI permission
+                    val takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                    requireContext().contentResolver.takePersistableUriPermission(uri, takeFlags)
+                    selectedImageUri = uri
+                    showImagePreview(uri)
+                } catch (e: Exception) {
+                    Log.e("ItemPostingFragment", "Error handling selected document", e)
+                    Toast.makeText(requireContext(), "Error handling selected document: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            } ?: run {
+                Log.d("ItemPostingFragment", "No document selected")
             }
+        } else {
+            Log.d("ItemPostingFragment", "Document selection cancelled or failed")
         }
     }
 
@@ -285,22 +298,20 @@ class ItemPostingFragment : Fragment() {
 
     private fun launchCamera() {
         val photoFile = createImageFile()
-        photoFile.also { file ->
-            val photoURI = FileProvider.getUriForFile(
-                requireContext(),
-                "com.yourcompany.excesseats.fileprovider",
-                file
-            )
-            val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE).apply {
-                putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-            }
-            takePictureLauncher.launch(takePictureIntent)
+        val photoURI = FileProvider.getUriForFile(
+            requireContext(),
+            "com.yourcompany.excesseats.fileprovider",
+            photoFile
+        )
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE).apply {
+            putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
         }
+        takePictureLauncher.launch(takePictureIntent)
     }
 
     private fun createImageFile(): File {
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
-        val storageDir = requireContext().getExternalFilesDir(null)
+        val storageDir = requireContext().cacheDir // Use cache directory instead of external storage
         return File.createTempFile(
             "JPEG_${timeStamp}_",
             ".jpg",
@@ -311,8 +322,18 @@ class ItemPostingFragment : Fragment() {
     }
 
     private fun launchGallery() {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        pickImageLauncher.launch(intent)
+        try {
+            Log.d("ItemPostingFragment", "Launching document picker")
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+                type = "image/*"
+                addCategory(Intent.CATEGORY_OPENABLE)
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)
+            }
+            pickImageLauncher.launch(intent)
+        } catch (e: Exception) {
+            Log.e("ItemPostingFragment", "Error launching document picker", e)
+            Toast.makeText(requireContext(), "Error opening document picker: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun showImagePreview(uri: Uri) {
@@ -321,6 +342,46 @@ class ItemPostingFragment : Fragment() {
             .load(uri)
             .centerCrop()
             .into(binding.imagePreview)
+    }
+
+    private suspend fun uploadImageToFirebase(uri: Uri): String {
+        Log.d("ItemPostingFragment", "Starting image upload for URI: $uri")
+        try {
+            val storage = FirebaseStorage.getInstance()
+            val storageRef = storage.reference
+            val imageRef = storageRef.child("images/${UUID.randomUUID()}.jpg")
+
+            // Get input stream from content resolver with try-with-resources
+            requireContext().contentResolver.openInputStream(uri)?.use { inputStream ->
+                Log.d("ItemPostingFragment", "Reading image data from URI")
+                val bytes = inputStream.readBytes()
+                Log.d("ItemPostingFragment", "Successfully read ${bytes.size} bytes")
+
+                if (bytes.isEmpty()) {
+                    throw Exception("Image data is empty")
+                }
+
+                Log.d("ItemPostingFragment", "Starting upload to Firebase Storage")
+                // Create metadata to set content type
+                val metadata = com.google.firebase.storage.StorageMetadata.Builder()
+                    .setContentType("image/jpeg")
+                    .build()
+
+                val uploadTask = imageRef.putBytes(bytes, metadata).await()
+                Log.d("ItemPostingFragment", "Upload completed, bytes transferred: ${uploadTask.bytesTransferred}")
+
+                if (uploadTask.bytesTransferred > 0) {
+                    val downloadUrl = imageRef.downloadUrl.await().toString()
+                    Log.d("ItemPostingFragment", "Got download URL: $downloadUrl")
+                    return downloadUrl
+                } else {
+                    throw Exception("No bytes were transferred during upload")
+                }
+            } ?: throw Exception("Failed to read image data")
+        } catch (e: Exception) {
+            Log.e("ItemPostingFragment", "Error during image upload", e)
+            throw e
+        }
     }
 
     private fun setupSubmitButton() {
@@ -353,33 +414,7 @@ class ItemPostingFragment : Fragment() {
                 lifecycleScope.launch {
                     try {
                         val imageUrl = selectedImageUri?.let { uri ->
-                            Log.d("ItemPostingFragment", "Starting image upload for URI: $uri")
-                            try {
-                                val storage = FirebaseStorage.getInstance()
-                                val storageRef = storage.reference
-                                val imageRef = storageRef.child("food_images/${UUID.randomUUID()}.jpg")
-
-                                // Get input stream from content resolver
-                                requireContext().contentResolver.openInputStream(uri)?.use { inputStream ->
-                                    Log.d("ItemPostingFragment", "Reading image data from URI")
-                                    val bytes = inputStream.readBytes()
-                                    Log.d("ItemPostingFragment", "Successfully read ${bytes.size} bytes")
-
-                                    Log.d("ItemPostingFragment", "Starting upload to Firebase Storage")
-                                    val uploadTask = imageRef.putBytes(bytes).await()
-                                    Log.d("ItemPostingFragment", "Upload completed, bytes transferred: ${uploadTask.bytesTransferred}")
-
-                                    val downloadUrl = imageRef.downloadUrl.await().toString()
-                                    Log.d("ItemPostingFragment", "Got download URL: $downloadUrl")
-                                    downloadUrl
-                                } ?: run {
-                                    Log.e("ItemPostingFragment", "Failed to open input stream for URI: $uri")
-                                    throw Exception("Failed to read image data")
-                                }
-                            } catch (e: Exception) {
-                                Log.e("ItemPostingFragment", "Error during image upload", e)
-                                throw e
-                            }
+                            uploadImageToFirebase(uri)
                         }
 
                         Log.d("ItemPostingFragment", "Final imageUrl for FoodPost: $imageUrl")
@@ -390,6 +425,7 @@ class ItemPostingFragment : Fragment() {
                             description = description,
                             foodType = foodType,
                             quantity = quantity,
+                            remainingQuantity = quantity.split(" ")[0].toIntOrNull() ?: 1,
                             location = selectedAddress ?: "",
                             latitude = selectedLocation?.latitude ?: 0.0,
                             longitude = selectedLocation?.longitude ?: 0.0,

@@ -37,18 +37,22 @@ public final class ActivityRegisterBinding implements ViewBinding {
   public final TextInputEditText etPassword;
 
   @NonNull
+  public final TextInputEditText etPhone;
+
+  @NonNull
   public final ProgressBar progressBar;
 
   private ActivityRegisterBinding(@NonNull LinearLayout rootView, @NonNull MaterialButton btnLogin,
       @NonNull MaterialButton btnRegister, @NonNull TextInputEditText etDisplayName,
       @NonNull TextInputEditText etEmail, @NonNull TextInputEditText etPassword,
-      @NonNull ProgressBar progressBar) {
+      @NonNull TextInputEditText etPhone, @NonNull ProgressBar progressBar) {
     this.rootView = rootView;
     this.btnLogin = btnLogin;
     this.btnRegister = btnRegister;
     this.etDisplayName = etDisplayName;
     this.etEmail = etEmail;
     this.etPassword = etPassword;
+    this.etPhone = etPhone;
     this.progressBar = progressBar;
   }
 
@@ -109,6 +113,12 @@ public final class ActivityRegisterBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.etPhone;
+      TextInputEditText etPhone = ViewBindings.findChildViewById(rootView, id);
+      if (etPhone == null) {
+        break missingId;
+      }
+
       id = R.id.progressBar;
       ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
       if (progressBar == null) {
@@ -116,7 +126,7 @@ public final class ActivityRegisterBinding implements ViewBinding {
       }
 
       return new ActivityRegisterBinding((LinearLayout) rootView, btnLogin, btnRegister,
-          etDisplayName, etEmail, etPassword, progressBar);
+          etDisplayName, etEmail, etPassword, etPhone, progressBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

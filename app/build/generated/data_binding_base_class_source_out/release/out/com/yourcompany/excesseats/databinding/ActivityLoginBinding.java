@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
@@ -32,14 +33,18 @@ public final class ActivityLoginBinding implements ViewBinding {
   @NonNull
   public final TextInputEditText etPassword;
 
+  @NonNull
+  public final ProgressBar progressBar;
+
   private ActivityLoginBinding(@NonNull LinearLayout rootView, @NonNull MaterialButton btnLogin,
       @NonNull MaterialButton btnRegister, @NonNull TextInputEditText etEmail,
-      @NonNull TextInputEditText etPassword) {
+      @NonNull TextInputEditText etPassword, @NonNull ProgressBar progressBar) {
     this.rootView = rootView;
     this.btnLogin = btnLogin;
     this.btnRegister = btnRegister;
     this.etEmail = etEmail;
     this.etPassword = etPassword;
+    this.progressBar = progressBar;
   }
 
   @Override
@@ -93,8 +98,14 @@ public final class ActivityLoginBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.progressBar;
+      ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
+      if (progressBar == null) {
+        break missingId;
+      }
+
       return new ActivityLoginBinding((LinearLayout) rootView, btnLogin, btnRegister, etEmail,
-          etPassword);
+          etPassword, progressBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

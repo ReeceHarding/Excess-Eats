@@ -64,9 +64,16 @@
     <string name="common_open_on_phone">फोनमा खोल्नुहोस्</string>
     <string name="common_signin_button_text">साइन इन गर्नुहोस्</string>
     <string name="common_signin_button_text_long">Google मार्फत साइन‍ इन गर्नुहोस्</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"क्लिपबोर्डमा लिंक प्रतिलिपि गरियो"</string>
     <string name="error_icon_content_description">त्रुटि</string>
     <string name="exposed_dropdown_menu_content_description">ड्रपडाउन मेनु देखाउनुहोस्</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"लिंक प्रतिलिपि गर्नुहोस्"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"ब्राउजरमा खोल्नुहोस्"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"लिंक सेयर गर्नुहोस्"</string>
     <string name="icon_content_description">संवादको आइकन</string>
+    <string msgid="475402237100444685" name="installation_cancelled">"स्थापना रद्द गरियो।"</string>
+    <string msgid="863287960437940689" name="installation_failed">"स्थापना गर्न सकिएन।"</string>
+    <string msgid="5968445461040787716" name="installing_module">"मोड्युल स्थापना गर्दै:"</string>
     <string name="item_view_role_description">ट्याब</string>
     <string name="material_clock_toggle_content_description">पूर्वाह्न वा अपराह्न चयन गर्नुहोस्</string>
     <string name="material_hour_24h_suffix">%1$s घण्टा</string>
@@ -125,6 +132,7 @@
     <string name="mtrl_timepicker_confirm">ठिक छ</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"माथि नेभिगेट गर्नुहोस्"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"नेभिगेसन ड्रअर खोल्नुहोस्"</string>
+    <string msgid="4702104660890557116" name="ok">"ठिक छ"</string>
     <string name="password_toggle_content_description">पासवर्ड देखाउनुहोस्</string>
     <string name="places_autocomplete_clear_button">खोज खाली गर्नुहोस्</string>
     <string name="places_autocomplete_label">कुनै ठाँउ छान्नुहोस्</string>
@@ -134,6 +142,8 @@
     <string name="places_powered_by_google">Google द्वारा सञ्चालित</string>
     <string name="places_search_error">खोज परिणाम लोड गर्न सकिएन।</string>
     <string name="places_try_again">फेरि प्रयास गर्नु…</string>
+    <string msgid="8366783942222789124" name="progress">"प्रगति:"</string>
+    <string msgid="1065327189183624288" name="retry">"पुनः प्रयास गर्नुहोस्"</string>
     <string msgid="6264217191555673260" name="search_menu_title">"खोज"</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"९९९+"</string>
 </resources>
