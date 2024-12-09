@@ -63,4 +63,11 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="permission_denied_camera">Camera permission denied. You can\'t take pictures.</string>
+
+    <!-- Photo Display -->
+    <string name="title_photos">Photos</string>
+    <string name="featured_photo">Featured Photo</string>
+    <string name="change_featured_photo">Change Featured Photo</string>
+    <string name="photo_gallery">Photo Gallery</string>
+    <string name="add_photo">Add Photo</string>
 </resources>
