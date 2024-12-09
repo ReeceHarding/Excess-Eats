@@ -43,6 +43,13 @@ class FoodPostAdapter(
                     onItemClick(getItem(position))
                 }
             }
+
+            binding.claimButton.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onItemClick(getItem(position))
+                }
+            }
         }
 
         fun bind(foodPost: FoodPost) {
@@ -58,13 +65,11 @@ class FoodPostAdapter(
                 quantityText.text = "$remainingServings left of ${foodPost.quantity}"
 
                 // Update claim button text
-                val hasUserClaimed = currentUser?.let { foodPost.isClaimedByUser(it.uid) } ?: false
                 claimButton.text = when {
-                    hasUserClaimed -> "You've claimed this"
                     remainingServings <= 0 -> "No servings left"
                     else -> "Claim Food"
                 }
-                claimButton.isEnabled = !hasUserClaimed && remainingServings > 0
+                claimButton.isEnabled = remainingServings > 0
 
                 if (!foodPost.imageUrl.isNullOrEmpty()) {
                     Glide.with(itemView.context)

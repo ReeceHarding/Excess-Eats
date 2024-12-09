@@ -1435,6 +1435,7 @@ color background_floating_material_light
 color background_material_dark
 color background_material_light
 color black
+color bottom_nav_item_color
 color bright_foreground_disabled_material_dark
 color bright_foreground_disabled_material_light
 color bright_foreground_inverse_material_dark
@@ -3466,6 +3467,7 @@ drawable ic_call_answer_video_low
 drawable ic_call_decline
 drawable ic_call_decline_low
 drawable ic_camera
+drawable ic_claimed
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
 drawable ic_container
@@ -3633,18 +3635,21 @@ id action_bar_root
 id action_bar_spinner
 id action_bar_subtitle
 id action_bar_title
+id action_claimedMealsFragment_to_foodPostDetailFragment
 id action_container
 id action_context_bar
 id action_divider
 id action_foodPostDetailFragment_to_navigation_discover
 id action_image
-id action_itemDiscoveryFragment_to_foodPostDetailFragment
 id action_menu_divider
 id action_menu_presenter
 id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
+id action_navigation_claimed_to_foodPostDetailFragment
+id action_navigation_discover_to_foodPostDetailFragment
 id action_text
+id action_userProfileFragment_to_claimedMealsFragment
 id actions
 id activity_chooser_view_content
 id add
@@ -3675,7 +3680,7 @@ id beginning
 id bestChoice
 id blocking
 id bottom
-id bottom_navigation
+id bottomNavigationView
 id bounce
 id bounceBoth
 id bounceEnd
@@ -3706,7 +3711,10 @@ id chronometer
 id circle_center
 id claimButton
 id claimedChip
+id claimedMealsFragment
+id claimedMealsRecyclerView
 id claimedOverlay
+id claimedRecyclerView
 id clear_text
 id clip_horizontal
 id clip_vertical
@@ -3778,6 +3786,7 @@ id edit_query
 id elastic
 id emailEditText
 id embed
+id emptyStateText
 id emptyView
 id end
 id endToStart
@@ -3848,8 +3857,6 @@ id installation_progress
 id invisible
 id inward
 id italic
-id itemDiscoveryFragment
-id itemPostingFragment
 id item_touch_helper_previous_elevation
 id jumpToEnd
 id jumpToStart
@@ -3943,6 +3950,7 @@ id navigation_bar_item_icon_view
 id navigation_bar_item_labels_group
 id navigation_bar_item_large_label_view
 id navigation_bar_item_small_label_view
+id navigation_claimed
 id navigation_discover
 id navigation_header_container
 id navigation_post
@@ -4164,7 +4172,6 @@ id unlabeled
 id up
 id uploadImageButton
 id useLogo
-id userProfileFragment
 id vertical_only
 id view_offset_helper
 id view_transition
@@ -4323,6 +4330,8 @@ layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout dynamic_feature_install_fragment
+layout fragment_claimed
+layout fragment_claimed_meals
 layout fragment_food_post_detail
 layout fragment_item_discovery
 layout fragment_item_posting

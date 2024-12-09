@@ -48,8 +48,7 @@ class MainActivity : AppCompatActivity() {
 
             val navController = navHostFragment.navController
 
-            binding.bottomNavigation.setupWithNavController(navController)
-            binding.bottomNavigation.setOnItemReselectedListener { /* Prevent reselection reload */ }
+            binding.bottomNavigationView.setupWithNavController(navController)
         } catch (e: Exception) {
             Log.e(TAG, "Error setting up navigation", e)
         }

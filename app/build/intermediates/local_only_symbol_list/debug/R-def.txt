@@ -2,6 +2,7 @@ R_DEF: Internal format may change without notice
 local
 array food_types
 color black
+color bottom_nav_item_color
 color gray
 color ic_launcher_background
 color light_gray
@@ -14,6 +15,7 @@ color white
 drawable circle_background
 drawable ic_back
 drawable ic_camera
+drawable ic_claimed
 drawable ic_container
 drawable ic_directions
 drawable ic_discover
@@ -30,15 +32,21 @@ drawable ic_profile
 drawable ic_search
 drawable ic_time
 drawable ic_waste
+id action_claimedMealsFragment_to_foodPostDetailFragment
 id action_foodPostDetailFragment_to_navigation_discover
-id action_itemDiscoveryFragment_to_foodPostDetailFragment
+id action_navigation_claimed_to_foodPostDetailFragment
+id action_navigation_discover_to_foodPostDetailFragment
+id action_userProfileFragment_to_claimedMealsFragment
 id autocomplete_fragment
-id bottom_navigation
+id bottomNavigationView
 id btnLogin
 id btnRegister
 id claimButton
 id claimedChip
+id claimedMealsFragment
+id claimedMealsRecyclerView
 id claimedOverlay
+id claimedRecyclerView
 id containerSwitch
 id containerText
 id descriptionInput
@@ -49,6 +57,7 @@ id distanceSlider
 id distanceText
 id editProfileImageButton
 id emailEditText
+id emptyStateText
 id emptyView
 id errorFragment
 id etDisplayName
@@ -64,8 +73,6 @@ id foodTypeInput
 id foodTypeLayout
 id foodTypeText
 id imagePreview
-id itemDiscoveryFragment
-id itemPostingFragment
 id locationLayout
 id locationText
 id logoutButton
@@ -75,6 +82,7 @@ id messageText
 id nameEditText
 id nav_graph
 id nav_host_fragment
+id navigation_claimed
 id navigation_discover
 id navigation_post
 id navigation_profile
@@ -98,11 +106,12 @@ id titleLayout
 id titleText
 id toolbar
 id uploadImageButton
-id userProfileFragment
 id wasteSavedText
 layout activity_login
 layout activity_main
 layout activity_register
+layout fragment_claimed
+layout fragment_claimed_meals
 layout fragment_food_post_detail
 layout fragment_item_discovery
 layout fragment_item_posting

@@ -42,6 +42,7 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.UUID
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
@@ -145,12 +146,19 @@ class ItemPostingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupToolbar()
         setupMap(savedInstanceState)
         setupLocationAutocomplete()
         setupTimeSelection()
         setupFoodTypeDropdown()
         setupImageUpload()
         setupSubmitButton()
+    }
+
+    private fun setupToolbar() {
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun setupMap(savedInstanceState: Bundle?) {
@@ -394,8 +402,7 @@ class ItemPostingFragment : Fragment() {
             }
 
             // Show loading state
-            binding.submitButton.isEnabled = false
-            binding.progressBar.visibility = View.VISIBLE
+            setLoadingState(true)
 
             val title = binding.titleInput.text.toString()
             val foodType = binding.foodTypeInput.text.toString()
@@ -439,19 +446,35 @@ class ItemPostingFragment : Fragment() {
                         val result = repository.createPost(foodPost)
                         result.onSuccess {
                             Toast.makeText(requireContext(), "Food post created successfully!", Toast.LENGTH_SHORT).show()
+                            setLoadingState(false)  // Reset loading state before navigation
                             findNavController().navigateUp()
                         }.onFailure { exception ->
+                            setLoadingState(false)  // Reset loading state on failure
                             Toast.makeText(requireContext(), "Failed to create post: ${exception.message}", Toast.LENGTH_LONG).show()
                         }
                     } catch (e: Exception) {
+                        setLoadingState(false)  // Reset loading state on exception
                         Toast.makeText(requireContext(), "Failed to upload image: ${e.message}", Toast.LENGTH_LONG).show()
-                    } finally {
-                        // Hide loading state
-                        binding.submitButton.isEnabled = true
-                        binding.progressBar.visibility = View.GONE
                     }
                 }
+            } else {
+                setLoadingState(false)  // Reset loading state if validation fails
             }
+        }
+    }
+
+    // Add this helper function to manage loading state
+    private fun setLoadingState(isLoading: Boolean) {
+        binding.apply {
+            submitButton.isEnabled = !isLoading
+            progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+            // Optionally disable other input fields while loading
+            titleInput.isEnabled = !isLoading
+            foodTypeInput.isEnabled = !isLoading
+            quantityInput.isEnabled = !isLoading
+            descriptionInput.isEnabled = !isLoading
+            uploadImageButton.isEnabled = !isLoading
+            containerSwitch.isEnabled = !isLoading
         }
     }
 

@@ -21,16 +21,16 @@ public final class ActivityMainBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final BottomNavigationView bottomNavigation;
+  public final BottomNavigationView bottomNavigationView;
 
   @NonNull
   public final FragmentContainerView navHostFragment;
 
   private ActivityMainBinding(@NonNull ConstraintLayout rootView,
-      @NonNull BottomNavigationView bottomNavigation,
+      @NonNull BottomNavigationView bottomNavigationView,
       @NonNull FragmentContainerView navHostFragment) {
     this.rootView = rootView;
-    this.bottomNavigation = bottomNavigation;
+    this.bottomNavigationView = bottomNavigationView;
     this.navHostFragment = navHostFragment;
   }
 
@@ -61,9 +61,9 @@ public final class ActivityMainBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.bottom_navigation;
-      BottomNavigationView bottomNavigation = ViewBindings.findChildViewById(rootView, id);
-      if (bottomNavigation == null) {
+      id = R.id.bottomNavigationView;
+      BottomNavigationView bottomNavigationView = ViewBindings.findChildViewById(rootView, id);
+      if (bottomNavigationView == null) {
         break missingId;
       }
 
@@ -73,7 +73,7 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMainBinding((ConstraintLayout) rootView, bottomNavigation,
+      return new ActivityMainBinding((ConstraintLayout) rootView, bottomNavigationView,
           navHostFragment);
     }
     String missingId = rootView.getResources().getResourceName(id);

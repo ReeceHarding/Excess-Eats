@@ -12,7 +12,9 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -30,6 +32,8 @@ import com.yourcompany.excesseats.data.repository.FoodPostRepository
 import com.yourcompany.excesseats.data.repository.UserRepository
 import com.yourcompany.excesseats.databinding.FragmentFoodPostDetailBinding
 import com.yourcompany.excesseats.utils.Logger
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -60,7 +64,8 @@ class FoodPostDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupViews()
+        setupToolbar()
+        setupButtons()
         setupMap(savedInstanceState)
         loadFoodPost()
     }
@@ -81,14 +86,25 @@ class FoodPostDetailFragment : Fragment() {
 
     private fun loadFoodPost() {
         lifecycleScope.launch {
-            foodPostRepository.getFoodPost(args.postId).onSuccess { post ->
-                updateUI(post)
-            }.onFailure { exception ->
-                Toast.makeText(
-                    requireContext(),
-                    "Error loading food post: ${exception.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
+            try {
+                viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    foodPostRepository.getFoodPost(args.postId).onSuccess { post ->
+                        updateUI(post)
+                    }.onFailure { exception ->
+                        if (exception !is CancellationException) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Error loading food post: ${exception.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                if (e !is CancellationException) {
+                    Logger.e("Error loading post", e)
+                    Toast.makeText(context, "Error loading post details", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -159,29 +175,6 @@ class FoodPostDetailFragment : Fragment() {
         }
     }
 
-    private fun setupViews() {
-        setupToolbar()
-        binding.claimButton.setOnClickListener {
-            claimFood()
-        }
-    }
-
-    private fun setupFoodTypeChip() {
-        binding.foodTypeChip.apply {
-            isCheckable = false
-            isClickable = false
-        }
-    }
-
-    private fun setupImageView() {
-        binding.foodImageView.apply {
-            scaleType = ImageView.ScaleType.CENTER_CROP
-            setOnClickListener {
-                // TODO: Implement image zoom/preview
-            }
-        }
-    }
-
     private fun setupButtons() {
         binding.claimButton.setOnClickListener {
             if (!isClaimed) {
@@ -216,22 +209,25 @@ class FoodPostDetailFragment : Fragment() {
 
         lifecycleScope.launch {
             try {
-                val result = foodPostRepository.claimPost(args.postId, currentUser.uid)
-                when {
-                    result.isSuccess -> {
+                viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    val result = foodPostRepository.claimPost(args.postId, currentUser.uid)
+                    result.onSuccess {
                         isClaimed = true
                         binding.claimButton.text = "Claimed"
                         binding.claimButton.isEnabled = false
                         Toast.makeText(context, "Successfully claimed food!", Toast.LENGTH_SHORT).show()
+                        delay(1500)
                         findNavController().navigateUp()
-                    }
-                    result.isFailure -> {
-                        val error = result.exceptionOrNull()
-                        Toast.makeText(context, "Error: ${error?.message}", Toast.LENGTH_SHORT).show()
+                    }.onFailure { exception ->
+                        if (exception !is CancellationException) {
+                            Toast.makeText(context, "Error: ${exception.message}", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
             } catch (e: Exception) {
-                Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                if (e !is CancellationException) {
+                    Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

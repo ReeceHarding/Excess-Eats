@@ -32,14 +32,6 @@ class FoodPostRepository {
         }
     }
 
-    suspend fun createPost(post: FoodPost): Result<FoodPost> = try {
-        postsRef.child(post.id).setValue(post).await()
-        Result.success(post)
-    } catch (e: Exception) {
-        Log.e(TAG, "Error creating post", e)
-        Result.failure(e)
-    }
-
     suspend fun claimPost(postId: String, userId: String): Result<Unit> = try {
         val post = getFoodPost(postId).getOrNull() ?: throw Exception("Post not found")
 
@@ -60,7 +52,14 @@ class FoodPostRepository {
         val updatedClaims = post.claimedByUsers.toMutableMap()
         updatedClaims[userId] = claimInfo
 
+        // Update post claims
         postsRef.child(postId).child("claimedByUsers").setValue(updatedClaims).await()
+
+        // Update user's claimed meals count
+        val userRef = database.getReference("users").child(userId).child("stats")
+        val currentCount = userRef.child("mealsClaimedCount").get().await().getValue(Int::class.java) ?: 0
+        userRef.child("mealsClaimedCount").setValue(currentCount + 1).await()
+
         Result.success(Unit)
     } catch (e: Exception) {
         Log.e(TAG, "Error claiming post", e)
@@ -99,7 +98,10 @@ class FoodPostRepository {
     fun getAllPosts(): Flow<Result<List<FoodPost>>> = callbackFlow {
         val listener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val posts = snapshot.children.mapNotNull { it.getValue<FoodPost>() }
+                val posts = snapshot.children
+                    .mapNotNull { it.getValue<FoodPost>() }
+                    // Filter out posts with no servings left
+                    .filter { post -> post.getRemainingServings() > 0 }
                 trySend(Result.success(posts))
             }
 
@@ -148,23 +150,33 @@ class FoodPostRepository {
     suspend fun migrateExistingPosts(): Result<Unit> = try {
         val snapshot = postsRef.get().await()
         val updates = mutableMapOf<String, Any>()
+        val userUpdates = mutableMapOf<String, Any>()
 
         snapshot.children.forEach { postSnapshot ->
             val post = postSnapshot.getValue<FoodPost>()
-            if (post != null && post.claimedByUsers.isEmpty()) {
-                // Only migrate posts that don't have the new claiming system
+            if (post != null && post.claimedByUsers.isEmpty() && post.claimedBy != null) {
+                // Migrate old claimed posts
                 val updatedPost = post.copy(
-                    claimedByUsers = if (post.claimedBy != null) {
-                        mapOf(post.claimedBy to ClaimInfo(
-                            userId = post.claimedBy,
-                            claimedAt = post.claimedAt ?: System.currentTimeMillis(),
-                            servingsClaimed = 1
-                        ))
-                    } else {
-                        emptyMap()
-                    }
+                    claimedByUsers = mapOf(post.claimedBy to ClaimInfo(
+                        userId = post.claimedBy,
+                        claimedAt = post.claimedAt ?: System.currentTimeMillis(),
+                        servingsClaimed = 1
+                    ))
                 )
                 updates[postSnapshot.key!!] = updatedPost
+
+                // Update user's claimed meals count for old claims
+                val userStatsRef = database.getReference("users")
+                    .child(post.claimedBy)
+                    .child("stats")
+                    .child("mealsClaimedCount")
+                
+                try {
+                    val currentCount = userStatsRef.get().await().getValue(Int::class.java) ?: 0
+                    userStatsRef.setValue(currentCount + 1).await()
+                } catch (e: Exception) {
+                    Log.e(TAG, "Error updating user stats during migration", e)
+                }
             }
         }
 
@@ -175,5 +187,65 @@ class FoodPostRepository {
     } catch (e: Exception) {
         Log.e(TAG, "Error migrating posts", e)
         Result.failure(e)
+    }
+
+    fun getClaimedPosts(userId: String): Flow<Result<List<FoodPost>>> = callbackFlow {
+        val listener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                try {
+                    val posts = snapshot.children
+                        .mapNotNull { it.getValue<FoodPost>() }
+                        .filter { post -> post.isClaimedByUser(userId) }
+                    trySend(Result.success(posts))
+                } catch (e: Exception) {
+                    trySend(Result.failure(e))
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                trySend(Result.failure(error.toException()))
+            }
+        }
+
+        postsRef.addValueEventListener(listener)
+        awaitClose { postsRef.removeEventListener(listener) }
+    }
+
+    suspend fun createPost(post: FoodPost): Result<FoodPost> = try {
+        postsRef.child(post.id).setValue(post).await()
+        Result.success(post)
+    } catch (e: Exception) {
+        Log.e(TAG, "Error creating post", e)
+        Result.failure(e)
+    }
+
+    suspend fun updateUserClaimCount(userId: String) {
+        try {
+            // Get all posts
+            val snapshot = postsRef.get().await()
+            var totalClaims = 0
+
+            // Count all posts claimed by this user
+            snapshot.children.forEach { postSnapshot ->
+                val post = postSnapshot.getValue<FoodPost>()
+                if (post != null) {
+                    // Check both old and new claim systems
+                    if (post.claimedBy == userId || post.isClaimedByUser(userId)) {
+                        totalClaims++
+                    }
+                }
+            }
+
+            // Update user's stats with total count
+            val userStatsRef = database.getReference("users")
+                .child(userId)
+                .child("stats")
+                .child("mealsClaimedCount")
+            
+            userStatsRef.setValue(totalClaims).await()
+            
+        } catch (e: Exception) {
+            Log.e(TAG, "Error updating user claim count", e)
+        }
     }
 }

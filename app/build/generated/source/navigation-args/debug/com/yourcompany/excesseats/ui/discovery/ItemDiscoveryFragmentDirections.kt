@@ -8,13 +8,13 @@ import kotlin.Int
 import kotlin.String
 
 public class ItemDiscoveryFragmentDirections private constructor() {
-  private data class ActionItemDiscoveryFragmentToFoodPostDetailFragment(
+  private data class ActionNavigationDiscoverToFoodPostDetailFragment(
     public val postId: String,
     public val title: String,
     public val latitude: Float,
     public val longitude: Float,
   ) : NavDirections {
-    public override val actionId: Int = R.id.action_itemDiscoveryFragment_to_foodPostDetailFragment
+    public override val actionId: Int = R.id.action_navigation_discover_to_foodPostDetailFragment
 
     public override val arguments: Bundle
       get() {
@@ -28,12 +28,12 @@ public class ItemDiscoveryFragmentDirections private constructor() {
   }
 
   public companion object {
-    public fun actionItemDiscoveryFragmentToFoodPostDetailFragment(
+    public fun actionNavigationDiscoverToFoodPostDetailFragment(
       postId: String,
       title: String,
       latitude: Float,
       longitude: Float,
-    ): NavDirections = ActionItemDiscoveryFragmentToFoodPostDetailFragment(postId, title, latitude,
+    ): NavDirections = ActionNavigationDiscoverToFoodPostDetailFragment(postId, title, latitude,
         longitude)
   }
 }

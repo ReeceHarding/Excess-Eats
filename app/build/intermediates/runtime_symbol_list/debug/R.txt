@@ -1434,6 +1434,7 @@ int color background_floating_material_light 0x7f06001e
 int color background_material_dark 0x7f06001f
 int color background_material_light 0x7f060020
 int color black 0x7f060021
+int color bottom_nav_item_color 0x7f060468
 int color bright_foreground_disabled_material_dark 0x7f060022
 int color bright_foreground_disabled_material_light 0x7f060023
 int color bright_foreground_inverse_material_dark 0x7f060024
@@ -3465,6 +3466,7 @@ int drawable ic_call_answer_video_low 0x7f0800a1
 int drawable ic_call_decline 0x7f0800a2
 int drawable ic_call_decline_low 0x7f0800a3
 int drawable ic_camera 0x7f0800a4
+int drawable ic_claimed 0x7f080112
 int drawable ic_clear_black_24 0x7f0800a5
 int drawable ic_clock_black_24dp 0x7f0800a6
 int drawable ic_container 0x7f0800a7
@@ -3632,18 +3634,21 @@ int id action_bar_root 0x7f090036
 int id action_bar_spinner 0x7f090037
 int id action_bar_subtitle 0x7f090038
 int id action_bar_title 0x7f090039
+int id action_claimedMealsFragment_to_foodPostDetailFragment 0x7f09026a
 int id action_container 0x7f09003a
 int id action_context_bar 0x7f09003b
 int id action_divider 0x7f09003c
 int id action_foodPostDetailFragment_to_navigation_discover 0x7f09003d
 int id action_image 0x7f09003e
-int id action_itemDiscoveryFragment_to_foodPostDetailFragment 0x7f09003f
 int id action_menu_divider 0x7f090040
 int id action_menu_presenter 0x7f090041
 int id action_mode_bar 0x7f090042
 int id action_mode_bar_stub 0x7f090043
 int id action_mode_close_button 0x7f090044
+int id action_navigation_claimed_to_foodPostDetailFragment 0x7f090270
+int id action_navigation_discover_to_foodPostDetailFragment 0x7f090263
 int id action_text 0x7f090045
+int id action_userProfileFragment_to_claimedMealsFragment 0x7f090267
 int id actions 0x7f090046
 int id activity_chooser_view_content 0x7f090047
 int id add 0x7f090048
@@ -3674,7 +3679,7 @@ int id beginning 0x7f090060
 int id bestChoice 0x7f090061
 int id blocking 0x7f090062
 int id bottom 0x7f090063
-int id bottom_navigation 0x7f090064
+int id bottomNavigationView 0x7f090262
 int id bounce 0x7f090065
 int id bounceBoth 0x7f090066
 int id bounceEnd 0x7f090067
@@ -3705,7 +3710,10 @@ int id chronometer 0x7f09007f
 int id circle_center 0x7f090080
 int id claimButton 0x7f090081
 int id claimedChip 0x7f090082
+int id claimedMealsFragment 0x7f090268
+int id claimedMealsRecyclerView 0x7f090269
 int id claimedOverlay 0x7f090083
+int id claimedRecyclerView 0x7f09026e
 int id clear_text 0x7f090084
 int id clip_horizontal 0x7f090085
 int id clip_vertical 0x7f090086
@@ -3777,6 +3785,7 @@ int id edit_query 0x7f0900c7
 int id elastic 0x7f0900c8
 int id emailEditText 0x7f0900c9
 int id embed 0x7f0900ca
+int id emptyStateText 0x7f09026b
 int id emptyView 0x7f0900cb
 int id end 0x7f0900cc
 int id endToStart 0x7f0900cd
@@ -3847,8 +3856,6 @@ int id installation_progress 0x7f09010d
 int id invisible 0x7f09010e
 int id inward 0x7f09010f
 int id italic 0x7f090110
-int id itemDiscoveryFragment 0x7f090111
-int id itemPostingFragment 0x7f090112
 int id item_touch_helper_previous_elevation 0x7f090113
 int id jumpToEnd 0x7f090114
 int id jumpToStart 0x7f090115
@@ -3942,6 +3949,7 @@ int id navigation_bar_item_icon_view 0x7f09016c
 int id navigation_bar_item_labels_group 0x7f09016d
 int id navigation_bar_item_large_label_view 0x7f09016e
 int id navigation_bar_item_small_label_view 0x7f09016f
+int id navigation_claimed 0x7f09026f
 int id navigation_discover 0x7f090170
 int id navigation_header_container 0x7f090171
 int id navigation_post 0x7f090172
@@ -4163,7 +4171,6 @@ int id unlabeled 0x7f090249
 int id up 0x7f09024a
 int id uploadImageButton 0x7f09024b
 int id useLogo 0x7f09024c
-int id userProfileFragment 0x7f09024d
 int id vertical_only 0x7f09024e
 int id view_offset_helper 0x7f09024f
 int id view_transition 0x7f090250
@@ -4322,6 +4329,8 @@ int layout design_navigation_menu_item 0x7f0c002e
 int layout design_text_input_end_icon 0x7f0c002f
 int layout design_text_input_start_icon 0x7f0c0030
 int layout dynamic_feature_install_fragment 0x7f0c0031
+int layout fragment_claimed 0x7f0c0080
+int layout fragment_claimed_meals 0x7f0c007f
 int layout fragment_food_post_detail 0x7f0c0032
 int layout fragment_item_discovery 0x7f0c0033
 int layout fragment_item_posting 0x7f0c0034

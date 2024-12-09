@@ -7,9 +7,9 @@
     <fragment
         android:id="@+id/navigation_discover"
         android:name="com.yourcompany.excesseats.ui.discovery.ItemDiscoveryFragment"
-        android:label="@string/title_discover">
+        android:label="Discover">
         <action
-            android:id="@+id/action_itemDiscoveryFragment_to_foodPostDetailFragment"
+            android:id="@+id/action_navigation_discover_to_foodPostDetailFragment"
             app:destination="@id/foodPostDetailFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
@@ -38,7 +38,12 @@
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.yourcompany.excesseats.ui.profile.UserProfileFragment"
-        android:label="@string/title_profile" />
+        android:label="@string/title_profile">
+        
+        <action
+            android:id="@+id/action_userProfileFragment_to_claimedMealsFragment"
+            app:destination="@id/claimedMealsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/foodPostDetailFragment"
@@ -67,4 +72,36 @@
         android:id="@+id/errorFragment"
         android:name="com.yourcompany.excesseats.ui.error.ErrorFragment"
         android:label="Error" />
+
+    <fragment
+        android:id="@+id/claimedMealsFragment"
+        android:name="com.yourcompany.excesseats.ui.profile.ClaimedMealsFragment"
+        android:label="Claimed Meals">
+        
+        <action
+            android:id="@+id/action_claimedMealsFragment_to_foodPostDetailFragment"
+            app:destination="@id/foodPostDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_claimed"
+        android:name="com.yourcompany.excesseats.ui.claimed.ClaimedFragment"
+        android:label="Claimed">
+        <action
+            android:id="@+id/action_navigation_claimed_to_foodPostDetailFragment"
+            app:destination="@id/foodPostDetailFragment">
+            <argument
+                android:name="postId"
+                app:argType="string" />
+            <argument
+                android:name="title"
+                app:argType="string" />
+            <argument
+                android:name="latitude"
+                app:argType="float" />
+            <argument
+                android:name="longitude"
+                app:argType="float" />
+        </action>
+    </fragment>
 </navigation>

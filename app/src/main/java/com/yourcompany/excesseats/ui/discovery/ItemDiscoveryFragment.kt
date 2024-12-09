@@ -15,7 +15,9 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.location.LocationServices
@@ -28,6 +30,7 @@ import com.yourcompany.excesseats.data.model.FoodPost
 import com.yourcompany.excesseats.data.repository.FoodPostRepository
 import com.yourcompany.excesseats.databinding.FragmentItemDiscoveryBinding
 import com.yourcompany.excesseats.ui.discovery.adapters.FoodPostAdapter
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.launch
 import kotlin.math.cos
 import kotlin.math.sin
@@ -44,7 +47,7 @@ class ItemDiscoveryFragment : Fragment() {
     private var userMarker: Marker? = null
 
     private val foodPostAdapter = FoodPostAdapter { post ->
-        val action = ItemDiscoveryFragmentDirections.actionItemDiscoveryFragmentToFoodPostDetailFragment(
+        val action = ItemDiscoveryFragmentDirections.actionNavigationDiscoverToFoodPostDetailFragment(
             postId = post.id,
             title = post.title,
             latitude = post.latitude.toFloat(),
@@ -94,7 +97,7 @@ class ItemDiscoveryFragment : Fragment() {
         setupViews()
         setupMap(savedInstanceState)
         setupLocationUpdates()
-        observePosts()
+        loadPosts()
     }
 
     private fun setupViews() {
@@ -192,33 +195,68 @@ class ItemDiscoveryFragment : Fragment() {
         return true
     }
 
-    private fun observePosts() {
+    private fun loadPosts() {
         lifecycleScope.launch {
-            foodPostRepository.getAllPosts().collect { result ->
-                handlePostsResult(result)
+            try {
+                // Use repeatOnLifecycle to properly handle lifecycle changes
+                viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    foodPostRepository.getAllPosts().collect { result ->
+                        result.onSuccess { posts ->
+                            foodPosts.clear()
+                            foodPosts.addAll(posts)
+                            applyFilters()
+                        }.onFailure { error ->
+                            if (error !is CancellationException) {  // Ignore cancellation exceptions
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Error loading posts: ${error.message}",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                if (e !is CancellationException) {  // Ignore cancellation exceptions
+                    Toast.makeText(
+                        requireContext(),
+                        "Error loading posts: ${e.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }
         }
     }
 
     private fun observeNearbyPosts(location: LatLng) {
         lifecycleScope.launch {
-            foodPostRepository.getNearbyPosts(location, maxDistance.toDouble()).collect { result ->
-                handlePostsResult(result)
+            try {
+                viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    foodPostRepository.getNearbyPosts(location, maxDistance.toDouble()).collect { result ->
+                        result.onSuccess { posts ->
+                            foodPosts.clear()
+                            foodPosts.addAll(posts)
+                            applyFilters()
+                        }.onFailure { error ->
+                            if (error !is CancellationException) {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Error loading nearby posts: ${error.message}",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                if (e !is CancellationException) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Error: ${e.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }
-        }
-    }
-
-    private fun handlePostsResult(result: Result<List<FoodPost>>) {
-        result.onSuccess { posts ->
-            foodPosts.clear()
-            foodPosts.addAll(posts)
-            applyFilters()
-        }.onFailure { error ->
-            Toast.makeText(
-                requireContext(),
-                "Error loading posts: ${error.message}",
-                Toast.LENGTH_LONG
-            ).show()
         }
     }
 

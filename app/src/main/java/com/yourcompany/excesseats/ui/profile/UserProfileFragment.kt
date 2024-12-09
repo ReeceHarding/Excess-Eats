@@ -12,10 +12,12 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.yourcompany.excesseats.R
 import com.yourcompany.excesseats.auth.LoginActivity
 import com.yourcompany.excesseats.data.model.UserProfile
+import com.yourcompany.excesseats.data.repository.FoodPostRepository
 import com.yourcompany.excesseats.data.repository.UserRepository
 import com.yourcompany.excesseats.databinding.FragmentUserProfileBinding
 import com.yourcompany.excesseats.utils.Logger
@@ -25,6 +27,7 @@ class UserProfileFragment : Fragment() {
     private var _binding: FragmentUserProfileBinding? = null
     private val binding get() = _binding!!
     private val userRepository = UserRepository.getInstance()
+    private val foodPostRepository = FoodPostRepository.getInstance()
 
     private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let { handleImageSelection(it) }
@@ -151,9 +154,12 @@ class UserProfileFragment : Fragment() {
             return
         }
 
-        // Load user profile data
         lifecycleScope.launch {
             try {
+                // Update claim count first
+                foodPostRepository.updateUserClaimCount(currentUser.uid)
+                
+                // Then load profile which will show updated count
                 val profile = userRepository.getUserProfile(currentUser.uid)
                 updateUI(profile)
             } catch (e: Exception) {
