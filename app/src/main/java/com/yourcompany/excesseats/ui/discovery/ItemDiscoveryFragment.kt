@@ -43,7 +43,7 @@ class ItemDiscoveryFragment : Fragment() {
     private val selectedFoodTypes = mutableSetOf<String>()
     private val foodPostRepository = FoodPostRepository.getInstance()
     private var currentLocation: LatLng? = null
-    private var maxDistance: Int = 25 // Default 25km
+    private var maxDistance: Int = 25 // Default 25mi
     private var userMarker: Marker? = null
 
     private val foodPostAdapter = FoodPostAdapter { post ->
@@ -121,7 +121,7 @@ class ItemDiscoveryFragment : Fragment() {
             value = maxDistance.toFloat()
             addOnChangeListener { _, value, _ ->
                 maxDistance = value.toInt()
-                binding.distanceText.text = "$maxDistance km"
+                binding.distanceText.text = "$maxDistance mi"
                 applyFilters()
             }
         }

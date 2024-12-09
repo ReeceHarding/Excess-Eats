@@ -4,7 +4,7 @@
             "outputFile": "com.yourcompany.excesseats.app-mergeDebugResources-62:/values-w600dp-land-v13/values-w600dp-land-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\zhuos\\.gradle\\caches\\8.10.2\\transforms\\e53e2a76520555feb719060000b2a03a\\transformed\\material-1.10.0\\res\\values-w600dp-land-v13\\values-w600dp-land-v13.xml",
+                    "source": "/Users/xerxis/.gradle/caches/8.10.2/transforms/e53e2a76520555feb719060000b2a03a/transformed/material-1.10.0/res/values-w600dp-land-v13/values-w600dp-land-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
