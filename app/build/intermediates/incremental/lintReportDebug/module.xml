@@ -1,0 +1,19 @@
+<lint-module
+    format="1"
+    dir="/Users/shivamratnani/cs407_projects/Excess-Eats/app"
+    name=":app"
+    type="APP"
+    maven="ExcessEats:app:"
+    agpVersion="8.1.0"
+    buildFolder="build"
+    bootClassPath="/Users/shivamratnani/Library/Android/sdk/platforms/android-34/android.jar:/Users/shivamratnani/Library/Android/sdk/build-tools/33.0.1/core-lambda-stubs.jar"
+    javaSourceLevel="17"
+    compileTarget="android-34"
+    neverShrinking="true">
+  <lintOptions
+      abortOnError="true"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true"/>
+  <variant name="debug"/>
+</lint-module>

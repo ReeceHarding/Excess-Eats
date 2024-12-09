@@ -1,0 +1,494 @@
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_item_posting.xml:114: Warning: Replace the <fragment> tag with FragmentContainerView. [FragmentTagUsage from androidx.fragment]
+                    <fragment
+                     ~~~~~~~~
+
+   Explanation for issues of type "FragmentTagUsage":
+   FragmentContainerView replaces the <fragment> tag as the preferred         
+          way of adding fragments via XML. Unlike the <fragment> tag,
+   FragmentContainerView                 uses a normal FragmentTransaction
+   under the hood to add the initial fragment,                 allowing
+   further FragmentTransaction operations on the FragmentContainerView        
+           and providing a consistent timing for lifecycle events.
+
+   https://developer.android.com/reference/androidx/fragment/app/FragmentContainerView.html
+
+   Vendor: Android Open Source Project
+   Identifier: androidx.fragment
+   Feedback: https://issuetracker.google.com/issues/new?component=460964
+
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/AndroidManifest.xml:84: Warning: Redundant label can be removed [RedundantLabel]
+            android:label="@string/app_name">
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "RedundantLabel":
+   When an activity does not have a label attribute, it will use the one from
+   the application tag. Since the application has already specified the same
+   label, the label on this activity can be omitted.
+
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/build.gradle:52: Warning: A newer version of androidx.core:core-ktx than 1.10.1 is available: 1.15.0 [GradleDependency]
+    implementation 'androidx.core:core-ktx:1.10.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/build.gradle:55: Warning: A newer version of androidx.appcompat:appcompat than 1.6.1 is available: 1.7.0 [GradleDependency]
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/build.gradle:56: Warning: A newer version of androidx.constraintlayout:constraintlayout than 2.1.4 is available: 2.2.0 [GradleDependency]
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/build.gradle:57: Warning: A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.6.2 is available: 2.8.7 [GradleDependency]
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/build.gradle:58: Warning: A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.6.2 is available: 2.8.7 [GradleDependency]
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.2'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/build.gradle:59: Warning: A newer version of androidx.navigation:navigation-fragment-ktx than 2.7.5 is available: 2.8.4 [GradleDependency]
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.5'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/build.gradle:60: Warning: A newer version of androidx.navigation:navigation-ui-ktx than 2.7.5 is available: 2.8.4 [GradleDependency]
+    implementation 'androidx.navigation:navigation-ui-ktx:2.7.5'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/build.gradle:63: Warning: A newer version of com.google.android.material:material than 1.10.0 is available: 1.12.0 [GradleDependency]
+    implementation 'com.google.android.material:material:1.10.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/build.gradle:72: Warning: A newer version of com.google.android.gms:play-services-auth than 20.7.0 is available: 21.2.0 [GradleDependency]
+    implementation 'com.google.android.gms:play-services-auth:20.7.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/build.gradle:73: Warning: A newer version of com.google.android.gms:play-services-location than 21.0.1 is available: 21.3.0 [GradleDependency]
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/build.gradle:74: Warning: A newer version of com.google.android.gms:play-services-maps than 18.2.0 is available: 19.0.0 [GradleDependency]
+    implementation 'com.google.android.gms:play-services-maps:18.2.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/build.gradle:75: Warning: A newer version of com.google.android.libraries.places:places than 3.2.0 is available: 4.1.0 [GradleDependency]
+    implementation 'com.google.android.libraries.places:places:3.2.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/build.gradle:91: Warning: A newer version of androidx.test.ext:junit than 1.1.5 is available: 1.2.1 [GradleDependency]
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/build.gradle:92: Warning: A newer version of androidx.test.espresso:espresso-core than 3.5.1 is available: 3.6.1 [GradleDependency]
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/build.gradle:95: Warning: A newer version of com.google.firebase:firebase-bom than 32.7.2 is available: 33.7.0 [GradleDependency]
+    implementation platform('com.google.firebase:firebase-bom:32.7.2')
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/build.gradle:111: Warning: A newer version of androidx.navigation:navigation-fragment-ktx than 2.7.5 is available: 2.8.4 [GradleDependency]
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/build.gradle:112: Warning: A newer version of androidx.navigation:navigation-ui-ktx than 2.7.5 is available: 2.8.4 [GradleDependency]
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/build.gradle:113: Warning: A newer version of androidx.navigation:navigation-dynamic-features-fragment than 2.7.5 is available: 2.8.4 [GradleDependency]
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "GradleDependency":
+   This detector looks for usages of libraries where the version you are using
+   is not the current stable release. Using older versions is fine, and there
+   are cases where you deliberately want to stick with an older version.
+   However, you may simply not be aware that a more recent version is
+   available, and that is what this lint check helps find.
+
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/values/strings.xml:63: Warning: Overriding @string/ok which is marked as private in androidx.navigation:navigation-dynamic-features-fragment:2.7.5. If deliberate, use tools:override="true", otherwise pick a different name. [PrivateResource]
+    <string name="ok">OK</string>
+                  ~~
+
+   Explanation for issues of type "PrivateResource":
+   Private resources should not be referenced; the may not be present
+   everywhere, and even where they are they may disappear without notice.
+
+   To fix this, copy the resource into your own project instead.
+
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_user_profile.xml:64: Error: Must use app:tint instead of android:tint [UseAppTint from androidx.appcompat]
+                        android:tint="@android:color/white"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_user_profile.xml:163: Error: Must use app:tint instead of android:tint [UseAppTint from androidx.appcompat]
+                                android:tint="?attr/colorPrimary"
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_user_profile.xml:192: Error: Must use app:tint instead of android:tint [UseAppTint from androidx.appcompat]
+                                android:tint="?attr/colorPrimary"
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UseAppTint":
+   ImageView or ImageButton uses android:tint instead of app:tint
+
+   Vendor: Android Open Source Project
+   Identifier: androidx.appcompat
+   Feedback: https://issuetracker.google.com/issues/new?component=460343
+
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_food_post_detail.xml:74: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+                        <LinearLayout
+                         ~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_food_post_detail.xml:96: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+                        <LinearLayout
+                         ~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_food_post_detail.xml:118: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+                        <LinearLayout
+                         ~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_food_post_detail.xml:140: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+                        <LinearLayout
+                         ~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_food_post_detail.xml:162: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+                        <LinearLayout
+                         ~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/item_food_post.xml:84: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+                <LinearLayout
+                 ~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/item_food_post.xml:106: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+                <LinearLayout
+                 ~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/item_food_post.xml:128: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+                <LinearLayout
+                 ~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/item_food_post.xml:150: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+                <LinearLayout
+                 ~~~~~~~~~~~~
+
+   Explanation for issues of type "UseCompoundDrawables":
+   A LinearLayout which contains an ImageView and a TextView can be more
+   efficiently handled as a compound drawable (a single TextView, using the
+   drawableTop, drawableLeft, drawableRight and/or drawableBottom attributes
+   to draw one or more images adjacent to the text).
+
+   If the two widgets are offset from each other with margins, this can be
+   replaced with a drawablePadding attribute.
+
+   There's a lint quickfix to perform this conversion in the Eclipse plugin.
+
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_user_profile.xml:33: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+            <LinearLayout
+             ~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_user_profile.xml:146: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+                    <LinearLayout
+                     ~~~~~~~~~~~~
+
+   Explanation for issues of type "DisableBaselineAlignment":
+   When a LinearLayout is used to distribute the space proportionally between
+   nested layouts, the baseline alignment property should be turned off to
+   make the layout computation faster.
+
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/menu/bottom_nav_menu.xml:2: Warning: The resource R.menu.bottom_nav_menu appears to be unused [UnusedResources]
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+^
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/values/colors.xml:3: Warning: The resource R.color.purple_200 appears to be unused [UnusedResources]
+    <color name="purple_200">#FFBB86FC</color>
+           ~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/values/colors.xml:10: Warning: The resource R.color.gray appears to be unused [UnusedResources]
+    <color name="gray">#FF757575</color>
+           ~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/values/colors.xml:11: Warning: The resource R.color.light_gray appears to be unused [UnusedResources]
+    <color name="light_gray">#FFF5F5F5</color>
+           ~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_notifications.xml:2: Warning: The resource R.layout.fragment_notifications appears to be unused [UnusedResources]
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+^
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/drawable/ic_notifications.xml:2: Warning: The resource R.drawable.ic_notifications appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/drawable/ic_search.xml:2: Warning: The resource R.drawable.ic_search appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/item_notification.xml:2: Warning: The resource R.layout.item_notification appears to be unused [UnusedResources]
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+^
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/list_item.xml:2: Warning: The resource R.layout.list_item appears to be unused [UnusedResources]
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+^
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/values/strings.xml:9: Warning: The resource R.string.title_detail appears to be unused [UnusedResources]
+    <string name="title_detail">Details</string>
+            ~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/values/strings.xml:11: Warning: The resource R.string.title_notifications appears to be unused [UnusedResources]
+    <string name="title_notifications">Notifications</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/values/strings.xml:12: Warning: The resource R.string.title_register appears to be unused [UnusedResources]
+    <string name="title_register">Create Account</string>
+            ~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/values/strings.xml:20: Warning: The resource R.string.action_back_to_login appears to be unused [UnusedResources]
+    <string name="action_back_to_login">Back to Login</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/values/strings.xml:22: Warning: The resource R.string.action_sign_in appears to be unused [UnusedResources]
+    <string name="action_sign_in">Sign In</string>
+            ~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/values/strings.xml:25: Warning: The resource R.string.message_no_items appears to be unused [UnusedResources]
+    <string name="message_no_items">No items available nearby</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/values/strings.xml:26: Warning: The resource R.string.message_no_notifications appears to be unused [UnusedResources]
+    <string name="message_no_notifications">No notifications yet</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/values/strings.xml:27: Warning: The resource R.string.message_post_coming_soon appears to be unused [UnusedResources]
+    <string name="message_post_coming_soon">Posting feature coming soon!</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/values/strings.xml:28: Warning: The resource R.string.message_profile_coming_soon appears to be unused [UnusedResources]
+    <string name="message_profile_coming_soon">Profile customization coming soon!</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/values/strings.xml:31: Warning: The resource R.string.post_title appears to be unused [UnusedResources]
+    <string name="post_title">Post Available Food</string>
+            ~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/values/strings.xml:40: Warning: The resource R.string.button_post_food appears to be unused [UnusedResources]
+    <string name="button_post_food">Post Food</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/values/strings.xml:41: Warning: The resource R.string.map_placeholder appears to be unused [UnusedResources]
+    <string name="map_placeholder">Google Maps Placeholder</string>
+            ~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/values/strings.xml:45: Warning: The resource R.array.food_types appears to be unused [UnusedResources]
+    <string-array name="food_types">
+                  ~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedResources":
+   Unused resources make applications larger and slow down builds.
+
+
+   The unused resource check can ignore tests. If you want to include
+   resources that are only referenced from tests, consider packaging them in a
+   test source set instead.
+
+   You can include test sources in the unused resource check by setting the
+   system property lint.unused-resources.include-tests =true, and to exclude
+   them (usually for performance reasons), use
+   lint.unused-resources.exclude-tests =true.
+   ,
+
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml:2: Warning: The application adaptive icon is missing a monochrome tag [MonochromeLauncherIcon]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml:2: Warning: The application adaptive roundIcon is missing a monochrome tag [MonochromeLauncherIcon]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+
+   Explanation for issues of type "MonochromeLauncherIcon":
+   If android:roundIcon and android:icon are both in your manifest, you must
+   either remove the reference to android:roundIcon if it is not needed; or,
+   supply the monochrome icon in the drawable defined by the android:roundIcon
+   and android:icon attribute.
+
+   For example, if android:roundIcon and android:icon are both in the
+   manifest, a launcher might choose to use android:roundIcon over
+   android:icon to display the adaptive app icon. Therefore, your themed
+   application iconwill not show if your monochrome attribute is not also
+   specified in android:roundIcon.
+
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_food_post_detail.xml:37: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_food_post_detail.xml:81: Warning: Missing contentDescription attribute on image [ContentDescription]
+                            <ImageView
+                             ~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_food_post_detail.xml:103: Warning: Missing contentDescription attribute on image [ContentDescription]
+                            <ImageView
+                             ~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_food_post_detail.xml:125: Warning: Missing contentDescription attribute on image [ContentDescription]
+                            <ImageView
+                             ~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_food_post_detail.xml:147: Warning: Missing contentDescription attribute on image [ContentDescription]
+                            <ImageView
+                             ~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_food_post_detail.xml:168: Warning: Missing contentDescription attribute on image [ContentDescription]
+                            <ImageView
+                             ~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_item_posting.xml:185: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/item_food_post.xml:21: Warning: Missing contentDescription attribute on image [ContentDescription]
+            <ImageView
+             ~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/item_food_post.xml:91: Warning: Missing contentDescription attribute on image [ContentDescription]
+                    <ImageView
+                     ~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/item_food_post.xml:113: Warning: Missing contentDescription attribute on image [ContentDescription]
+                    <ImageView
+                     ~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/item_food_post.xml:135: Warning: Missing contentDescription attribute on image [ContentDescription]
+                    <ImageView
+                     ~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/item_food_post.xml:157: Warning: Missing contentDescription attribute on image [ContentDescription]
+                    <ImageView
+                     ~~~~~~~~~
+
+   Explanation for issues of type "ContentDescription":
+   Non-textual widgets like ImageViews and ImageButtons should use the
+   contentDescription attribute to specify a textual description of the widget
+   such that screen readers and other accessibility tools can adequately
+   describe the user interface.
+
+   Note that elements in application screens that are purely decorative and do
+   not provide any content or enable a user action should not have
+   accessibility content descriptions. In this case, set their descriptions to
+   @null. If your app's minSdkVersion is 16 or higher, you can instead set
+   these graphical elements' android:importantForAccessibility attributes to
+   no.
+
+   Note that for text fields, you should not set both the hint and the
+   contentDescription attributes since the hint will never be shown. Just set
+   the hint.
+
+   https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases
+
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_item_posting.xml:80: Warning: Missing accessibility label: provide either a view with an android:labelFor that references this view or provide an android:hint [LabelFor]
+                    <AutoCompleteTextView
+                     ~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "LabelFor":
+   Editable text fields should provide an android:hint or, provided your
+   minSdkVersion is at least 17, they may be referenced by a view with a
+   android:labelFor attribute.
+
+   When using android:labelFor, be sure to provide an android:text or an
+   android:contentDescription.
+
+   If your view is labeled but by a label in a different layout which includes
+   this one, just suppress this warning from lint.
+
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/java/com/yourcompany/excesseats/ui/discovery/adapters/FoodPostAdapter.kt:53: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                timeText.text = "Available until ${timeFormat.format(foodPost.pickupTime)}"
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/java/com/yourcompany/excesseats/ui/discovery/adapters/FoodPostAdapter.kt:53: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                timeText.text = "Available until ${timeFormat.format(foodPost.pickupTime)}"
+                                 ~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostAdapter.kt:55: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                timeText.text = "Available until ${timeFormat.format(foodPost.pickupTime)}"
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostAdapter.kt:55: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                timeText.text = "Available until ${timeFormat.format(foodPost.pickupTime)}"
+                                 ~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/java/com/yourcompany/excesseats/ui/discovery/adapters/FoodPostAdapter.kt:58: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                quantityText.text = "$remainingServings left of ${foodPost.quantity}"
+                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/java/com/yourcompany/excesseats/ui/discovery/adapters/FoodPostAdapter.kt:58: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                quantityText.text = "$remainingServings left of ${foodPost.quantity}"
+                                                       ~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostAdapter.kt:80: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                    distanceText.text = "${distance.roundToInt()} km away"
+                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostAdapter.kt:80: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                    distanceText.text = "${distance.roundToInt()} km away"
+                                                                 ~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt:109: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                quantityText.text = "$remainingServings left of ${post.quantity}"
+                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt:109: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                quantityText.text = "$remainingServings left of ${post.quantity}"
+                                                       ~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt:114: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                        postedByText.text = "Posted by: ${user.name}"
+                                            ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt:114: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                        postedByText.text = "Posted by: ${user.name}"
+                                             ~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt:116: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                        postedByText.text = "Posted by: Anonymous"
+                                             ~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt:223: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                        binding.claimButton.text = "Claimed"
+                                                    ~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/java/com/yourcompany/excesseats/ui/discovery/ItemDiscoveryFragment.kt:121: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                binding.distanceText.text = "$maxDistance km"
+                                            ~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/java/com/yourcompany/excesseats/ui/discovery/ItemDiscoveryFragment.kt:121: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                binding.distanceText.text = "$maxDistance km"
+                                                         ~~~
+
+   Explanation for issues of type "SetTextI18n":
+   When calling TextView#setText
+   * Never call Number#toString() to format numbers; it will not handle
+   fraction separators and locale-specific digits properly. Consider using
+   String#format with proper format specifications (%d or %f) instead.
+   * Do not pass a string literal (e.g. "Hello") to display text. Hardcoded
+   text can not be properly translated to other languages. Consider using
+   Android resource strings instead.
+   * Do not build messages by concatenating text chunks. Such messages can not
+   be properly translated.
+
+   https://developer.android.com/guide/topics/resources/localization.html
+
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/activity_register.xml:68: Warning: Hardcoded string "Phone Number", should use @string resource [HardcodedText]
+            android:hint="Phone Number"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_food_post_detail.xml:196: Warning: Hardcoded string "Claim Food", should use @string resource [HardcodedText]
+                        android:text="Claim Food"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_food_post_detail.xml:203: Warning: Hardcoded string "Get Directions", should use @string resource [HardcodedText]
+                        android:text="Get Directions"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_item_discovery.xml:40: Warning: Hardcoded string "Search food posts", should use @string resource [HardcodedText]
+                android:hint="Search food posts">
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_item_discovery.xml:74: Warning: Hardcoded string "Filters", should use @string resource [HardcodedText]
+                        android:text="Filters"
+                        ~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_item_discovery.xml:82: Warning: Hardcoded string "Food Types", should use @string resource [HardcodedText]
+                        android:text="Food Types"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_item_discovery.xml:99: Warning: Hardcoded string "Maximum Distance", should use @string resource [HardcodedText]
+                        android:text="Maximum Distance"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_item_discovery.xml:122: Warning: Hardcoded string "25 km", should use @string resource [HardcodedText]
+                            android:text="25 km"
+                            ~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_item_discovery.xml:135: Warning: Hardcoded string "Nearby Food Posts", should use @string resource [HardcodedText]
+                android:text="Nearby Food Posts"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_item_posting.xml:49: Warning: Hardcoded string "Post Available Food", should use @string resource [HardcodedText]
+                    android:text="Post Available Food"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_notifications.xml:18: Warning: Hardcoded string "No notifications yet", should use @string resource [HardcodedText]
+        android:text="No notifications yet"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_user_profile.xml:54: Warning: Hardcoded string "Profile picture", should use @string resource [HardcodedText]
+                        android:contentDescription="Profile picture" />
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_user_profile.xml:68: Warning: Hardcoded string "Edit profile picture", should use @string resource [HardcodedText]
+                        android:contentDescription="Edit profile picture" />
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_user_profile.xml:82: Warning: Hardcoded string "Name", should use @string resource [HardcodedText]
+                        android:hint="Name"
+                        ~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_user_profile.xml:99: Warning: Hardcoded string "Email", should use @string resource [HardcodedText]
+                android:hint="Email"
+                ~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_user_profile.xml:114: Warning: Hardcoded string "Phone", should use @string resource [HardcodedText]
+                android:hint="Phone"
+                ~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_user_profile.xml:142: Warning: Hardcoded string "Your Impact", should use @string resource [HardcodedText]
+                        android:text="Your Impact"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_user_profile.xml:164: Warning: Hardcoded string "Meals claimed", should use @string resource [HardcodedText]
+                                android:contentDescription="Meals claimed" />
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_user_profile.xml:170: Warning: Hardcoded string "0", should use @string resource [HardcodedText]
+                                android:text="0"
+                                ~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_user_profile.xml:176: Warning: Hardcoded string "Meals Claimed", should use @string resource [HardcodedText]
+                                android:text="Meals Claimed"
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_user_profile.xml:193: Warning: Hardcoded string "Food waste prevented", should use @string resource [HardcodedText]
+                                android:contentDescription="Food waste prevented" />
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_user_profile.xml:199: Warning: Hardcoded string "0 lbs", should use @string resource [HardcodedText]
+                                android:text="0 lbs"
+                                ~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_user_profile.xml:205: Warning: Hardcoded string "Waste Prevented", should use @string resource [HardcodedText]
+                                android:text="Waste Prevented"
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/fragment_user_profile.xml:217: Warning: Hardcoded string "Save Changes", should use @string resource [HardcodedText]
+                android:text="Save Changes"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/item_food_post.xml:42: Warning: Hardcoded string "Claimed by you", should use @string resource [HardcodedText]
+                android:text="Claimed by you"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/shivamratnani/cs407_projects/Excess-Eats/app/src/main/res/layout/item_food_post.xml:178: Warning: Hardcoded string "Claim", should use @string resource [HardcodedText]
+                android:text="Claim" />
+                ~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "HardcodedText":
+   Hardcoding text attributes directly in layout files is bad for several
+   reasons:
+
+   * When creating configuration variations (for example for landscape or
+   portrait) you have to repeat the actual text (and keep it up to date when
+   making changes)
+
+   * The application cannot be translated to other languages by just adding
+   new translations for existing string resources.
+
+   There are quickfixes to automatically extract this hardcoded string into a
+   resource lookup.
+
+3 errors, 111 warnings

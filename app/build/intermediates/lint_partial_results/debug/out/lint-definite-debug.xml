@@ -1,0 +1,1576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.1.0" type="incidents">
+
+    <incident
+        id="RedundantLabel"
+        severity="warning"
+        message="Redundant label can be removed">
+        <fix-attribute
+            description="Delete label"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="label"/>
+        <location
+            file="${:app*debug*sourceProvider*0*manifest*0}"
+            line="84"
+            column="13"
+            startOffset="3520"
+            endLine="84"
+            endColumn="45"
+            endOffset="3552"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Phone Number&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/activity_register.xml"
+            line="68"
+            column="13"
+            startOffset="2628"
+            endLine="68"
+            endColumn="40"
+            endOffset="2655"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                dot="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_food_post_detail.xml"
+            line="37"
+            column="18"
+            startOffset="1495"
+            endLine="37"
+            endColumn="27"
+            endOffset="1504"/>
+    </incident>
+
+    <incident
+        id="UseCompoundDrawables"
+        severity="warning"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_food_post_detail.xml"
+            line="74"
+            column="26"
+            startOffset="3179"
+            endLine="74"
+            endColumn="38"
+            endOffset="3191"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                dot="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_food_post_detail.xml"
+            line="81"
+            column="30"
+            startOffset="3537"
+            endLine="81"
+            endColumn="39"
+            endOffset="3546"/>
+    </incident>
+
+    <incident
+        id="UseCompoundDrawables"
+        severity="warning"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_food_post_detail.xml"
+            line="96"
+            column="26"
+            startOffset="4259"
+            endLine="96"
+            endColumn="38"
+            endOffset="4271"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                dot="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_food_post_detail.xml"
+            line="103"
+            column="30"
+            startOffset="4617"
+            endLine="103"
+            endColumn="39"
+            endOffset="4626"/>
+    </incident>
+
+    <incident
+        id="UseCompoundDrawables"
+        severity="warning"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_food_post_detail.xml"
+            line="118"
+            column="26"
+            startOffset="5331"
+            endLine="118"
+            endColumn="38"
+            endOffset="5343"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                dot="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_food_post_detail.xml"
+            line="125"
+            column="30"
+            startOffset="5689"
+            endLine="125"
+            endColumn="39"
+            endOffset="5698"/>
+    </incident>
+
+    <incident
+        id="UseCompoundDrawables"
+        severity="warning"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_food_post_detail.xml"
+            line="140"
+            column="26"
+            startOffset="6407"
+            endLine="140"
+            endColumn="38"
+            endOffset="6419"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                dot="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_food_post_detail.xml"
+            line="147"
+            column="30"
+            startOffset="6765"
+            endLine="147"
+            endColumn="39"
+            endOffset="6774"/>
+    </incident>
+
+    <incident
+        id="UseCompoundDrawables"
+        severity="warning"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_food_post_detail.xml"
+            line="162"
+            column="26"
+            startOffset="7485"
+            endLine="162"
+            endColumn="38"
+            endOffset="7497"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                dot="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_food_post_detail.xml"
+            line="168"
+            column="30"
+            startOffset="7781"
+            endLine="168"
+            endColumn="39"
+            endOffset="7790"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Claim Food&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_food_post_detail.xml"
+            line="196"
+            column="25"
+            startOffset="9134"
+            endLine="196"
+            endColumn="50"
+            endOffset="9159"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Get Directions&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_food_post_detail.xml"
+            line="203"
+            column="25"
+            startOffset="9497"
+            endLine="203"
+            endColumn="54"
+            endOffset="9526"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Search food posts&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_item_discovery.xml"
+            line="40"
+            column="17"
+            startOffset="1719"
+            endLine="40"
+            endColumn="49"
+            endOffset="1751"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Filters&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_item_discovery.xml"
+            line="74"
+            column="25"
+            startOffset="3135"
+            endLine="74"
+            endColumn="47"
+            endOffset="3157"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Food Types&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_item_discovery.xml"
+            line="82"
+            column="25"
+            startOffset="3520"
+            endLine="82"
+            endColumn="50"
+            endOffset="3545"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Maximum Distance&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_item_discovery.xml"
+            line="99"
+            column="25"
+            startOffset="4373"
+            endLine="99"
+            endColumn="56"
+            endOffset="4404"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;25 km&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_item_discovery.xml"
+            line="122"
+            column="29"
+            startOffset="5518"
+            endLine="122"
+            endColumn="49"
+            endOffset="5538"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Nearby Food Posts&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_item_discovery.xml"
+            line="135"
+            column="17"
+            startOffset="5963"
+            endLine="135"
+            endColumn="49"
+            endOffset="5995"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Post Available Food&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_item_posting.xml"
+            line="49"
+            column="21"
+            startOffset="2012"
+            endLine="49"
+            endColumn="55"
+            endOffset="2046"/>
+    </incident>
+
+    <incident
+        id="FragmentTagUsage"
+        severity="warning"
+        message="Replace the &lt;fragment> tag with FragmentContainerView.">
+        <fix-replace
+            description="Replace with androidx.fragment.app.FragmentContainerView"
+            oldString="fragment"
+            replacement="androidx.fragment.app.FragmentContainerView"/>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_item_posting.xml"
+            line="114"
+            column="22"
+            startOffset="5319"
+            endLine="114"
+            endColumn="30"
+            endOffset="5327"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                dot="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_item_posting.xml"
+            line="185"
+            column="18"
+            startOffset="8976"
+            endLine="185"
+            endColumn="27"
+            endOffset="8985"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;No notifications yet&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_notifications.xml"
+            line="18"
+            column="9"
+            startOffset="642"
+            endLine="18"
+            endColumn="44"
+            endOffset="677"/>
+    </incident>
+
+    <incident
+        id="DisableBaselineAlignment"
+        severity="warning"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance">
+        <fix-attribute
+            description="Set baselineAligned=&quot;false&quot;"
+            robot="true"
+            independent="true"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="baselineAligned"
+            value="false"/>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_user_profile.xml"
+            line="33"
+            column="14"
+            startOffset="1291"
+            endLine="33"
+            endColumn="26"
+            endOffset="1303"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Profile picture&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_user_profile.xml"
+            line="54"
+            column="25"
+            startOffset="2274"
+            endLine="54"
+            endColumn="69"
+            endOffset="2318"/>
+    </incident>
+
+    <incident
+        id="UseAppTint"
+        severity="error"
+        message="Must use `app:tint` instead of `android:tint`">
+        <fix-composite>
+            <fix-attribute
+                description="Set tint=&quot;@android:color/white&quot;"
+                namespace="http://schemas.android.com/apk/res-auto"
+                attribute="tint"
+                value="@android:color/white"/>
+            <fix-attribute
+                description="Delete tint"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="tint"/>
+        </fix-composite>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_user_profile.xml"
+            line="64"
+            column="25"
+            startOffset="2787"
+            endLine="64"
+            endColumn="60"
+            endOffset="2822"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Edit profile picture&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_user_profile.xml"
+            line="68"
+            column="25"
+            startOffset="2993"
+            endLine="68"
+            endColumn="74"
+            endOffset="3042"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Name&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_user_profile.xml"
+            line="82"
+            column="25"
+            startOffset="3586"
+            endLine="82"
+            endColumn="44"
+            endOffset="3605"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Email&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_user_profile.xml"
+            line="99"
+            column="17"
+            startOffset="4454"
+            endLine="99"
+            endColumn="37"
+            endOffset="4474"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Phone&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_user_profile.xml"
+            line="114"
+            column="17"
+            startOffset="5228"
+            endLine="114"
+            endColumn="37"
+            endOffset="5248"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Your Impact&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_user_profile.xml"
+            line="142"
+            column="25"
+            startOffset="6503"
+            endLine="142"
+            endColumn="51"
+            endOffset="6529"/>
+    </incident>
+
+    <incident
+        id="DisableBaselineAlignment"
+        severity="warning"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance">
+        <fix-attribute
+            description="Set baselineAligned=&quot;false&quot;"
+            robot="true"
+            independent="true"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="baselineAligned"
+            value="false"/>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_user_profile.xml"
+            line="146"
+            column="22"
+            startOffset="6693"
+            endLine="146"
+            endColumn="34"
+            endOffset="6705"/>
+    </incident>
+
+    <incident
+        id="UseAppTint"
+        severity="error"
+        message="Must use `app:tint` instead of `android:tint`">
+        <fix-composite>
+            <fix-attribute
+                description="Set tint=&quot;?attr/colorPrimary&quot;"
+                namespace="http://schemas.android.com/apk/res-auto"
+                attribute="tint"
+                value="?attr/colorPrimary"/>
+            <fix-attribute
+                description="Delete tint"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="tint"/>
+        </fix-composite>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_user_profile.xml"
+            line="163"
+            column="33"
+            startOffset="7516"
+            endLine="163"
+            endColumn="66"
+            endOffset="7549"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Meals claimed&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_user_profile.xml"
+            line="164"
+            column="33"
+            startOffset="7582"
+            endLine="164"
+            endColumn="75"
+            endOffset="7624"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;0&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_user_profile.xml"
+            line="170"
+            column="33"
+            startOffset="7903"
+            endLine="170"
+            endColumn="49"
+            endOffset="7919"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Meals Claimed&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_user_profile.xml"
+            line="176"
+            column="33"
+            startOffset="8218"
+            endLine="176"
+            endColumn="61"
+            endOffset="8246"/>
+    </incident>
+
+    <incident
+        id="UseAppTint"
+        severity="error"
+        message="Must use `app:tint` instead of `android:tint`">
+        <fix-composite>
+            <fix-attribute
+                description="Set tint=&quot;?attr/colorPrimary&quot;"
+                namespace="http://schemas.android.com/apk/res-auto"
+                attribute="tint"
+                value="?attr/colorPrimary"/>
+            <fix-attribute
+                description="Delete tint"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="tint"/>
+        </fix-composite>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_user_profile.xml"
+            line="192"
+            column="33"
+            startOffset="9013"
+            endLine="192"
+            endColumn="66"
+            endOffset="9046"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Food waste prevented&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_user_profile.xml"
+            line="193"
+            column="33"
+            startOffset="9079"
+            endLine="193"
+            endColumn="82"
+            endOffset="9128"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;0 lbs&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_user_profile.xml"
+            line="199"
+            column="33"
+            startOffset="9405"
+            endLine="199"
+            endColumn="53"
+            endOffset="9425"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Waste Prevented&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_user_profile.xml"
+            line="205"
+            column="33"
+            startOffset="9724"
+            endLine="205"
+            endColumn="63"
+            endOffset="9754"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Save Changes&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/fragment_user_profile.xml"
+            line="217"
+            column="17"
+            startOffset="10282"
+            endLine="217"
+            endColumn="44"
+            endOffset="10309"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                dot="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/item_food_post.xml"
+            line="21"
+            column="14"
+            startOffset="715"
+            endLine="21"
+            endColumn="23"
+            endOffset="724"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Claimed by you&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/item_food_post.xml"
+            line="42"
+            column="17"
+            startOffset="1592"
+            endLine="42"
+            endColumn="46"
+            endOffset="1621"/>
+    </incident>
+
+    <incident
+        id="UseCompoundDrawables"
+        severity="warning"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/item_food_post.xml"
+            line="84"
+            column="18"
+            startOffset="3178"
+            endLine="84"
+            endColumn="30"
+            endOffset="3190"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                dot="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/item_food_post.xml"
+            line="91"
+            column="22"
+            startOffset="3488"
+            endLine="91"
+            endColumn="31"
+            endOffset="3497"/>
+    </incident>
+
+    <incident
+        id="UseCompoundDrawables"
+        severity="warning"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/item_food_post.xml"
+            line="106"
+            column="18"
+            startOffset="4128"
+            endLine="106"
+            endColumn="30"
+            endOffset="4140"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                dot="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/item_food_post.xml"
+            line="113"
+            column="22"
+            startOffset="4438"
+            endLine="113"
+            endColumn="31"
+            endOffset="4447"/>
+    </incident>
+
+    <incident
+        id="UseCompoundDrawables"
+        severity="warning"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/item_food_post.xml"
+            line="128"
+            column="18"
+            startOffset="5078"
+            endLine="128"
+            endColumn="30"
+            endOffset="5090"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                dot="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/item_food_post.xml"
+            line="135"
+            column="22"
+            startOffset="5388"
+            endLine="135"
+            endColumn="31"
+            endOffset="5397"/>
+    </incident>
+
+    <incident
+        id="UseCompoundDrawables"
+        severity="warning"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/item_food_post.xml"
+            line="150"
+            column="18"
+            startOffset="6030"
+            endLine="150"
+            endColumn="30"
+            endOffset="6042"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                dot="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/item_food_post.xml"
+            line="157"
+            column="22"
+            startOffset="6340"
+            endLine="157"
+            endColumn="31"
+            endOffset="6349"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Claim&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/layout/item_food_post.xml"
+            line="178"
+            column="17"
+            startOffset="7217"
+            endLine="178"
+            endColumn="37"
+            endOffset="7237"/>
+    </incident>
+
+    <incident
+        id="MonochromeLauncherIcon"
+        severity="warning"
+        message="The application adaptive icon is missing a monochrome tag">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/mipmap-anydpi-v26/ic_launcher.xml"
+            line="2"
+            column="1"
+            startOffset="39"
+            endLine="5"
+            endColumn="17"
+            endOffset="267"/>
+    </incident>
+
+    <incident
+        id="MonochromeLauncherIcon"
+        severity="warning"
+        message="The application adaptive roundIcon is missing a monochrome tag">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/mipmap-anydpi-v26/ic_launcher_round.xml"
+            line="2"
+            column="1"
+            startOffset="39"
+            endLine="5"
+            endColumn="17"
+            endOffset="267"/>
+    </incident>
+
+    <incident
+        id="PrivateResource"
+        severity="warning"
+        message="Overriding `@string/ok` which is marked as private in androidx.navigation:navigation-dynamic-features-fragment:2.7.5. If deliberate, use tools:override=&quot;true&quot;, otherwise pick a different name.">
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/values/strings.xml"
+            line="63"
+            column="19"
+            startOffset="2973"
+            endLine="63"
+            endColumn="21"
+            endOffset="2975"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/yourcompany/excesseats/ui/discovery/FoodPostAdapter.kt"
+            line="55"
+            column="33"
+            startOffset="2046"
+            endLine="55"
+            endColumn="92"
+            endOffset="2105"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/yourcompany/excesseats/ui/discovery/FoodPostAdapter.kt"
+            line="55"
+            column="34"
+            startOffset="2047"
+            endLine="55"
+            endColumn="50"
+            endOffset="2063"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/yourcompany/excesseats/ui/discovery/FoodPostAdapter.kt"
+            line="80"
+            column="41"
+            startOffset="3306"
+            endLine="80"
+            endColumn="75"
+            endOffset="3340"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/yourcompany/excesseats/ui/discovery/FoodPostAdapter.kt"
+            line="80"
+            column="66"
+            startOffset="3331"
+            endLine="80"
+            endColumn="74"
+            endOffset="3339"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt"
+            line="109"
+            column="37"
+            startOffset="3951"
+            endLine="109"
+            endColumn="82"
+            endOffset="3996"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt"
+            line="109"
+            column="56"
+            startOffset="3970"
+            endLine="109"
+            endColumn="65"
+            endOffset="3979"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt"
+            line="114"
+            column="45"
+            startOffset="4195"
+            endLine="114"
+            endColumn="70"
+            endOffset="4220"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt"
+            line="114"
+            column="46"
+            startOffset="4196"
+            endLine="114"
+            endColumn="57"
+            endOffset="4207"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt"
+            line="116"
+            column="46"
+            startOffset="4313"
+            endLine="116"
+            endColumn="66"
+            endOffset="4333"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt"
+            line="223"
+            column="53"
+            startOffset="8140"
+            endLine="223"
+            endColumn="60"
+            endOffset="8147"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/yourcompany/excesseats/ui/discovery/ItemDiscoveryFragment.kt"
+            line="121"
+            column="45"
+            startOffset="4157"
+            endLine="121"
+            endColumn="62"
+            endOffset="4174"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/yourcompany/excesseats/ui/discovery/ItemDiscoveryFragment.kt"
+            line="121"
+            column="58"
+            startOffset="4170"
+            endLine="121"
+            endColumn="61"
+            endOffset="4173"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/yourcompany/excesseats/ui/discovery/adapters/FoodPostAdapter.kt"
+            line="53"
+            column="33"
+            startOffset="1867"
+            endLine="53"
+            endColumn="92"
+            endOffset="1926"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/yourcompany/excesseats/ui/discovery/adapters/FoodPostAdapter.kt"
+            line="53"
+            column="34"
+            startOffset="1868"
+            endLine="53"
+            endColumn="50"
+            endOffset="1884"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/yourcompany/excesseats/ui/discovery/adapters/FoodPostAdapter.kt"
+            line="58"
+            column="37"
+            startOffset="2133"
+            endLine="58"
+            endColumn="86"
+            endOffset="2182"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*sourceProvider*0*javaDir*0}/com/yourcompany/excesseats/ui/discovery/adapters/FoodPostAdapter.kt"
+            line="58"
+            column="56"
+            startOffset="2152"
+            endLine="58"
+            endColumn="65"
+            endOffset="2161"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.core:core-ktx than 1.10.1 is available: 1.15.0">
+        <fix-replace
+            description="Change to 1.15.0"
+            family="Update versions"
+            oldString="1.10.1"
+            replacement="1.15.0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="52"
+            column="20"
+            startOffset="1095"
+            endLine="52"
+            endColumn="51"
+            endOffset="1126"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.appcompat:appcompat than 1.6.1 is available: 1.7.0">
+        <fix-replace
+            description="Change to 1.7.0"
+            family="Update versions"
+            oldString="1.6.1"
+            replacement="1.7.0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="55"
+            column="20"
+            startOffset="1163"
+            endLine="55"
+            endColumn="56"
+            endOffset="1199"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.constraintlayout:constraintlayout than 2.1.4 is available: 2.2.0">
+        <fix-replace
+            description="Change to 2.2.0"
+            family="Update versions"
+            oldString="2.1.4"
+            replacement="2.2.0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="56"
+            column="20"
+            startOffset="1219"
+            endLine="56"
+            endColumn="70"
+            endOffset="1269"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.6.2 is available: 2.8.7">
+        <fix-replace
+            description="Change to 2.8.7"
+            family="Update versions"
+            oldString="2.6.2"
+            replacement="2.8.7"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="57"
+            column="20"
+            startOffset="1289"
+            endLine="57"
+            endColumn="70"
+            endOffset="1339"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.6.2 is available: 2.8.7">
+        <fix-replace
+            description="Change to 2.8.7"
+            family="Update versions"
+            oldString="2.6.2"
+            replacement="2.8.7"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="58"
+            column="20"
+            startOffset="1359"
+            endLine="58"
+            endColumn="69"
+            endOffset="1408"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.navigation:navigation-fragment-ktx than 2.7.5 is available: 2.8.4">
+        <fix-replace
+            description="Change to 2.8.4"
+            family="Update versions"
+            oldString="2.7.5"
+            replacement="2.8.4"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="59"
+            column="20"
+            startOffset="1428"
+            endLine="59"
+            endColumn="71"
+            endOffset="1479"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.navigation:navigation-ui-ktx than 2.7.5 is available: 2.8.4">
+        <fix-replace
+            description="Change to 2.8.4"
+            family="Update versions"
+            oldString="2.7.5"
+            replacement="2.8.4"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="60"
+            column="20"
+            startOffset="1499"
+            endLine="60"
+            endColumn="65"
+            endOffset="1544"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of com.google.android.material:material than 1.10.0 is available: 1.12.0">
+        <fix-replace
+            description="Change to 1.12.0"
+            family="Update versions"
+            oldString="1.10.0"
+            replacement="1.12.0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="63"
+            column="20"
+            startOffset="1588"
+            endLine="63"
+            endColumn="65"
+            endOffset="1633"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of com.google.android.gms:play-services-auth than 20.7.0 is available: 21.2.0">
+        <fix-replace
+            description="Change to 21.2.0"
+            family="Update versions"
+            oldString="20.7.0"
+            replacement="21.2.0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="72"
+            column="20"
+            startOffset="1957"
+            endLine="72"
+            endColumn="70"
+            endOffset="2007"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of com.google.android.gms:play-services-location than 21.0.1 is available: 21.3.0">
+        <fix-replace
+            description="Change to 21.3.0"
+            family="Update versions"
+            oldString="21.0.1"
+            replacement="21.3.0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="73"
+            column="20"
+            startOffset="2027"
+            endLine="73"
+            endColumn="74"
+            endOffset="2081"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of com.google.android.gms:play-services-maps than 18.2.0 is available: 19.0.0">
+        <fix-replace
+            description="Change to 19.0.0"
+            family="Update versions"
+            oldString="18.2.0"
+            replacement="19.0.0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="74"
+            column="20"
+            startOffset="2101"
+            endLine="74"
+            endColumn="70"
+            endOffset="2151"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of com.google.android.libraries.places:places than 3.2.0 is available: 4.1.0">
+        <fix-replace
+            description="Change to 4.1.0"
+            family="Update versions"
+            oldString="3.2.0"
+            replacement="4.1.0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="75"
+            column="20"
+            startOffset="2171"
+            endLine="75"
+            endColumn="70"
+            endOffset="2221"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.test.ext:junit than 1.1.5 is available: 1.2.1">
+        <fix-replace
+            description="Change to 1.2.1"
+            family="Update versions"
+            oldString="1.1.5"
+            replacement="1.2.1"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="91"
+            column="31"
+            startOffset="2781"
+            endLine="91"
+            endColumn="62"
+            endOffset="2812"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.test.espresso:espresso-core than 3.5.1 is available: 3.6.1">
+        <fix-replace
+            description="Change to 3.6.1"
+            family="Update versions"
+            oldString="3.5.1"
+            replacement="3.6.1"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="92"
+            column="31"
+            startOffset="2843"
+            endLine="92"
+            endColumn="75"
+            endOffset="2887"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of com.google.firebase:firebase-bom than 32.7.2 is available: 33.7.0">
+        <fix-replace
+            description="Change to 33.7.0"
+            family="Update versions"
+            oldString="32.7.2"
+            replacement="33.7.0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="95"
+            column="29"
+            startOffset="2933"
+            endLine="95"
+            endColumn="70"
+            endOffset="2974"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.navigation:navigation-fragment-ktx than 2.7.5 is available: 2.8.4">
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="111"
+            column="20"
+            startOffset="3555"
+            endLine="111"
+            endColumn="78"
+            endOffset="3613"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.navigation:navigation-ui-ktx than 2.7.5 is available: 2.8.4">
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="112"
+            column="20"
+            startOffset="3633"
+            endLine="112"
+            endColumn="72"
+            endOffset="3685"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.navigation:navigation-dynamic-features-fragment than 2.7.5 is available: 2.8.4">
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="113"
+            column="20"
+            startOffset="3705"
+            endLine="113"
+            endColumn="91"
+            endOffset="3776"/>
+    </incident>
+
+</incidents>
