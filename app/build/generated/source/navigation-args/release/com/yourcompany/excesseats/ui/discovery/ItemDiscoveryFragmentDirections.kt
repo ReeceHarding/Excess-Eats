@@ -1,6 +1,7 @@
 package com.yourcompany.excesseats.ui.discovery
 
 import android.os.Bundle
+import androidx.navigation.ActionOnlyNavDirections
 import androidx.navigation.NavDirections
 import com.yourcompany.excesseats.R
 import kotlin.Float
@@ -35,5 +36,8 @@ public class ItemDiscoveryFragmentDirections private constructor() {
       longitude: Float,
     ): NavDirections = ActionItemDiscoveryFragmentToFoodPostDetailFragment(postId, title, latitude,
         longitude)
+
+    public fun actionNavigationDiscoverToNavigationNotifications(): NavDirections =
+        ActionOnlyNavDirections(R.id.action_navigation_discover_to_navigation_notifications)
   }
 }

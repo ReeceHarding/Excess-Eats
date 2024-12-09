@@ -2,11 +2,13 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
@@ -21,6 +23,11 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:paddingBottom="80dp"
+        android:fadeScrollbars="false"
+        android:scrollbarStyle="outsideOverlay"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <com.google.android.material.card.MaterialCardView
@@ -32,7 +39,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:descendantFocusability="beforeDescendants"
+                android:focusableInTouchMode="true">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -43,6 +52,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/titleLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -52,7 +62,10 @@
                         android:id="@+id/titleInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:textAlignment="viewStart"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,6 +87,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/quantityLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -83,7 +97,10 @@
                         android:id="@+id/quantityInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:textAlignment="viewStart"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -110,6 +127,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/pickupTimeLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -120,12 +138,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="none"
-                        android:focusable="false" />
+                        android:focusable="false"
+                        android:textAlignment="viewStart"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/descriptionLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -136,7 +158,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textMultiLine"
-                        android:minLines="3" />
+                        android:minLines="3"
+                        android:maxLines="6"
+                        android:gravity="top|start"
+                        android:paddingTop="16dp"
+                        android:textAlignment="viewStart"
+                        android:scrollbars="vertical" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

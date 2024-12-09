@@ -71,9 +71,6 @@
     <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Mở trong trình duyệt"</string>
     <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Chia sẻ liên kết"</string>
     <string name="icon_content_description">Biểu tượng hộp thoại</string>
-    <string msgid="475402237100444685" name="installation_cancelled">"Đã hủy cài đặt."</string>
-    <string msgid="863287960437940689" name="installation_failed">"Không cài đặt được."</string>
-    <string msgid="5968445461040787716" name="installing_module">"Đang cài đặt mô-đun:"</string>
     <string name="item_view_role_description">Thẻ</string>
     <string name="material_clock_toggle_content_description">Chọn SA hoặc CH</string>
     <string name="material_hour_24h_suffix">%1$s giờ</string>
@@ -132,18 +129,15 @@
     <string name="mtrl_timepicker_confirm">OK</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"Di chuyển lên"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"Mở ngăn điều hướng"</string>
-    <string msgid="4702104660890557116" name="ok">"OK"</string>
     <string name="password_toggle_content_description">Hiện mật khẩu</string>
     <string name="places_autocomplete_clear_button">Xóa nội dung tìm kiếm</string>
     <string name="places_autocomplete_label">Chọn một địa điểm</string>
     <string name="places_autocomplete_no_results_for_query">Không có kết quả nào cho %1$s</string>
-    <string name="places_autocomplete_search_hint">Tìm kiếm</string>
+    <string name="places_autocomplete_search_hint">Tìm địa điểm</string>
     <string name="places_cancel">Hủy</string>
     <string name="places_powered_by_google">Công nghệ của Google</string>
     <string name="places_search_error">Không thể tải kết quả tìm kiếm.</string>
     <string name="places_try_again">Thử lại</string>
-    <string msgid="8366783942222789124" name="progress">"Tiến trình:"</string>
-    <string msgid="1065327189183624288" name="retry">"Thử lại"</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Tìm kiếm"</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
 </resources>

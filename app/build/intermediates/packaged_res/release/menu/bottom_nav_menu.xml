@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/itemDiscoveryFragment"
+        android:id="@+id/navigation_discover"
         android:icon="@drawable/ic_discover"
         android:title="@string/title_discover" />
 
     <item
-        android:id="@+id/itemPostingFragment"
+        android:id="@+id/navigation_post"
         android:icon="@drawable/ic_post"
         android:title="@string/title_post" />
 
-    <!-- Commenting out notifications for now
     <item
-        android:id="@+id/notificationsFragment"
+        android:id="@+id/navigation_notifications"
         android:icon="@drawable/ic_notifications"
         android:title="@string/title_notifications" />
-    -->
 
     <item
-        android:id="@+id/userProfileFragment"
+        android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_profile"
         android:title="@string/title_profile" />
 </menu>

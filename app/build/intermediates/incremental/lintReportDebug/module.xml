@@ -1,0 +1,29 @@
+<lint-module
+    format="1"
+    dir="/Users/reeceharding/ExcessEatsNew/app"
+    name=":app"
+    type="APP"
+    maven="ExcessEats:app:"
+    agpVersion="8.1.2"
+    buildFolder="build"
+    bootClassPath="/Users/reeceharding/Library/Android/sdk/platforms/android-34/android.jar:/Users/reeceharding/Library/Android/sdk/build-tools/33.0.1/core-lambda-stubs.jar"
+    javaSourceLevel="17"
+    compileTarget="android-34"
+    neverShrinking="true">
+  <lintOptions
+      baselineFile="lint-baseline.xml"
+      disable="Deprecated,MissingTranslation"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true">
+    <severities>
+      <severity
+        id="Deprecated"
+        severity="IGNORE" />
+      <severity
+        id="MissingTranslation"
+        severity="IGNORE" />
+    </severities>
+  </lintOptions>
+  <variant name="debug"/>
+</lint-module>

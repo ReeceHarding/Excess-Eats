@@ -20,6 +20,7 @@ import kotlin.math.sin
 class FoodPostRepository {
     private val database = FirebaseDatabase.getInstance()
     private val postsRef = database.getReference("posts")
+    private val notificationRepository = NotificationRepository()
 
     companion object {
         private const val TAG = "FoodPostRepository"
@@ -33,7 +34,16 @@ class FoodPostRepository {
     }
 
     suspend fun createPost(post: FoodPost): Result<FoodPost> = try {
+        // Save the post
         postsRef.child(post.id).setValue(post).await()
+
+        // Create notification for nearby users
+        notificationRepository.createFoodPostNotification(
+            userId = post.userId,
+            foodTitle = post.title,
+            location = post.location
+        )
+
         Result.success(post)
     } catch (e: Exception) {
         Log.e(TAG, "Error creating post", e)

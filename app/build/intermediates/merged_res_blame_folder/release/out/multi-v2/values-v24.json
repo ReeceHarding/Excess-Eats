@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.yourcompany.excesseats.app-mergeReleaseResources-62:/values-v24/values-v24.xml",
+            "outputFile": "com.yourcompany.excesseats.app-mergeReleaseResources-63:/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "/Users/reeceharding/.gradle/caches/8.10.2/transforms/26ba17d4213c0a6bce18608be2868975/transformed/appcompat-1.6.1/res/values-v24/values-v24.xml",
+                    "source": "/Users/reeceharding/.gradle/caches/8.10.2/transforms/54e6ce076795b37f2e4ebe5acb208d56/transformed/appcompat-1.6.1/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/Users/reeceharding/.gradle/caches/8.10.2/transforms/e53e2a76520555feb719060000b2a03a/transformed/material-1.10.0/res/values-v24/values-v24.xml",
+                    "source": "/Users/reeceharding/.gradle/caches/8.10.2/transforms/acd16e2f8b007f39b727563eb3cfb238/transformed/material-1.10.0/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,9,12,15",
                         "startColumns": "4,4,4,4,4,4,4,4",

@@ -4,13 +4,16 @@ package com.yourcompany.excesseats.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.yourcompany.excesseats.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -18,24 +21,38 @@ import java.lang.String;
 
 public final class FragmentNotificationsBinding implements ViewBinding {
   @NonNull
-  private final FrameLayout rootView;
+  private final CoordinatorLayout rootView;
 
   @NonNull
-  public final TextView emptyView;
+  public final LinearLayout emptyView;
 
   @NonNull
   public final RecyclerView notificationsRecyclerView;
 
-  private FragmentNotificationsBinding(@NonNull FrameLayout rootView, @NonNull TextView emptyView,
-      @NonNull RecyclerView notificationsRecyclerView) {
+  @NonNull
+  public final ProgressBar progressBar;
+
+  @NonNull
+  public final SwipeRefreshLayout swipeRefreshLayout;
+
+  @NonNull
+  public final MaterialToolbar toolbar;
+
+  private FragmentNotificationsBinding(@NonNull CoordinatorLayout rootView,
+      @NonNull LinearLayout emptyView, @NonNull RecyclerView notificationsRecyclerView,
+      @NonNull ProgressBar progressBar, @NonNull SwipeRefreshLayout swipeRefreshLayout,
+      @NonNull MaterialToolbar toolbar) {
     this.rootView = rootView;
     this.emptyView = emptyView;
     this.notificationsRecyclerView = notificationsRecyclerView;
+    this.progressBar = progressBar;
+    this.swipeRefreshLayout = swipeRefreshLayout;
+    this.toolbar = toolbar;
   }
 
   @Override
   @NonNull
-  public FrameLayout getRoot() {
+  public CoordinatorLayout getRoot() {
     return rootView;
   }
 
@@ -61,7 +78,7 @@ public final class FragmentNotificationsBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.emptyView;
-      TextView emptyView = ViewBindings.findChildViewById(rootView, id);
+      LinearLayout emptyView = ViewBindings.findChildViewById(rootView, id);
       if (emptyView == null) {
         break missingId;
       }
@@ -72,8 +89,26 @@ public final class FragmentNotificationsBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentNotificationsBinding((FrameLayout) rootView, emptyView,
-          notificationsRecyclerView);
+      id = R.id.progressBar;
+      ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
+      if (progressBar == null) {
+        break missingId;
+      }
+
+      id = R.id.swipeRefreshLayout;
+      SwipeRefreshLayout swipeRefreshLayout = ViewBindings.findChildViewById(rootView, id);
+      if (swipeRefreshLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.toolbar;
+      MaterialToolbar toolbar = ViewBindings.findChildViewById(rootView, id);
+      if (toolbar == null) {
+        break missingId;
+      }
+
+      return new FragmentNotificationsBinding((CoordinatorLayout) rootView, emptyView,
+          notificationsRecyclerView, progressBar, swipeRefreshLayout, toolbar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -54,7 +54,7 @@
     <string msgid="7215213145546190223" name="common_google_play_services_install_title">Google Play సేవలను పొందండి</string>
     <string name="common_google_play_services_notification_channel_name">Google Play సేవల లభ్యత</string>
     <string name="common_google_play_services_notification_ticker">Google Play సేవల ఎర్రర్</string>
-    <string name="common_google_play_services_unknown_issue">%1$s Google Play సేవలతో సమస్య కలిగి ఉంది. దయచేసి మళ్లీ ట్రై చేయండి.</string>
+    <string name="common_google_play_services_unknown_issue">%1$s Google Play సేవలతో సమస్య కలిగి ఉంది. దయచేసి మళ్లీ ప్రయత్నించండి.</string>
     <string name="common_google_play_services_unsupported_text">%1$s Google Play సేవలు లేకుండా అమలు కాదు, ఈ సేవలకు మీ పరికరంలో మద్దతు లేదు.</string>
     <string msgid="6556509956452265614" name="common_google_play_services_update_button">అప్‌డేట్ చేయి</string>
     <string msgid="9053896323427875356" name="common_google_play_services_update_text">మీరు Google Play సేవలను నవీకరిస్తే మినహా %1$s అమలు కాదు.</string>
@@ -71,9 +71,6 @@
     <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"బ్రౌజర్‌లో తెరువు"</string>
     <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"లింక్‌ను షేర్ చేయి"</string>
     <string name="icon_content_description">డైలాగ్ చిహ్నం</string>
-    <string msgid="475402237100444685" name="installation_cancelled">"ఇన్‌స్టాలేషన్ రద్దయింది."</string>
-    <string msgid="863287960437940689" name="installation_failed">"ఇన్‌స్టాల్ చేయడం విఫలమైంది"</string>
-    <string msgid="5968445461040787716" name="installing_module">"మాడ్యూల్‌ను ఇన్‌స్టాల్ చేస్తోంది:"</string>
     <string name="item_view_role_description">ట్యాబ్</string>
     <string name="material_clock_toggle_content_description">AM లేదా PMను ఎంచుకోండి</string>
     <string name="material_hour_24h_suffix">%1$s గంటలు</string>
@@ -132,18 +129,15 @@
     <string name="mtrl_timepicker_confirm">సరే</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"పైకి నావిగేట్ చేయి"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"నావిగేషన్ డ్రాయర్‌ను తెరవండి"</string>
-    <string msgid="4702104660890557116" name="ok">"సరే"</string>
     <string name="password_toggle_content_description">పాస్‌వర్డ్‌ను చూపు</string>
     <string name="places_autocomplete_clear_button">సెర్చ్‌ను తీసేయండి</string>
     <string name="places_autocomplete_label">ఒక స్థలాన్ని ఎంచుకోండి</string>
     <string name="places_autocomplete_no_results_for_query">%1$s కోసం ఎలాంటి ఫలితాలు లేవు</string>
-    <string name="places_autocomplete_search_hint">సెర్చ్ చేయండి</string>
+    <string name="places_autocomplete_search_hint">స్థలాన్ని సెర్చ్ చేయండి</string>
     <string name="places_cancel">రద్దు చేయండి</string>
     <string name="places_powered_by_google">Google సౌజన్యంతో</string>
     <string name="places_search_error">సెర్చ్‌ ఫలితాలను లోడ్ చేయడం సాధ్యపడదు.</string>
     <string name="places_try_again">మళ్లీ ప్రయత్నించు</string>
-    <string msgid="8366783942222789124" name="progress">"ప్రోగ్రెస్:"</string>
-    <string msgid="1065327189183624288" name="retry">"మళ్లీ ప్రయత్నించు"</string>
     <string msgid="6264217191555673260" name="search_menu_title">"సెర్చ్"</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
 </resources>

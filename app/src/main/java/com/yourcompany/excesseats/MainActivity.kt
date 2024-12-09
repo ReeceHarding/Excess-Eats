@@ -5,8 +5,10 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import com.yourcompany.excesseats.data.repository.FoodPostRepository
 import com.yourcompany.excesseats.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
@@ -14,6 +16,7 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
+    private lateinit var navController: NavController
 
     companion object {
         private const val TAG = "MainActivity"
@@ -46,12 +49,26 @@ class MainActivity : AppCompatActivity() {
                 return
             }
 
-            val navController = navHostFragment.navController
+            navController = navHostFragment.navController
 
-            binding.bottomNavigation.setupWithNavController(navController)
-            binding.bottomNavigation.setOnItemReselectedListener { /* Prevent reselection reload */ }
+            // Set up the bottom navigation with the nav controller
+            NavigationUI.setupWithNavController(binding.bottomNavigation, navController)
+
+            // Set up the top-level destinations
+            val appBarConfiguration = AppBarConfiguration(
+                setOf(
+                    R.id.navigation_discover,
+                    R.id.navigation_post,
+                    R.id.navigation_notifications,
+                    R.id.navigation_profile
+                )
+            )
+
+            // Prevent reselection reload
+            binding.bottomNavigation.setOnItemReselectedListener { /* Do nothing */ }
         } catch (e: Exception) {
-            Log.e(TAG, "Error setting up navigation", e)
+            Log.e(TAG, "Error in setupNavigation", e)
+            Toast.makeText(this, "Error setting up navigation: ${e.message}", Toast.LENGTH_LONG).show()
         }
     }
 

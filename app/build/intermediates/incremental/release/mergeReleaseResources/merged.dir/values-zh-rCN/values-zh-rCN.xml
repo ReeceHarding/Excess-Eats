@@ -71,9 +71,6 @@
     <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"在浏览器中打开"</string>
     <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"分享链接"</string>
     <string name="icon_content_description">对话框图标</string>
-    <string msgid="475402237100444685" name="installation_cancelled">"已取消安装。"</string>
-    <string msgid="863287960437940689" name="installation_failed">"安装失败。"</string>
-    <string msgid="5968445461040787716" name="installing_module">"正在安装模块："</string>
     <string name="item_view_role_description">标签页</string>
     <string name="material_clock_toggle_content_description">选择上午或下午</string>
     <string name="material_hour_24h_suffix">%1$s 小时</string>
@@ -132,18 +129,15 @@
     <string name="mtrl_timepicker_confirm">确定</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"转到上一层级"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"打开抽屉式导航栏"</string>
-    <string msgid="4702104660890557116" name="ok">"确定"</string>
     <string name="password_toggle_content_description">显示密码</string>
     <string name="places_autocomplete_clear_button">清除搜索</string>
     <string name="places_autocomplete_label">选择地点</string>
     <string name="places_autocomplete_no_results_for_query">找不到与“%1$s”匹配的结果</string>
-    <string name="places_autocomplete_search_hint">搜索</string>
+    <string name="places_autocomplete_search_hint">搜索地点</string>
     <string name="places_cancel">取消</string>
     <string name="places_powered_by_google">由 Google 提供支持</string>
     <string name="places_search_error">无法加载搜索结果。</string>
     <string name="places_try_again">重试</string>
-    <string msgid="8366783942222789124" name="progress">"进度："</string>
-    <string msgid="1065327189183624288" name="retry">"重试"</string>
     <string msgid="6264217191555673260" name="search_menu_title">"搜索"</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
 </resources>

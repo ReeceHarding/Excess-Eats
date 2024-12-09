@@ -29,6 +29,7 @@
     <string name="camera_permission_rationale">Camera permission is needed to take pictures of the food items.</string>
     <string name="camera_permission_title">Camera Permission Required</string>
     <string name="cancel">Cancel</string>
+    <string name="default_notification_channel_id">excess_eats_notifications</string>
     <string name="error_location_setup">Error setting up location autocomplete</string>
     <string name="error_place_selection">Error selecting place: %1$s</string>
     <string name="firebase_database_url" translatable="false">https://excess-eats-c1b6a-default-rtdb.firebaseio.com</string>

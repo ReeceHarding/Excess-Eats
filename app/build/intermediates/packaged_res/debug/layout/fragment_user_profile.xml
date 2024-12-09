@@ -61,7 +61,7 @@
                         android:background="@drawable/circle_background"
                         android:src="@drawable/ic_camera"
                         android:padding="4dp"
-                        android:tint="@android:color/white"
+                        app:tint="@android:color/white"
                         android:elevation="2dp"
                         android:clickable="true"
                         android:focusable="true"
@@ -160,7 +160,7 @@
                                 android:layout_width="32dp"
                                 android:layout_height="32dp"
                                 android:src="@drawable/ic_meals"
-                                android:tint="?attr/colorPrimary"
+                                app:tint="?attr/colorPrimary"
                                 android:contentDescription="Meals claimed" />
 
                             <TextView
@@ -189,7 +189,7 @@
                                 android:layout_width="32dp"
                                 android:layout_height="32dp"
                                 android:src="@drawable/ic_waste"
-                                android:tint="?attr/colorPrimary"
+                                app:tint="?attr/colorPrimary"
                                 android:contentDescription="Food waste prevented" />
 
                             <TextView

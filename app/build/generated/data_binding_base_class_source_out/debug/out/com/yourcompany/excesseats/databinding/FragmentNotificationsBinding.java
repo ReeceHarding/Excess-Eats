@@ -4,11 +4,11 @@ package com.yourcompany.excesseats.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.yourcompany.excesseats.R;
@@ -18,24 +18,29 @@ import java.lang.String;
 
 public final class FragmentNotificationsBinding implements ViewBinding {
   @NonNull
-  private final FrameLayout rootView;
+  private final SwipeRefreshLayout rootView;
 
   @NonNull
-  public final TextView emptyView;
+  public final LinearLayout emptyView;
 
   @NonNull
-  public final RecyclerView notificationsRecyclerView;
+  public final RecyclerView recyclerViewNotifications;
 
-  private FragmentNotificationsBinding(@NonNull FrameLayout rootView, @NonNull TextView emptyView,
-      @NonNull RecyclerView notificationsRecyclerView) {
+  @NonNull
+  public final SwipeRefreshLayout swipeRefreshLayout;
+
+  private FragmentNotificationsBinding(@NonNull SwipeRefreshLayout rootView,
+      @NonNull LinearLayout emptyView, @NonNull RecyclerView recyclerViewNotifications,
+      @NonNull SwipeRefreshLayout swipeRefreshLayout) {
     this.rootView = rootView;
     this.emptyView = emptyView;
-    this.notificationsRecyclerView = notificationsRecyclerView;
+    this.recyclerViewNotifications = recyclerViewNotifications;
+    this.swipeRefreshLayout = swipeRefreshLayout;
   }
 
   @Override
   @NonNull
-  public FrameLayout getRoot() {
+  public SwipeRefreshLayout getRoot() {
     return rootView;
   }
 
@@ -61,19 +66,21 @@ public final class FragmentNotificationsBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.emptyView;
-      TextView emptyView = ViewBindings.findChildViewById(rootView, id);
+      LinearLayout emptyView = ViewBindings.findChildViewById(rootView, id);
       if (emptyView == null) {
         break missingId;
       }
 
-      id = R.id.notificationsRecyclerView;
-      RecyclerView notificationsRecyclerView = ViewBindings.findChildViewById(rootView, id);
-      if (notificationsRecyclerView == null) {
+      id = R.id.recyclerViewNotifications;
+      RecyclerView recyclerViewNotifications = ViewBindings.findChildViewById(rootView, id);
+      if (recyclerViewNotifications == null) {
         break missingId;
       }
 
-      return new FragmentNotificationsBinding((FrameLayout) rootView, emptyView,
-          notificationsRecyclerView);
+      SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) rootView;
+
+      return new FragmentNotificationsBinding((SwipeRefreshLayout) rootView, emptyView,
+          recyclerViewNotifications, swipeRefreshLayout);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

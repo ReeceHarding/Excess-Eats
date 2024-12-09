@@ -71,9 +71,6 @@
     <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"ব্রাউজারে খুলুন"</string>
     <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"লিঙ্ক শেয়ার করুন"</string>
     <string name="icon_content_description">ডায়ালগ আইকন</string>
-    <string msgid="475402237100444685" name="installation_cancelled">"ইনস্টলেশন বাতিল হয়েছে।"</string>
-    <string msgid="863287960437940689" name="installation_failed">"ইনস্টল করা যায়নি।"</string>
-    <string msgid="5968445461040787716" name="installing_module">"মডিউল ইনস্টল করা হচ্ছে:"</string>
     <string name="item_view_role_description">ট্যাব</string>
     <string name="material_clock_toggle_content_description">AM অথবা PM বেছে নিন</string>
     <string name="material_hour_24h_suffix">%1$s ঘণ্টা</string>
@@ -132,18 +129,15 @@
     <string name="mtrl_timepicker_confirm">ঠিক আছে</string>
     <string msgid="6301633601645100427" name="nav_app_bar_navigate_up_description">"উপরে নেভিগেট করুন"</string>
     <string msgid="7456070600745802113" name="nav_app_bar_open_drawer_description">"নেভিগেশন ড্রয়ার খুলুন"</string>
-    <string msgid="4702104660890557116" name="ok">"ঠিক আছে"</string>
     <string name="password_toggle_content_description">পাসওয়ার্ড দেখান</string>
     <string name="places_autocomplete_clear_button">সার্চ মুছুন</string>
     <string name="places_autocomplete_label">একটি জায়গা বাছুন</string>
     <string name="places_autocomplete_no_results_for_query">%1$s-এর জন্য কোনও ফলাফল নেই</string>
-    <string name="places_autocomplete_search_hint">খুঁজুন</string>
+    <string name="places_autocomplete_search_hint">জায়গা খুঁজুন</string>
     <string name="places_cancel">বাতিল করুন</string>
     <string name="places_powered_by_google">Google দ্বারা পরিচালিত</string>
     <string name="places_search_error">সার্চের ফলাফল লোড করা যাচ্ছে না।</string>
     <string name="places_try_again">আবার করুন</string>
-    <string msgid="8366783942222789124" name="progress">"প্রগ্রেস:"</string>
-    <string msgid="1065327189183624288" name="retry">"আবার করে দেখুন"</string>
     <string msgid="6264217191555673260" name="search_menu_title">"সার্চ করুন"</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"৯৯৯+"</string>
 </resources>

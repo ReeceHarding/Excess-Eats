@@ -4,6 +4,7 @@ package com.yourcompany.excesseats.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -12,6 +13,8 @@ import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.google.android.gms.maps.MapView;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.slider.Slider;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.yourcompany.excesseats.R;
@@ -24,7 +27,16 @@ public final class FragmentItemDiscoveryBinding implements ViewBinding {
   private final CoordinatorLayout rootView;
 
   @NonNull
+  public final Slider distanceSlider;
+
+  @NonNull
+  public final TextView distanceText;
+
+  @NonNull
   public final RecyclerView foodPostsRecyclerView;
+
+  @NonNull
+  public final ChipGroup foodTypeChipGroup;
 
   @NonNull
   public final MapView mapView;
@@ -39,11 +51,15 @@ public final class FragmentItemDiscoveryBinding implements ViewBinding {
   public final MaterialToolbar toolbar;
 
   private FragmentItemDiscoveryBinding(@NonNull CoordinatorLayout rootView,
-      @NonNull RecyclerView foodPostsRecyclerView, @NonNull MapView mapView,
-      @NonNull TextInputEditText searchInput, @NonNull TextInputLayout searchLayout,
-      @NonNull MaterialToolbar toolbar) {
+      @NonNull Slider distanceSlider, @NonNull TextView distanceText,
+      @NonNull RecyclerView foodPostsRecyclerView, @NonNull ChipGroup foodTypeChipGroup,
+      @NonNull MapView mapView, @NonNull TextInputEditText searchInput,
+      @NonNull TextInputLayout searchLayout, @NonNull MaterialToolbar toolbar) {
     this.rootView = rootView;
+    this.distanceSlider = distanceSlider;
+    this.distanceText = distanceText;
     this.foodPostsRecyclerView = foodPostsRecyclerView;
+    this.foodTypeChipGroup = foodTypeChipGroup;
     this.mapView = mapView;
     this.searchInput = searchInput;
     this.searchLayout = searchLayout;
@@ -77,9 +93,27 @@ public final class FragmentItemDiscoveryBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.distanceSlider;
+      Slider distanceSlider = ViewBindings.findChildViewById(rootView, id);
+      if (distanceSlider == null) {
+        break missingId;
+      }
+
+      id = R.id.distanceText;
+      TextView distanceText = ViewBindings.findChildViewById(rootView, id);
+      if (distanceText == null) {
+        break missingId;
+      }
+
       id = R.id.foodPostsRecyclerView;
       RecyclerView foodPostsRecyclerView = ViewBindings.findChildViewById(rootView, id);
       if (foodPostsRecyclerView == null) {
+        break missingId;
+      }
+
+      id = R.id.foodTypeChipGroup;
+      ChipGroup foodTypeChipGroup = ViewBindings.findChildViewById(rootView, id);
+      if (foodTypeChipGroup == null) {
         break missingId;
       }
 
@@ -107,8 +141,9 @@ public final class FragmentItemDiscoveryBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentItemDiscoveryBinding((CoordinatorLayout) rootView, foodPostsRecyclerView,
-          mapView, searchInput, searchLayout, toolbar);
+      return new FragmentItemDiscoveryBinding((CoordinatorLayout) rootView, distanceSlider,
+          distanceText, foodPostsRecyclerView, foodTypeChipGroup, mapView, searchInput,
+          searchLayout, toolbar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

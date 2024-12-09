@@ -1,27 +1,27 @@
-/*
 package com.yourcompany.excesseats.ui.notifications
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.yourcompany.excesseats.data.model.Notification
-import com.yourcompany.excesseats.data.model.NotificationType
-import com.yourcompany.excesseats.data.repository.NotificationRepository
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.GoogleApiAvailability
+import com.google.android.material.snackbar.Snackbar
 import com.yourcompany.excesseats.databinding.FragmentNotificationsBinding
+import com.yourcompany.excesseats.models.Notification
+import com.yourcompany.excesseats.ui.notifications.adapter.NotificationsAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class NotificationsFragment : Fragment() {
     private var _binding: FragmentNotificationsBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: NotificationAdapter
-    private val repository = NotificationRepository.getInstance()
+    private val viewModel: NotificationsViewModel by viewModels()
+    private lateinit var adapter: NotificationsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,52 +34,95 @@ class NotificationsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Check Google Play Services availability
+        val googleApiAvailability = GoogleApiAvailability.getInstance()
+        val resultCode = googleApiAvailability.isGooglePlayServicesAvailable(requireContext())
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (googleApiAvailability.isUserResolvableError(resultCode)) {
+                googleApiAvailability.getErrorDialog(this, resultCode, 9000)?.show()
+            } else {
+                Snackbar.make(view, "Google Play Services is required", Snackbar.LENGTH_LONG).show()
+            }
+            return
+        }
+
         setupRecyclerView()
-        loadNotifications()
+        setupSwipeRefresh()
+        observeViewModel()
     }
 
     private fun setupRecyclerView() {
-        adapter = NotificationAdapter { notification ->
-            handleNotificationClick(notification)
-        }
-
-        binding.notificationsRecyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = this@NotificationsFragment.adapter
-        }
+        adapter = NotificationsAdapter(
+            onNotificationClick = { notification ->
+                handleNotificationClick(notification)
+            },
+            onDeleteClick = { notification ->
+                viewModel.deleteNotification(notification.id)
+            }
+        )
+        binding.recyclerViewNotifications.adapter = adapter
     }
 
-    private fun loadNotifications() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            repository.getNotifications().collectLatest { result ->
-                result.onSuccess { notifications ->
-                    adapter.submitList(notifications)
-                    binding.emptyView.visibility = if (notifications.isEmpty()) View.VISIBLE else View.GONE
-                    binding.notificationsRecyclerView.visibility = if (notifications.isEmpty()) View.GONE else View.VISIBLE
-                }.onFailure { exception ->
-                    Toast.makeText(
-                        requireContext(),
-                        "Error loading notifications: ${exception.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
+    private fun setupSwipeRefresh() {
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.loadNotifications()
         }
     }
 
     private fun handleNotificationClick(notification: Notification) {
-        viewLifecycleOwner.lifecycleScope.launch {
-            repository.markAsRead(notification.id)
+        // Mark notification as read
+        viewModel.markAsRead(notification.id)
 
-            when (notification.type) {
-                NotificationType.FOOD_CLAIMED, NotificationType.NEW_FOOD_NEARBY -> {
-                    notification.relatedPostId?.let { postId ->
-                        // Navigate to food post detail
-                        // Note: You'll need to implement this navigation
-                    }
+        // Get location data from notification data map
+        val latitude = notification.data?.get("latitude")?.toFloatOrNull() ?: 0f
+        val longitude = notification.data?.get("longitude")?.toFloatOrNull() ?: 0f
+        val title = notification.data?.get("title") ?: ""
+
+        // Navigate based on notification type
+        when (notification.type) {
+            Notification.TYPE_NEW_FOOD_NEARBY, Notification.TYPE_POST_CLAIMED -> {
+                notification.relatedPostId?.let { postId ->
+                    findNavController().navigate(
+                        NotificationsFragmentDirections.actionNavigationNotificationsToPostDetails(
+                            postId = postId,
+                            title = title,
+                            latitude = latitude,
+                            longitude = longitude
+                        )
+                    )
                 }
-                else -> {
-                    // Handle other notification types
+            }
+            Notification.TYPE_POST_EXPIRED -> {
+                findNavController().navigate(
+                    NotificationsFragmentDirections.actionNavigationNotificationsToProfile()
+                )
+            }
+            else -> {
+                // For system notifications or unknown types, just mark as read
+                Snackbar.make(binding.root, notification.message, Snackbar.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    private fun observeViewModel() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.notifications.collectLatest { notifications ->
+                adapter.submitList(notifications)
+                binding.emptyView.visibility = if (notifications.isEmpty()) View.VISIBLE else View.GONE
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.isLoading.collectLatest { isLoading ->
+                binding.swipeRefreshLayout.isRefreshing = isLoading
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.error.collectLatest { error ->
+                error?.let {
+                    Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG).show()
                 }
             }
         }
@@ -90,4 +133,3 @@ class NotificationsFragment : Fragment() {
         _binding = null
     }
 }
-*/

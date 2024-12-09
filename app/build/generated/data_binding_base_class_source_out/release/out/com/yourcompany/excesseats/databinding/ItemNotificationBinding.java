@@ -4,6 +4,7 @@ package com.yourcompany.excesseats.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,17 +24,26 @@ public final class ItemNotificationBinding implements ViewBinding {
   public final TextView messageText;
 
   @NonNull
+  public final ImageView notificationIcon;
+
+  @NonNull
   public final TextView timeText;
 
   @NonNull
   public final TextView titleText;
 
+  @NonNull
+  public final View unreadIndicator;
+
   private ItemNotificationBinding(@NonNull MaterialCardView rootView, @NonNull TextView messageText,
-      @NonNull TextView timeText, @NonNull TextView titleText) {
+      @NonNull ImageView notificationIcon, @NonNull TextView timeText, @NonNull TextView titleText,
+      @NonNull View unreadIndicator) {
     this.rootView = rootView;
     this.messageText = messageText;
+    this.notificationIcon = notificationIcon;
     this.timeText = timeText;
     this.titleText = titleText;
+    this.unreadIndicator = unreadIndicator;
   }
 
   @Override
@@ -69,6 +79,12 @@ public final class ItemNotificationBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.notificationIcon;
+      ImageView notificationIcon = ViewBindings.findChildViewById(rootView, id);
+      if (notificationIcon == null) {
+        break missingId;
+      }
+
       id = R.id.timeText;
       TextView timeText = ViewBindings.findChildViewById(rootView, id);
       if (timeText == null) {
@@ -81,8 +97,14 @@ public final class ItemNotificationBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemNotificationBinding((MaterialCardView) rootView, messageText, timeText,
-          titleText);
+      id = R.id.unreadIndicator;
+      View unreadIndicator = ViewBindings.findChildViewById(rootView, id);
+      if (unreadIndicator == null) {
+        break missingId;
+      }
+
+      return new ItemNotificationBinding((MaterialCardView) rootView, messageText, notificationIcon,
+          timeText, titleText, unreadIndicator);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -1,20 +1,37 @@
-/*
 package com.yourcompany.excesseats.data.model
 
-data class Notification(
-    val id: String,
-    val title: String,
-    val message: String,
-    val timestamp: Long,
-    val isRead: Boolean = false,
-    val type: NotificationType = NotificationType.GENERAL,
-    val relatedPostId: String? = null
-)
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.DocumentId
+import com.google.firebase.firestore.PropertyName
+import com.google.firebase.firestore.ServerTimestamp
+import java.util.Date
 
-enum class NotificationType {
-    GENERAL,
-    FOOD_CLAIMED,
-    FOOD_EXPIRED,
-    NEW_FOOD_NEARBY
-}
-*/
+data class Notification(
+    @DocumentId
+    val id: String = "",
+
+    @PropertyName("userId")
+    val userId: String = "",
+
+    @PropertyName("title")
+    val title: String = "",
+
+    @PropertyName("message")
+    val message: String = "",
+
+    @ServerTimestamp
+    @PropertyName("timestamp")
+    val timestamp: Date = Date(),
+
+    @PropertyName("type")
+    val type: String = NotificationType.SYSTEM_MESSAGE.name,
+
+    @PropertyName("isRead")
+    var isRead: Boolean = false,
+
+    @PropertyName("relatedPostId")
+    val relatedPostId: String? = null,
+
+    @PropertyName("data")
+    val data: Map<String, String>? = null
+)

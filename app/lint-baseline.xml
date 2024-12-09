@@ -1,0 +1,1368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 8.1.0" type="baseline" client="gradle" dependencies="false" name="AGP (8.1.0)" variant="all" version="8.1.0">
+
+    <issue
+        id="OldTargetApi"
+        message="Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details."
+        errorLine1="        targetSdk 34"
+        errorLine2="        ~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="17"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="FragmentTagUsage"
+        message="Replace the &lt;fragment> tag with FragmentContainerView."
+        errorLine1="                    &lt;fragment"
+        errorLine2="                     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_item_posting.xml"
+            line="114"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="RedundantLabel"
+        message="Redundant label can be removed"
+        errorLine1="            android:label=&quot;@string/app_name&quot;>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="83"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UseSwitchCompatOrMaterialCode"
+        message="Use `SwitchCompat` from AppCompat or `SwitchMaterial` from Material library"
+        errorLine1="        val nearbyFoodSwitch = view.findViewById&lt;android.widget.Switch>(R.id.nearbyFoodSwitch)"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/yourcompany/excesseats/ui/notifications/NotificationPreferencesFragment.kt"
+            line="28"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UseSwitchCompatOrMaterialCode"
+        message="Use `SwitchCompat` from AppCompat or `SwitchMaterial` from Material library"
+        errorLine1="        val claimUpdatesSwitch = view.findViewById&lt;android.widget.Switch>(R.id.claimUpdatesSwitch)"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/yourcompany/excesseats/ui/notifications/NotificationPreferencesFragment.kt"
+            line="29"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UseSwitchCompatOrMaterialCode"
+        message="Use `SwitchCompat` from AppCompat or `SwitchMaterial` from Material library"
+        errorLine1="        val systemNotificationsSwitch = view.findViewById&lt;android.widget.Switch>(R.id.systemNotificationsSwitch)"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/yourcompany/excesseats/ui/notifications/NotificationPreferencesFragment.kt"
+            line="30"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UseSwitchCompatOrMaterialXml"
+        message="Use `SwitchCompat` from AppCompat or `SwitchMaterial` from Material library"
+        errorLine1="            &lt;Switch"
+        errorLine2="            ^">
+        <location
+            file="src/main/res/layout/fragment_notification_preferences.xml"
+            line="43"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UseSwitchCompatOrMaterialXml"
+        message="Use `SwitchCompat` from AppCompat or `SwitchMaterial` from Material library"
+        errorLine1="            &lt;Switch"
+        errorLine2="            ^">
+        <location
+            file="src/main/res/layout/fragment_notification_preferences.xml"
+            line="87"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UseSwitchCompatOrMaterialXml"
+        message="Use `SwitchCompat` from AppCompat or `SwitchMaterial` from Material library"
+        errorLine1="            &lt;Switch"
+        errorLine2="            ^">
+        <location
+            file="src/main/res/layout/fragment_notification_preferences.xml"
+            line="131"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.core:core-ktx than 1.12.0 is available: 1.15.0"
+        errorLine1="    implementation &apos;androidx.core:core-ktx:1.12.0&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="55"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.appcompat:appcompat than 1.6.1 is available: 1.7.0"
+        errorLine1="    implementation &apos;androidx.appcompat:appcompat:1.6.1&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="56"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.google.android.material:material than 1.10.0 is available: 1.12.0"
+        errorLine1="    implementation &apos;com.google.android.material:material:1.10.0&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="57"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.constraintlayout:constraintlayout than 2.1.4 is available: 2.2.0"
+        errorLine1="    implementation &apos;androidx.constraintlayout:constraintlayout:2.1.4&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="58"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.6.2 is available: 2.8.7"
+        errorLine1="    implementation &apos;androidx.lifecycle:lifecycle-livedata-ktx:2.6.2&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="59"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.6.2 is available: 2.8.7"
+        errorLine1="    implementation &apos;androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="60"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.navigation:navigation-fragment-ktx than 2.7.5 is available: 2.8.4"
+        errorLine1="    implementation &apos;androidx.navigation:navigation-fragment-ktx:2.7.5&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="61"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.navigation:navigation-ui-ktx than 2.7.5 is available: 2.8.4"
+        errorLine1="    implementation &apos;androidx.navigation:navigation-ui-ktx:2.7.5&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="62"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.google.firebase:firebase-bom than 32.6.0 is available: 33.7.0"
+        errorLine1="    implementation platform(&apos;com.google.firebase:firebase-bom:32.6.0&apos;)"
+        errorLine2="                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="66"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.google.android.gms:play-services-auth than 20.7.0 is available: 21.2.0"
+        errorLine1="    implementation &apos;com.google.android.gms:play-services-auth:20.7.0&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="75"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.google.android.gms:play-services-maps than 18.2.0 is available: 19.0.0"
+        errorLine1="    implementation &apos;com.google.android.gms:play-services-maps:18.2.0&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="76"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.google.android.gms:play-services-location than 21.0.1 is available: 21.3.0"
+        errorLine1="    implementation &apos;com.google.android.gms:play-services-location:21.0.1&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="77"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.google.android.libraries.places:places than 3.3.0 is available: 4.1.0"
+        errorLine1="    implementation &apos;com.google.android.libraries.places:places:3.3.0&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="78"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.test.ext:junit than 1.1.5 is available: 1.2.1"
+        errorLine1="    androidTestImplementation &apos;androidx.test.ext:junit:1.1.5&apos;"
+        errorLine2="                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="91"
+            column="31"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.test.espresso:espresso-core than 3.5.1 is available: 3.6.1"
+        errorLine1="    androidTestImplementation &apos;androidx.test.espresso:espresso-core:3.5.1&apos;"
+        errorLine2="                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="92"
+            column="31"/>
+    </issue>
+
+    <issue
+        id="DataBindingWithoutKapt"
+        message="If you plan to use data binding in a Kotlin project, you should apply the kotlin-kapt plugin."
+        errorLine1="        dataBinding true"
+        errorLine2="        ~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="33"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UseAppTint"
+        message="Must use `app:tint` instead of `android:tint`"
+        errorLine1="                                android:tint=&quot;?attr/colorPrimary&quot;"
+        errorLine2="                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_user_profile.xml"
+            line="163"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="UseAppTint"
+        message="Must use `app:tint` instead of `android:tint`"
+        errorLine1="                                android:tint=&quot;?attr/colorPrimary&quot;"
+        errorLine2="                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_user_profile.xml"
+            line="192"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="                        &lt;LinearLayout"
+        errorLine2="                         ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_food_post_detail.xml"
+            line="74"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="                        &lt;LinearLayout"
+        errorLine2="                         ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_food_post_detail.xml"
+            line="96"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="                        &lt;LinearLayout"
+        errorLine2="                         ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_food_post_detail.xml"
+            line="118"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="                        &lt;LinearLayout"
+        errorLine2="                         ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_food_post_detail.xml"
+            line="140"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="                        &lt;LinearLayout"
+        errorLine2="                         ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_food_post_detail.xml"
+            line="162"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="                &lt;LinearLayout"
+        errorLine2="                 ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_food_post.xml"
+            line="84"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="                &lt;LinearLayout"
+        errorLine2="                 ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_food_post.xml"
+            line="106"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="                &lt;LinearLayout"
+        errorLine2="                 ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_food_post.xml"
+            line="128"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="                &lt;LinearLayout"
+        errorLine2="                 ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_food_post.xml"
+            line="150"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="DisableBaselineAlignment"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance"
+        errorLine1="            &lt;LinearLayout"
+        errorLine2="             ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_user_profile.xml"
+            line="33"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="DisableBaselineAlignment"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance"
+        errorLine1="                    &lt;LinearLayout"
+        errorLine2="                     ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_user_profile.xml"
+            line="146"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@android:color/white` with a theme that also paints a background (inferred theme is `@style/Theme.ExcessEats`)"
+        errorLine1="    android:background=&quot;@android:color/white&quot;>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_notification_preferences.xml"
+            line="5"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `#000000` with a theme that also paints a background (inferred theme is `@style/Theme.ExcessEats`)"
+        errorLine1="    android:background=&quot;#000000&quot;>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_notifications.xml"
+            line="6"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.menu.bottom_navigation_menu` appears to be unused"
+        errorLine1="&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>"
+        errorLine2="^">
+        <location
+            file="src/main/res/menu/bottom_navigation_menu.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.purple_200` appears to be unused"
+        errorLine1="    &lt;color name=&quot;purple_200&quot;>#FFBB86FC&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="3"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.gray` appears to be unused"
+        errorLine1="    &lt;color name=&quot;gray&quot;>#FF757575&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="10"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.light_gray` appears to be unused"
+        errorLine1="    &lt;color name=&quot;light_gray&quot;>#FFF5F5F5&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="11"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_search` appears to be unused"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src/main/res/drawable/ic_search.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.list_item` appears to be unused"
+        errorLine1="&lt;TextView xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src/main/res/layout/list_item.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.title_detail` appears to be unused"
+        errorLine1="    &lt;string name=&quot;title_detail&quot;>Details&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="9"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.title_register` appears to be unused"
+        errorLine1="    &lt;string name=&quot;title_register&quot;>Create Account&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="12"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.action_back_to_login` appears to be unused"
+        errorLine1="    &lt;string name=&quot;action_back_to_login&quot;>Back to Login&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="20"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.action_sign_in` appears to be unused"
+        errorLine1="    &lt;string name=&quot;action_sign_in&quot;>Sign In&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="22"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.message_no_items` appears to be unused"
+        errorLine1="    &lt;string name=&quot;message_no_items&quot;>No items available nearby&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="25"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.message_no_notifications` appears to be unused"
+        errorLine1="    &lt;string name=&quot;message_no_notifications&quot;>No notifications yet&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="26"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.message_post_coming_soon` appears to be unused"
+        errorLine1="    &lt;string name=&quot;message_post_coming_soon&quot;>Posting feature coming soon!&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="27"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.message_profile_coming_soon` appears to be unused"
+        errorLine1="    &lt;string name=&quot;message_profile_coming_soon&quot;>Profile customization coming soon!&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="28"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.post_title` appears to be unused"
+        errorLine1="    &lt;string name=&quot;post_title&quot;>Post Available Food&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="31"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.button_post_food` appears to be unused"
+        errorLine1="    &lt;string name=&quot;button_post_food&quot;>Post Food&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="40"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.map_placeholder` appears to be unused"
+        errorLine1="    &lt;string name=&quot;map_placeholder&quot;>Google Maps Placeholder&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="41"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.array.food_types` appears to be unused"
+        errorLine1="    &lt;string-array name=&quot;food_types&quot;>"
+        errorLine2="                  ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="45"
+            column="19"/>
+    </issue>
+
+    <issue
+        id="MonochromeLauncherIcon"
+        message="The application adaptive icon is missing a monochrome tag"
+        errorLine1="&lt;adaptive-icon xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>"
+        errorLine2="^">
+        <location
+            file="src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="MonochromeLauncherIcon"
+        message="The application adaptive roundIcon is missing a monochrome tag"
+        errorLine1="&lt;adaptive-icon xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>"
+        errorLine2="^">
+        <location
+            file="src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_food_post_detail.xml"
+            line="37"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                            &lt;ImageView"
+        errorLine2="                             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_food_post_detail.xml"
+            line="81"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                            &lt;ImageView"
+        errorLine2="                             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_food_post_detail.xml"
+            line="103"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                            &lt;ImageView"
+        errorLine2="                             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_food_post_detail.xml"
+            line="125"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                            &lt;ImageView"
+        errorLine2="                             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_food_post_detail.xml"
+            line="147"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                            &lt;ImageView"
+        errorLine2="                             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_food_post_detail.xml"
+            line="168"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_item_posting.xml"
+            line="185"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_notifications.xml"
+            line="63"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_food_post.xml"
+            line="21"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                    &lt;ImageView"
+        errorLine2="                     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_food_post.xml"
+            line="91"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                    &lt;ImageView"
+        errorLine2="                     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_food_post.xml"
+            line="113"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                    &lt;ImageView"
+        errorLine2="                     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_food_post.xml"
+            line="135"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                    &lt;ImageView"
+        errorLine2="                     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_food_post.xml"
+            line="157"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_notification.xml"
+            line="26"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="LabelFor"
+        message="Missing accessibility label: provide either a view with an `android:labelFor` that references this view or provide an `android:hint`"
+        errorLine1="                    &lt;AutoCompleteTextView"
+        errorLine2="                     ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_item_posting.xml"
+            line="80"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="                timeText.text = &quot;Available until ${timeFormat.format(foodPost.pickupTime)}&quot;"
+        errorLine2="                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/yourcompany/excesseats/ui/discovery/adapters/FoodPostAdapter.kt"
+            line="53"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                timeText.text = &quot;Available until ${timeFormat.format(foodPost.pickupTime)}&quot;"
+        errorLine2="                                 ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/yourcompany/excesseats/ui/discovery/adapters/FoodPostAdapter.kt"
+            line="53"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="                timeText.text = &quot;Available until ${timeFormat.format(foodPost.pickupTime)}&quot;"
+        errorLine2="                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostAdapter.kt"
+            line="55"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                timeText.text = &quot;Available until ${timeFormat.format(foodPost.pickupTime)}&quot;"
+        errorLine2="                                 ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostAdapter.kt"
+            line="55"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="                quantityText.text = &quot;$remainingServings left of ${foodPost.quantity}&quot;"
+        errorLine2="                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/yourcompany/excesseats/ui/discovery/adapters/FoodPostAdapter.kt"
+            line="58"
+            column="37"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                quantityText.text = &quot;$remainingServings left of ${foodPost.quantity}&quot;"
+        errorLine2="                                                       ~~~~~~~~~">
+        <location
+            file="src/main/java/com/yourcompany/excesseats/ui/discovery/adapters/FoodPostAdapter.kt"
+            line="58"
+            column="56"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="                    distanceText.text = &quot;${distance.roundToInt()} km away&quot;"
+        errorLine2="                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostAdapter.kt"
+            line="80"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    distanceText.text = &quot;${distance.roundToInt()} km away&quot;"
+        errorLine2="                                                                 ~~~~~~~~">
+        <location
+            file="src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostAdapter.kt"
+            line="80"
+            column="66"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="                quantityText.text = &quot;$remainingServings left of ${post.quantity}&quot;"
+        errorLine2="                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt"
+            line="109"
+            column="37"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                quantityText.text = &quot;$remainingServings left of ${post.quantity}&quot;"
+        errorLine2="                                                       ~~~~~~~~~">
+        <location
+            file="src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt"
+            line="109"
+            column="56"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="                        postedByText.text = &quot;Posted by: ${user.name}&quot;"
+        errorLine2="                                            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt"
+            line="114"
+            column="45"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                        postedByText.text = &quot;Posted by: ${user.name}&quot;"
+        errorLine2="                                             ~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt"
+            line="114"
+            column="46"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                        postedByText.text = &quot;Posted by: Anonymous&quot;"
+        errorLine2="                                             ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt"
+            line="116"
+            column="46"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                        binding.claimButton.text = &quot;Claimed&quot;"
+        errorLine2="                                                    ~~~~~~~">
+        <location
+            file="src/main/java/com/yourcompany/excesseats/ui/discovery/FoodPostDetailFragment.kt"
+            line="223"
+            column="53"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="                binding.distanceText.text = &quot;$maxDistance km&quot;"
+        errorLine2="                                            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/yourcompany/excesseats/ui/discovery/ItemDiscoveryFragment.kt"
+            line="121"
+            column="45"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                binding.distanceText.text = &quot;$maxDistance km&quot;"
+        errorLine2="                                                         ~~~">
+        <location
+            file="src/main/java/com/yourcompany/excesseats/ui/discovery/ItemDiscoveryFragment.kt"
+            line="121"
+            column="58"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Phone Number&quot;, should use `@string` resource"
+        errorLine1="            android:hint=&quot;Phone Number&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_register.xml"
+            line="68"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Claim Food&quot;, should use `@string` resource"
+        errorLine1="                        android:text=&quot;Claim Food&quot;"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_food_post_detail.xml"
+            line="196"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Get Directions&quot;, should use `@string` resource"
+        errorLine1="                        android:text=&quot;Get Directions&quot;"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_food_post_detail.xml"
+            line="203"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Search food posts&quot;, should use `@string` resource"
+        errorLine1="                android:hint=&quot;Search food posts&quot;>"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_item_discovery.xml"
+            line="40"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Filters&quot;, should use `@string` resource"
+        errorLine1="                        android:text=&quot;Filters&quot;"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_item_discovery.xml"
+            line="74"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Food Types&quot;, should use `@string` resource"
+        errorLine1="                        android:text=&quot;Food Types&quot;"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_item_discovery.xml"
+            line="82"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Maximum Distance&quot;, should use `@string` resource"
+        errorLine1="                        android:text=&quot;Maximum Distance&quot;"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_item_discovery.xml"
+            line="99"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;25 km&quot;, should use `@string` resource"
+        errorLine1="                            android:text=&quot;25 km&quot;"
+        errorLine2="                            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_item_discovery.xml"
+            line="122"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Nearby Food Posts&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;Nearby Food Posts&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_item_discovery.xml"
+            line="135"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Post Available Food&quot;, should use `@string` resource"
+        errorLine1="                    android:text=&quot;Post Available Food&quot;"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_item_posting.xml"
+            line="49"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Nearby Food Notifications&quot;, should use `@string` resource"
+        errorLine1="                    android:text=&quot;Nearby Food Notifications&quot;"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_notification_preferences.xml"
+            line="29"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Get notified when new food is posted near you&quot;, should use `@string` resource"
+        errorLine1="                    android:text=&quot;Get notified when new food is posted near you&quot;"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_notification_preferences.xml"
+            line="38"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Claim Updates&quot;, should use `@string` resource"
+        errorLine1="                    android:text=&quot;Claim Updates&quot;"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_notification_preferences.xml"
+            line="73"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Get notified when someone claims your food posts&quot;, should use `@string` resource"
+        errorLine1="                    android:text=&quot;Get notified when someone claims your food posts&quot;"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_notification_preferences.xml"
+            line="82"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;System Notifications&quot;, should use `@string` resource"
+        errorLine1="                    android:text=&quot;System Notifications&quot;"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_notification_preferences.xml"
+            line="117"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Get notified about important system updates and announcements&quot;, should use `@string` resource"
+        errorLine1="                    android:text=&quot;Get notified about important system updates and announcements&quot;"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_notification_preferences.xml"
+            line="126"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;No notifications yet&quot;, should use `@string` resource"
+        errorLine1="            android:text=&quot;No notifications yet&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_notifications.xml"
+            line="74"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;You&apos;ll receive notifications about new food posts nearby and when someone claims your posts&quot;, should use `@string` resource"
+        errorLine1="            android:text=&quot;You&apos;ll receive notifications about new food posts nearby and when someone claims your posts&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_notifications.xml"
+            line="83"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Profile picture&quot;, should use `@string` resource"
+        errorLine1="                        android:contentDescription=&quot;Profile picture&quot; />"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_user_profile.xml"
+            line="54"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Edit profile picture&quot;, should use `@string` resource"
+        errorLine1="                        android:contentDescription=&quot;Edit profile picture&quot; />"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_user_profile.xml"
+            line="68"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Name&quot;, should use `@string` resource"
+        errorLine1="                        android:hint=&quot;Name&quot;"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_user_profile.xml"
+            line="82"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Email&quot;, should use `@string` resource"
+        errorLine1="                android:hint=&quot;Email&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_user_profile.xml"
+            line="99"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Phone&quot;, should use `@string` resource"
+        errorLine1="                android:hint=&quot;Phone&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_user_profile.xml"
+            line="114"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Your Impact&quot;, should use `@string` resource"
+        errorLine1="                        android:text=&quot;Your Impact&quot;"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_user_profile.xml"
+            line="142"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Meals claimed&quot;, should use `@string` resource"
+        errorLine1="                                android:contentDescription=&quot;Meals claimed&quot; />"
+        errorLine2="                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_user_profile.xml"
+            line="164"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;0&quot;, should use `@string` resource"
+        errorLine1="                                android:text=&quot;0&quot;"
+        errorLine2="                                ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_user_profile.xml"
+            line="170"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Meals Claimed&quot;, should use `@string` resource"
+        errorLine1="                                android:text=&quot;Meals Claimed&quot;"
+        errorLine2="                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_user_profile.xml"
+            line="176"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Food waste prevented&quot;, should use `@string` resource"
+        errorLine1="                                android:contentDescription=&quot;Food waste prevented&quot; />"
+        errorLine2="                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_user_profile.xml"
+            line="193"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;0 lbs&quot;, should use `@string` resource"
+        errorLine1="                                android:text=&quot;0 lbs&quot;"
+        errorLine2="                                ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_user_profile.xml"
+            line="199"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Waste Prevented&quot;, should use `@string` resource"
+        errorLine1="                                android:text=&quot;Waste Prevented&quot;"
+        errorLine2="                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_user_profile.xml"
+            line="205"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Save Changes&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;Save Changes&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_user_profile.xml"
+            line="217"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Claimed by you&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;Claimed by you&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_food_post.xml"
+            line="42"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Claim&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;Claim&quot; />"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/item_food_post.xml"
+            line="178"
+            column="17"/>
+    </issue>
+
+</issues>

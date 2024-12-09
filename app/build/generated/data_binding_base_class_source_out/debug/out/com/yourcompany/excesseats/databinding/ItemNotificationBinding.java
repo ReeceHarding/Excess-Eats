@@ -4,6 +4,7 @@ package com.yourcompany.excesseats.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,20 +21,25 @@ public final class ItemNotificationBinding implements ViewBinding {
   private final MaterialCardView rootView;
 
   @NonNull
-  public final TextView messageText;
+  public final ImageButton buttonDelete;
 
   @NonNull
-  public final TextView timeText;
+  public final TextView textMessage;
 
   @NonNull
-  public final TextView titleText;
+  public final TextView textTimestamp;
 
-  private ItemNotificationBinding(@NonNull MaterialCardView rootView, @NonNull TextView messageText,
-      @NonNull TextView timeText, @NonNull TextView titleText) {
+  @NonNull
+  public final TextView textTitle;
+
+  private ItemNotificationBinding(@NonNull MaterialCardView rootView,
+      @NonNull ImageButton buttonDelete, @NonNull TextView textMessage,
+      @NonNull TextView textTimestamp, @NonNull TextView textTitle) {
     this.rootView = rootView;
-    this.messageText = messageText;
-    this.timeText = timeText;
-    this.titleText = titleText;
+    this.buttonDelete = buttonDelete;
+    this.textMessage = textMessage;
+    this.textTimestamp = textTimestamp;
+    this.textTitle = textTitle;
   }
 
   @Override
@@ -63,26 +69,32 @@ public final class ItemNotificationBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.messageText;
-      TextView messageText = ViewBindings.findChildViewById(rootView, id);
-      if (messageText == null) {
+      id = R.id.buttonDelete;
+      ImageButton buttonDelete = ViewBindings.findChildViewById(rootView, id);
+      if (buttonDelete == null) {
         break missingId;
       }
 
-      id = R.id.timeText;
-      TextView timeText = ViewBindings.findChildViewById(rootView, id);
-      if (timeText == null) {
+      id = R.id.textMessage;
+      TextView textMessage = ViewBindings.findChildViewById(rootView, id);
+      if (textMessage == null) {
         break missingId;
       }
 
-      id = R.id.titleText;
-      TextView titleText = ViewBindings.findChildViewById(rootView, id);
-      if (titleText == null) {
+      id = R.id.textTimestamp;
+      TextView textTimestamp = ViewBindings.findChildViewById(rootView, id);
+      if (textTimestamp == null) {
         break missingId;
       }
 
-      return new ItemNotificationBinding((MaterialCardView) rootView, messageText, timeText,
-          titleText);
+      id = R.id.textTitle;
+      TextView textTitle = ViewBindings.findChildViewById(rootView, id);
+      if (textTitle == null) {
+        break missingId;
+      }
+
+      return new ItemNotificationBinding((MaterialCardView) rootView, buttonDelete, textMessage,
+          textTimestamp, textTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

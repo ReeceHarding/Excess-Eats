@@ -3,12 +3,14 @@
     <string name="app_name">ExcessEats</string>
     <string name="google_maps_key">AIzaSyAJ5IZslt0hKP3DjFUHg9dbOhZRNhcybYo</string>
 
-    <!-- Navigation Titles -->
+    <!-- Navigation -->
+    <string name="title_home">Home</string>
+    <string name="title_map">Map</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_profile">Profile</string>
     <string name="title_discover">Discover</string>
     <string name="title_post">Post</string>
     <string name="title_detail">Details</string>
-    <string name="title_profile">Profile</string>
-    <string name="title_notifications">Notifications</string>
     <string name="title_register">Create Account</string>
 
     <!-- Authentication -->
@@ -53,6 +55,9 @@
     <!-- Error Messages -->
     <string name="error_place_selection">Error selecting place: %1$s</string>
     <string name="error_location_setup">Error setting up location autocomplete</string>
+    <string name="error_generic">Something went wrong</string>
+    <string name="error_no_internet">No internet connection</string>
+    <string name="error_try_again">Please try again</string>
 
     <!-- Image Upload -->
     <string name="select_image_source">Select Image Source</string>
@@ -60,7 +65,21 @@
     <string name="gallery">Gallery</string>
     <string name="camera_permission_title">Camera Permission Required</string>
     <string name="camera_permission_rationale">Camera permission is needed to take pictures of the food items.</string>
+    <string name="permission_denied_camera">Camera permission denied. You can\'t take pictures.</string>
+
+    <!-- Notifications -->
+    <string name="notification_empty_title">No notifications yet</string>
+    <string name="notification_empty_message">You\'ll see notifications about new food posts and updates here</string>
+    <string name="notification_delete">Delete notification</string>
+    <string name="default_notification_channel_id">excess_eats_notifications</string>
+
+    <!-- Common Actions -->
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="action_filter">Filter</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Cancel</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
-    <string name="permission_denied_camera">Camera permission denied. You can\'t take pictures.</string>
 </resources>

@@ -637,8 +637,6 @@ attr gapBetweenBars
 attr gestureInsetBottomIgnored
 attr goIcon
 attr graph
-attr graphPackage
-attr graphResName
 attr guidelineUseRtl
 attr haloColor
 attr haloRadius
@@ -918,7 +916,6 @@ attr mock_labelBackgroundColor
 attr mock_labelColor
 attr mock_showDiagonals
 attr mock_showLabel
-attr moduleName
 attr motionDebug
 attr motionDurationExtraLong1
 attr motionDurationExtraLong2
@@ -1037,7 +1034,6 @@ attr pressedTranslationZ
 attr primaryActivityName
 attr progressBarPadding
 attr progressBarStyle
-attr progressDestination
 attr quantizeMotionInterpolator
 attr quantizeMotionPhase
 attr quantizeMotionSteps
@@ -1174,6 +1170,7 @@ attr suffixText
 attr suffixTextAppearance
 attr suffixTextColor
 attr suggestionRowLayout
+attr swipeRefreshLayoutProgressSpinnerBackgroundColor
 attr switchMinWidth
 attr switchPadding
 attr switchStyle
@@ -3469,6 +3466,7 @@ drawable ic_camera
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
 drawable ic_container
+drawable ic_delete
 drawable ic_directions
 drawable ic_discover
 drawable ic_email
@@ -3484,6 +3482,7 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_notification
 drawable ic_notifications
 drawable ic_person
 drawable ic_phone
@@ -3561,6 +3560,7 @@ drawable notification_bg_low_pressed
 drawable notification_bg_normal
 drawable notification_bg_normal_pressed
 drawable notification_icon_background
+drawable notification_oversize_large_icon_bg
 drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
@@ -3636,7 +3636,6 @@ id action_bar_title
 id action_container
 id action_context_bar
 id action_divider
-id action_foodPostDetailFragment_to_navigation_discover
 id action_image
 id action_itemDiscoveryFragment_to_foodPostDetailFragment
 id action_menu_divider
@@ -3644,6 +3643,11 @@ id action_menu_presenter
 id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
+id action_navigation_home_to_postDetails
+id action_navigation_map_to_postDetails
+id action_navigation_notifications_to_postDetails
+id action_navigation_notifications_to_profile
+id action_navigation_profile_to_postDetails
 id action_text
 id actions
 id activity_chooser_view_content
@@ -3687,6 +3691,7 @@ id browser_actions_menu_items
 id browser_actions_menu_view
 id btnLogin
 id btnRegister
+id buttonDelete
 id buttonPanel
 id cache_measures
 id callMeasure
@@ -3705,6 +3710,7 @@ id checked
 id chronometer
 id circle_center
 id claimButton
+id claimUpdatesSwitch
 id claimedChip
 id claimedOverlay
 id clear_text
@@ -3732,6 +3738,7 @@ id custom
 id customPanel
 id cut
 id dark
+id dataBinding
 id date_picker_actions
 id decelerate
 id decelerateAndComplete
@@ -3747,7 +3754,6 @@ id design_menu_item_action_area
 id design_menu_item_action_area_stub
 id design_menu_item_text
 id design_navigation_view
-id dfn_progress_fragment
 id dialog_button
 id dimensions
 id direct
@@ -3775,6 +3781,7 @@ id east
 id edge
 id editProfileImageButton
 id edit_query
+id edit_text_id
 id elastic
 id emailEditText
 id embed
@@ -3783,7 +3790,6 @@ id end
 id endToStart
 id enterAlways
 id enterAlwaysCollapsed
-id errorFragment
 id etDisplayName
 id etEmail
 id etPassword
@@ -3805,7 +3811,6 @@ id fixed
 id flip
 id floating
 id foodImageView
-id foodPostDetailFragment
 id foodPostsRecyclerView
 id foodTypeChip
 id foodTypeChipGroup
@@ -3826,6 +3831,7 @@ id group_divider
 id grouping
 id groups
 id header_title
+id hide_ime_id
 id hideable
 id home
 id homeAsUp
@@ -3844,12 +3850,10 @@ id immediateStop
 id included
 id indeterminate
 id info
-id installation_progress
 id invisible
 id inward
 id italic
 id itemDiscoveryFragment
-id itemPostingFragment
 id item_touch_helper_previous_elevation
 id jumpToEnd
 id jumpToStart
@@ -3898,7 +3902,6 @@ id material_value_index
 id matrix
 id mealsClaimedText
 id message
-id messageText
 id middle
 id mini
 id month_grid
@@ -3945,8 +3948,12 @@ id navigation_bar_item_large_label_view
 id navigation_bar_item_small_label_view
 id navigation_discover
 id navigation_header_container
+id navigation_home
+id navigation_map
+id navigation_notifications
 id navigation_post
 id navigation_profile
+id nearbyFoodSwitch
 id never
 id neverCompleteToEnd
 id neverCompleteToStart
@@ -3958,9 +3965,10 @@ id north
 id notification_background
 id notification_main_column
 id notification_main_column_container
-id notificationsRecyclerView
 id off
 id on
+id onAttachStateChangeListener
+id onDateChanged
 id onInterceptTouchReturnSwipe
 id open_search_bar_text_view
 id open_search_view_background
@@ -4013,22 +4021,21 @@ id places_autocomplete_search_input
 id places_autocomplete_try_again
 id places_autocomplete_try_again_progress
 id position
+id postDetailsFragment
 id postLayout
 id postedByText
 id pressed
 id profileImage
 id progressBar
-id progress_action
 id progress_circular
 id progress_horizontal
-id progress_icon
-id progress_title
 id quantityInput
 id quantityLayout
 id quantityText
 id radio
 id ratio
 id rectangles
+id recyclerViewNotifications
 id report_drawn
 id reverseSawtooth
 id right
@@ -4106,6 +4113,8 @@ id submenuarrow
 id submitButton
 id submit_area
 id supportScrollUp
+id swipeRefreshLayout
+id systemNotificationsSwitch
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -4124,10 +4133,14 @@ id terrain
 id text
 id text2
 id textEnd
+id textMessage
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
+id textTimestamp
+id textTitle
 id textTop
+id textWatcher
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -4164,7 +4177,6 @@ id unlabeled
 id up
 id uploadImageButton
 id useLogo
-id userProfileFragment
 id vertical_only
 id view_offset_helper
 id view_transition
@@ -4322,12 +4334,14 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
-layout dynamic_feature_install_fragment
 layout fragment_food_post_detail
 layout fragment_item_discovery
 layout fragment_item_posting
+layout fragment_notification_preferences
 layout fragment_notifications
 layout fragment_user_profile
+layout ime_base_split_test_activity
+layout ime_secondary_split_test_activity
 layout item_food_post
 layout item_notification
 layout list_item
@@ -4407,7 +4421,6 @@ mipmap ic_launcher_round
 navigation nav_graph
 plurals mtrl_badge_content_description
 raw firebase_common_keep
-raw keep
 raw places_keep
 string abc_action_bar_home_description
 string abc_action_bar_up_description
@@ -4437,9 +4450,15 @@ string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string action_back_to_login
+string action_cancel
+string action_filter
 string action_login
 string action_logout
+string action_ok
 string action_register
+string action_retry
+string action_search
+string action_settings
 string action_sign_in
 string androidx_startup
 string app_name
@@ -4486,17 +4505,22 @@ string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
 string copy_toast_msg
+string default_notification_channel_id
 string dest_title
 string error_a11y_label
+string error_generic
 string error_icon_content_description
 string error_location_setup
+string error_no_internet
 string error_place_selection
+string error_try_again
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string fallback_menu_item_copy_link
 string fallback_menu_item_open_in_browser
 string fallback_menu_item_share_link
+string fcm_fallback_notification_channel_label
 string firebase_database_url
 string gallery
 string gcm_defaultSenderId
@@ -4516,9 +4540,6 @@ string hint_password
 string hint_pickup_time
 string hint_quantity
 string icon_content_description
-string installation_cancelled
-string installation_failed
-string installing_module
 string item_view_role_description
 string label_containers_available
 string m3_exceed_max_badge_text_suffix
@@ -4628,6 +4649,9 @@ string mtrl_timepicker_cancel
 string mtrl_timepicker_confirm
 string nav_app_bar_navigate_up_description
 string nav_app_bar_open_drawer_description
+string notification_delete
+string notification_empty_message
+string notification_empty_title
 string ok
 string password_toggle_content_description
 string path_password_eye
@@ -4644,9 +4668,7 @@ string places_powered_by_google
 string places_search_error
 string places_try_again
 string post_title
-string progress
 string project_id
-string retry
 string search_menu_title
 string searchbar_scrolling_view_behavior
 string searchview_clear_text_content_description
@@ -4658,6 +4680,8 @@ string status_bar_notification_info_overflow
 string submit
 string title_detail
 string title_discover
+string title_home
+string title_map
 string title_notifications
 string title_post
 string title_profile
@@ -5294,7 +5318,6 @@ style Theme_MaterialComponents_Light_NoActionBar
 style Theme_MaterialComponents_Light_NoActionBar_Bridge
 style Theme_MaterialComponents_NoActionBar
 style Theme_MaterialComponents_NoActionBar_Bridge
-style Theme_PlayCore_Transparent
 style ThemeOverlay_AppCompat
 style ThemeOverlay_AppCompat_ActionBar
 style ThemeOverlay_AppCompat_Dark
@@ -5838,10 +5861,6 @@ styleable CustomAttribute attributeName customBoolean customColorDrawableValue c
 styleable DialogFragmentNavigator android_name
 styleable DrawerArrowToggle arrowHeadLength arrowShaftLength barLength color drawableSize gapBetweenBars spinBars thickness
 styleable DrawerLayout elevation
-styleable DynamicActivityNavigator moduleName
-styleable DynamicFragmentNavigator moduleName
-styleable DynamicGraphNavigator moduleName progressDestination
-styleable DynamicIncludeGraphNavigator graphPackage graphResName moduleName
 styleable ExtendedFloatingActionButton collapsedSize elevation extendMotionSpec extendStrategy hideMotionSpec showMotionSpec shrinkMotionSpec
 styleable ExtendedFloatingActionButton_Behavior_Layout behavior_autoHide behavior_autoShrink
 styleable FloatingActionButton android_enabled backgroundTint backgroundTintMode borderWidth elevation ensureMinTouchTargetSize fabCustomSize fabSize hideMotionSpec hoveredFocusedTranslationZ maxImageSize pressedTranslationZ rippleColor shapeAppearance shapeAppearanceOverlay showMotionSpec useCompatPadding
@@ -5941,6 +5960,7 @@ styleable State android_id constraints
 styleable StateListDrawable android_dither android_visible android_variablePadding android_constantSize android_enterFadeDuration android_exitFadeDuration
 styleable StateListDrawableItem android_drawable
 styleable StateSet defaultState
+styleable SwipeRefreshLayout swipeRefreshLayoutProgressSpinnerBackgroundColor
 styleable SwitchCompat android_textOn android_textOff android_thumb showText splitTrack switchMinWidth switchPadding switchTextAppearance thumbTextPadding thumbTint thumbTintMode track trackTint trackTintMode
 styleable SwitchMaterial useMaterialThemeColors
 styleable TabItem android_icon android_layout android_text
@@ -5964,4 +5984,5 @@ styleable include constraintSet
 xml backup_rules
 xml data_extraction_rules
 xml file_paths
+xml ga_ad_services_config
 xml image_share_filepaths
