@@ -14,10 +14,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="28" />
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <!-- Features -->
@@ -33,13 +32,30 @@
 
     <!-- Queries -->
     <queries>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.GET_CONTENT" />
 
-        <!-- Needs to be explicitly declared on Android R+ -->
-        <package android:name="com.google.android.apps.maps" />
-        <!-- Add Google Photos provider -->
+            <data android:mimeType="image/*" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.PICK" />
+
+            <data android:mimeType="image/*" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.OPEN_DOCUMENT" />
+
+            <data android:mimeType="image/*" />
+        </intent>
+
         <package android:name="com.google.android.apps.photos" />
 
         <provider android:authorities="com.google.android.apps.photos.contentprovider" />
+        <!-- Needs to be explicitly declared on Android R+ -->
+        <package android:name="com.google.android.apps.maps" />
     </queries>
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -65,6 +81,7 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ExcessEats" >
@@ -97,7 +114,10 @@
             android:theme="@style/Theme.ExcessEats.NoActionBar" />
         <activity
             android:name="com.yourcompany.excesseats.MainActivity"
-            android:exported="false" />
+            android:exported="true"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan|adjustResize" >
+        </activity>
 
         <!-- Maps API Key -->
         <meta-data

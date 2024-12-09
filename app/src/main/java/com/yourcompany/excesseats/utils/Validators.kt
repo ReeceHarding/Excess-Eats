@@ -36,7 +36,7 @@ object Validators {
 
     // Item description validation
     fun isValidDescription(description: String): Boolean {
-        return description.isNotEmpty() && description.length <= Constants.MAX_DESCRIPTION_LENGTH
+        return description.length <= Constants.MAX_DESCRIPTION_LENGTH
     }
 
     // Quantity validation

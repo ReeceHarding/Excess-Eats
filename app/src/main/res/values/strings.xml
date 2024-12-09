@@ -34,7 +34,7 @@
     <string name="hint_quantity">E.g., 20 servings</string>
     <string name="hint_location">E.g., Student Union, Room 201</string>
     <string name="hint_pickup_time">Select pickup time</string>
-    <string name="hint_description">Provide any additional details about the food…</string>
+    <string name="hint_description">Provide any additional details about the food</string>
     <string name="label_containers_available">Containers available for pickup</string>
     <string name="button_upload_image">Upload Image</string>
     <string name="button_post_food">Post Food</string>
