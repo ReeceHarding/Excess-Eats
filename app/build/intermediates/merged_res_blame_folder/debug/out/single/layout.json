@@ -1,58 +1,58 @@
 [
     {
-        "merged": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/item_food_post.xml",
-        "source": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/item_food_post.xml"
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/activity_main.xml",
+        "source": "com.yourcompany.excesseats.app-main-66:/layout/activity_main.xml"
     },
     {
-        "merged": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_user_profile.xml",
-        "source": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/fragment_user_profile.xml"
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/item_food_post.xml",
+        "source": "com.yourcompany.excesseats.app-main-66:/layout/item_food_post.xml"
     },
     {
-        "merged": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/activity_register.xml",
-        "source": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/activity_register.xml"
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/list_item.xml",
+        "source": "com.yourcompany.excesseats.app-main-66:/layout/list_item.xml"
     },
     {
-        "merged": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/list_item.xml",
-        "source": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/list_item.xml"
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/activity_login.xml",
+        "source": "com.yourcompany.excesseats.app-main-66:/layout/activity_login.xml"
     },
     {
-        "merged": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_claimed.xml",
-        "source": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/fragment_claimed.xml"
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_user_profile.xml",
+        "source": "com.yourcompany.excesseats.app-main-66:/layout/fragment_user_profile.xml"
+    },
+    {
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_photo.xml",
+        "source": "com.yourcompany.excesseats.app-main-66:/layout/fragment_photo.xml"
     },
     {
         "merged": "com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_item_discovery.xml",
         "source": "com.yourcompany.excesseats.app-main-66:/layout/fragment_item_discovery.xml"
     },
     {
-        "merged": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_food_post_detail.xml",
-        "source": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/fragment_food_post_detail.xml"
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_food_post_detail.xml",
+        "source": "com.yourcompany.excesseats.app-main-66:/layout/fragment_food_post_detail.xml"
     },
     {
-        "merged": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_item_posting.xml",
-        "source": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/fragment_item_posting.xml"
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/item_notification.xml",
+        "source": "com.yourcompany.excesseats.app-main-66:/layout/item_notification.xml"
     },
     {
-        "merged": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_claimed_meals.xml",
-        "source": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/fragment_claimed_meals.xml"
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_claimed.xml",
+        "source": "com.yourcompany.excesseats.app-main-66:/layout/fragment_claimed.xml"
     },
     {
-        "merged": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/activity_main.xml",
-        "source": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/activity_main.xml"
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_item_posting.xml",
+        "source": "com.yourcompany.excesseats.app-main-66:/layout/fragment_item_posting.xml"
     },
     {
-        "merged": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_notifications.xml",
-        "source": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/fragment_notifications.xml"
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_notifications.xml",
+        "source": "com.yourcompany.excesseats.app-main-66:/layout/fragment_notifications.xml"
     },
     {
-        "merged": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_item_discovery.xml",
-        "source": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/fragment_item_discovery.xml"
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/activity_register.xml",
+        "source": "com.yourcompany.excesseats.app-main-66:/layout/activity_register.xml"
     },
     {
-        "merged": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/item_notification.xml",
-        "source": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/item_notification.xml"
-    },
-    {
-        "merged": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/activity_login.xml",
-        "source": "/Users/xerxis/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/activity_login.xml"
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_claimed_meals.xml",
+        "source": "com.yourcompany.excesseats.app-main-66:/layout/fragment_claimed_meals.xml"
     }
 ]

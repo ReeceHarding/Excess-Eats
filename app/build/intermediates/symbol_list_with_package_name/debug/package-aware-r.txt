@@ -3653,6 +3653,7 @@ id action_userProfileFragment_to_claimedMealsFragment
 id actions
 id activity_chooser_view_content
 id add
+id addPhotoButton
 id adjust_height
 id adjust_width
 id alertTitle
@@ -3705,6 +3706,7 @@ id center_vertical
 id chain
 id chain2
 id chains
+id changeFeaturedPhotoButton
 id checkbox
 id checked
 id chronometer
@@ -3801,6 +3803,7 @@ id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
 id fade
+id featuredPhoto
 id fill
 id fill_horizontal
 id fill_vertical
@@ -3999,6 +4002,7 @@ id pathRelative
 id peekHeight
 id percent
 id phoneEditText
+id photoGalleryRecyclerView
 id pickupTimeInput
 id pickupTimeLayout
 id pin
@@ -4336,6 +4340,7 @@ layout fragment_food_post_detail
 layout fragment_item_discovery
 layout fragment_item_posting
 layout fragment_notifications
+layout fragment_photo
 layout fragment_user_profile
 layout item_food_post
 layout item_notification
@@ -4450,6 +4455,7 @@ string action_login
 string action_logout
 string action_register
 string action_sign_in
+string add_photo
 string androidx_startup
 string app_name
 string appbar_scrolling_view_behavior
@@ -4472,6 +4478,7 @@ string camera
 string camera_permission_rationale
 string camera_permission_title
 string cancel
+string change_featured_photo
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
@@ -4506,6 +4513,7 @@ string fab_transformation_sheet_behavior
 string fallback_menu_item_copy_link
 string fallback_menu_item_open_in_browser
 string fallback_menu_item_share_link
+string featured_photo
 string firebase_database_url
 string gallery
 string gcm_defaultSenderId
@@ -4644,6 +4652,7 @@ string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
 string permission_denied_camera
+string photo_gallery
 string places_autocomplete_clear_button
 string places_autocomplete_label
 string places_autocomplete_no_results_for_query
@@ -4668,6 +4677,7 @@ string submit
 string title_detail
 string title_discover
 string title_notifications
+string title_photos
 string title_post
 string title_profile
 string title_register

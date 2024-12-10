@@ -37,10 +37,12 @@ id action_foodPostDetailFragment_to_navigation_discover
 id action_navigation_claimed_to_foodPostDetailFragment
 id action_navigation_discover_to_foodPostDetailFragment
 id action_userProfileFragment_to_claimedMealsFragment
+id addPhotoButton
 id autocomplete_fragment
 id bottomNavigationView
 id btnLogin
 id btnRegister
+id changeFeaturedPhotoButton
 id claimButton
 id claimedChip
 id claimedMealsFragment
@@ -64,6 +66,7 @@ id etDisplayName
 id etEmail
 id etPassword
 id etPhone
+id featuredPhoto
 id foodImageView
 id foodPostDetailFragment
 id foodPostsRecyclerView
@@ -88,6 +91,7 @@ id navigation_post
 id navigation_profile
 id notificationsRecyclerView
 id phoneEditText
+id photoGalleryRecyclerView
 id pickupTimeInput
 id pickupTimeLayout
 id postedByText
@@ -116,6 +120,7 @@ layout fragment_food_post_detail
 layout fragment_item_discovery
 layout fragment_item_posting
 layout fragment_notifications
+layout fragment_photo
 layout fragment_user_profile
 layout item_food_post
 layout item_notification
@@ -130,6 +135,7 @@ string action_login
 string action_logout
 string action_register
 string action_sign_in
+string add_photo
 string app_name
 string button_post_food
 string button_upload_image
@@ -137,8 +143,10 @@ string camera
 string camera_permission_rationale
 string camera_permission_title
 string cancel
+string change_featured_photo
 string error_location_setup
 string error_place_selection
+string featured_photo
 string firebase_database_url
 string gallery
 string gcm_defaultSenderId
@@ -164,6 +172,7 @@ string message_post_coming_soon
 string message_profile_coming_soon
 string ok
 string permission_denied_camera
+string photo_gallery
 string post_title
 string project_id
 string select_image_source
@@ -171,6 +180,7 @@ string submit
 string title_detail
 string title_discover
 string title_notifications
+string title_photos
 string title_post
 string title_profile
 string title_register
