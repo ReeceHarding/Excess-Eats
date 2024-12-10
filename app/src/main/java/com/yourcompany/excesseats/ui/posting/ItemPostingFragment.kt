@@ -135,6 +135,10 @@ class ItemPostingFragment : Fragment() {
         "Other"
     )
 
+    private var debugModeEnabled: Boolean = false
+
+    private val debugTag = "ItemPostingFragmentDebug"
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -146,6 +150,12 @@ class ItemPostingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        debugModeEnabled = requireActivity().intent.getBooleanExtra("DEBUG_MODE", false)
+        if (debugModeEnabled) {
+            Log.d(debugTag, "Debug mode is enabled.")
+        }
+
         setupToolbar()
         setupMap(savedInstanceState)
         setupLocationAutocomplete()
@@ -153,6 +163,15 @@ class ItemPostingFragment : Fragment() {
         setupFoodTypeDropdown()
         setupImageUpload()
         setupSubmitButton()
+
+        if (debugModeEnabled) {
+            logDebugInformation()
+        }
+    }
+
+    private fun logDebugInformation() {
+        Log.d(debugTag, "User authenticated: ${auth.currentUser != null}")
+        Log.d(debugTag, "Default food categories: ${foodCategories.joinToString(", ")}")
     }
 
     private fun setupToolbar() {
