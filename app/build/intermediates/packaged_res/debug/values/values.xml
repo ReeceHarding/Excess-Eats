@@ -22,6 +22,7 @@
     <string name="action_logout">Log Out</string>
     <string name="action_register">Register</string>
     <string name="action_sign_in">Sign In</string>
+    <string name="add_photo">Add Photo</string>
     <string name="app_name">ExcessEats</string>
     <string name="button_post_food">Post Food</string>
     <string name="button_upload_image">Upload Image</string>
@@ -29,8 +30,10 @@
     <string name="camera_permission_rationale">Camera permission is needed to take pictures of the food items.</string>
     <string name="camera_permission_title">Camera Permission Required</string>
     <string name="cancel">Cancel</string>
+    <string name="change_featured_photo">Change Featured Photo</string>
     <string name="error_location_setup">Error setting up location autocomplete</string>
     <string name="error_place_selection">Error selecting place: %1$s</string>
+    <string name="featured_photo">Featured Photo</string>
     <string name="firebase_database_url" translatable="false">https://excess-eats-c1b6a-default-rtdb.firebaseio.com</string>
     <string name="gallery">Gallery</string>
     <string name="gcm_defaultSenderId" translatable="false">276976352856</string>
@@ -56,6 +59,7 @@
     <string name="message_profile_coming_soon">Profile customization coming soon!</string>
     <string name="ok">OK</string>
     <string name="permission_denied_camera">Camera permission denied. You can\'t take pictures.</string>
+    <string name="photo_gallery">Photo Gallery</string>
     <string name="post_title">Post Available Food</string>
     <string name="project_id" translatable="false">excess-eats-c1b6a</string>
     <string name="select_image_source">Select Image Source</string>
@@ -63,6 +67,7 @@
     <string name="title_detail">Details</string>
     <string name="title_discover">Discover</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_photos">Photos</string>
     <string name="title_post">Post</string>
     <string name="title_profile">Profile</string>
     <string name="title_register">Create Account</string>

@@ -4,7 +4,7 @@
             "outputFile": "com.yourcompany.excesseats.app-mergeDebugResources-62:/values-v25/values-v25.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\zhuos\\.gradle\\caches\\8.10.2\\transforms\\26ba17d4213c0a6bce18608be2868975\\transformed\\appcompat-1.6.1\\res\\values-v25\\values-v25.xml",
+                    "source": "/Users/ai/.gradle/caches/8.10.2/transforms/26ba17d4213c0a6bce18608be2868975/transformed/appcompat-1.6.1/res/values-v25/values-v25.xml",
                     "from": {
                         "startLines": "2,3,4,6",
                         "startColumns": "4,4,4,4",

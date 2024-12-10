@@ -1,54 +1,62 @@
 [
     {
-        "merged": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-mergeDebugResources-63:\\layout\\fragment_item_discovery.xml",
-        "source": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-main-66:\\layout\\fragment_item_discovery.xml"
+        "merged": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/item_notification.xml",
+        "source": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/item_notification.xml"
     },
     {
-        "merged": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-mergeDebugResources-63:\\layout\\fragment_food_post_detail.xml",
-        "source": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-main-66:\\layout\\fragment_food_post_detail.xml"
+        "merged": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_food_post_detail.xml",
+        "source": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/fragment_food_post_detail.xml"
     },
     {
-        "merged": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-mergeDebugResources-63:\\layout\\fragment_item_posting.xml",
-        "source": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-main-66:\\layout\\fragment_item_posting.xml"
+        "merged": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_item_posting.xml",
+        "source": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/fragment_item_posting.xml"
     },
     {
-        "merged": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-mergeDebugResources-63:\\layout\\activity_register.xml",
-        "source": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-main-66:\\layout\\activity_register.xml"
+        "merged": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_photo.xml",
+        "source": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/fragment_photo.xml"
     },
     {
-        "merged": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-mergeDebugResources-63:\\layout\\list_item.xml",
-        "source": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-main-66:\\layout\\list_item.xml"
+        "merged": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_claimed_meals.xml",
+        "source": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/fragment_claimed_meals.xml"
     },
     {
-        "merged": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-mergeDebugResources-63:\\layout\\fragment_claimed_meals.xml",
-        "source": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-main-66:\\layout\\fragment_claimed_meals.xml"
+        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_photo.xml",
+        "source": "com.yourcompany.excesseats.app-main-66:/layout/fragment_photo.xml"
     },
     {
-        "merged": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-mergeDebugResources-63:\\layout\\activity_main.xml",
-        "source": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-main-66:\\layout\\activity_main.xml"
+        "merged": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/activity_login.xml",
+        "source": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/activity_login.xml"
     },
     {
-        "merged": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-mergeDebugResources-63:\\layout\\item_notification.xml",
-        "source": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-main-66:\\layout\\item_notification.xml"
+        "merged": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_item_discovery.xml",
+        "source": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/fragment_item_discovery.xml"
     },
     {
-        "merged": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-mergeDebugResources-63:\\layout\\fragment_notifications.xml",
-        "source": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-main-66:\\layout\\fragment_notifications.xml"
+        "merged": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_notifications.xml",
+        "source": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/fragment_notifications.xml"
     },
     {
-        "merged": "com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_claimed.xml",
-        "source": "com.yourcompany.excesseats.app-main-66:/layout/fragment_claimed.xml"
+        "merged": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/activity_register.xml",
+        "source": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/activity_register.xml"
     },
     {
-        "merged": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-mergeDebugResources-63:\\layout\\activity_login.xml",
-        "source": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-main-66:\\layout\\activity_login.xml"
+        "merged": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_user_profile.xml",
+        "source": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/fragment_user_profile.xml"
     },
     {
-        "merged": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-mergeDebugResources-63:\\layout\\item_food_post.xml",
-        "source": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-main-66:\\layout\\item_food_post.xml"
+        "merged": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/list_item.xml",
+        "source": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/list_item.xml"
     },
     {
-        "merged": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-mergeDebugResources-63:\\layout\\fragment_user_profile.xml",
-        "source": "C:\\Users\\zhuos\\.gradle\\daemon\\8.10.2\\com.yourcompany.excesseats.app-main-66:\\layout\\fragment_user_profile.xml"
+        "merged": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/activity_main.xml",
+        "source": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/item_food_post.xml",
+        "source": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/item_food_post.xml"
+    },
+    {
+        "merged": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-mergeDebugResources-63:/layout/fragment_claimed.xml",
+        "source": "/Users/ai/.gradle/daemon/8.10.2/com.yourcompany.excesseats.app-main-66:/layout/fragment_claimed.xml"
     }
 ]
