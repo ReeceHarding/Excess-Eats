@@ -1,19 +1,19 @@
-#Mon Dec 09 19:30:02 CST 2024
-base.0=/Users/ai/AndroidStudioProjects/Excess-Eats-Current/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
-base.1=/Users/ai/AndroidStudioProjects/Excess-Eats-Current/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
-base.10=/Users/ai/AndroidStudioProjects/Excess-Eats-Current/app/build/intermediates/dex/debug/mergeProjectDexDebug/7/classes.dex
-base.11=/Users/ai/AndroidStudioProjects/Excess-Eats-Current/app/build/intermediates/dex/debug/mergeProjectDexDebug/8/classes.dex
-base.12=/Users/ai/AndroidStudioProjects/Excess-Eats-Current/app/build/intermediates/dex/debug/mergeProjectDexDebug/9/classes.dex
-base.13=/Users/ai/AndroidStudioProjects/Excess-Eats-Current/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
-base.14=/Users/ai/AndroidStudioProjects/Excess-Eats-Current/app/build/intermediates/dex/debug/mergeExtDexDebug/classes3.dex
-base.2=/Users/ai/AndroidStudioProjects/Excess-Eats-Current/app/build/intermediates/dex/debug/mergeProjectDexDebug/1/classes.dex
-base.3=/Users/ai/AndroidStudioProjects/Excess-Eats-Current/app/build/intermediates/dex/debug/mergeProjectDexDebug/11/classes.dex
-base.4=/Users/ai/AndroidStudioProjects/Excess-Eats-Current/app/build/intermediates/dex/debug/mergeProjectDexDebug/12/classes.dex
-base.5=/Users/ai/AndroidStudioProjects/Excess-Eats-Current/app/build/intermediates/dex/debug/mergeProjectDexDebug/13/classes.dex
-base.6=/Users/ai/AndroidStudioProjects/Excess-Eats-Current/app/build/intermediates/dex/debug/mergeProjectDexDebug/14/classes.dex
-base.7=/Users/ai/AndroidStudioProjects/Excess-Eats-Current/app/build/intermediates/dex/debug/mergeProjectDexDebug/15/classes.dex
-base.8=/Users/ai/AndroidStudioProjects/Excess-Eats-Current/app/build/intermediates/dex/debug/mergeProjectDexDebug/4/classes.dex
-base.9=/Users/ai/AndroidStudioProjects/Excess-Eats-Current/app/build/intermediates/dex/debug/mergeProjectDexDebug/6/classes.dex
+#Tue Dec 10 17:02:34 CST 2024
+base.0=/Users/shivamratnani/StudioProjects/Excess-Eats/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+base.1=/Users/shivamratnani/StudioProjects/Excess-Eats/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
+base.10=/Users/shivamratnani/StudioProjects/Excess-Eats/app/build/intermediates/dex/debug/mergeProjectDexDebug/7/classes.dex
+base.11=/Users/shivamratnani/StudioProjects/Excess-Eats/app/build/intermediates/dex/debug/mergeProjectDexDebug/8/classes.dex
+base.12=/Users/shivamratnani/StudioProjects/Excess-Eats/app/build/intermediates/dex/debug/mergeProjectDexDebug/9/classes.dex
+base.13=/Users/shivamratnani/StudioProjects/Excess-Eats/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
+base.14=/Users/shivamratnani/StudioProjects/Excess-Eats/app/build/intermediates/dex/debug/mergeExtDexDebug/classes3.dex
+base.2=/Users/shivamratnani/StudioProjects/Excess-Eats/app/build/intermediates/dex/debug/mergeProjectDexDebug/1/classes.dex
+base.3=/Users/shivamratnani/StudioProjects/Excess-Eats/app/build/intermediates/dex/debug/mergeProjectDexDebug/11/classes.dex
+base.4=/Users/shivamratnani/StudioProjects/Excess-Eats/app/build/intermediates/dex/debug/mergeProjectDexDebug/12/classes.dex
+base.5=/Users/shivamratnani/StudioProjects/Excess-Eats/app/build/intermediates/dex/debug/mergeProjectDexDebug/13/classes.dex
+base.6=/Users/shivamratnani/StudioProjects/Excess-Eats/app/build/intermediates/dex/debug/mergeProjectDexDebug/14/classes.dex
+base.7=/Users/shivamratnani/StudioProjects/Excess-Eats/app/build/intermediates/dex/debug/mergeProjectDexDebug/15/classes.dex
+base.8=/Users/shivamratnani/StudioProjects/Excess-Eats/app/build/intermediates/dex/debug/mergeProjectDexDebug/4/classes.dex
+base.9=/Users/shivamratnani/StudioProjects/Excess-Eats/app/build/intermediates/dex/debug/mergeProjectDexDebug/6/classes.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.10=7/classes.dex

@@ -427,8 +427,9 @@ class ItemPostingFragment : Fragment() {
             val foodType = binding.foodTypeInput.text.toString()
             val quantity = binding.quantityInput.text.toString()
             val description = binding.descriptionInput.text.toString()
+            val containersAvailable = binding.containerSwitch.isChecked
 
-            if (validateInput(title, foodType, quantity, description)) {
+            if (validateInput(title, foodType, quantity, description, containersAvailable)) {
                 // Ensure we have a future pickup time
                 val pickupTime = selectedTime ?: run {
                     val futureTime = Calendar.getInstance()
@@ -509,7 +510,8 @@ class ItemPostingFragment : Fragment() {
         title: String,
         foodType: String,
         quantity: String,
-        description: String
+        description: String,
+        containersAvailable: Boolean
     ): Boolean {
         var isValid = true
 
@@ -528,8 +530,8 @@ class ItemPostingFragment : Fragment() {
             isValid = false
         }
 
-        if (description.isBlank()) {
-            binding.descriptionLayout.error = "Description is required"
+        if (description.isBlank() && containersAvailable) {
+            binding.descriptionLayout.error = "Description is required if containers are available for pickup"
             isValid = false
         }
 
