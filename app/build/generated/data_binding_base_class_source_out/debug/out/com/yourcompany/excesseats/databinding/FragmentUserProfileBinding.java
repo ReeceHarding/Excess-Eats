@@ -25,10 +25,13 @@ public final class FragmentUserProfileBinding implements ViewBinding {
   private final CoordinatorLayout rootView;
 
   @NonNull
-  public final ImageButton editProfileImageButton;
+  public final ImageButton cameraButton;
 
   @NonNull
   public final TextInputEditText emailEditText;
+
+  @NonNull
+  public final ImageButton galleryButton;
 
   @NonNull
   public final MaterialButton logoutButton;
@@ -55,14 +58,16 @@ public final class FragmentUserProfileBinding implements ViewBinding {
   public final TextView wasteSavedText;
 
   private FragmentUserProfileBinding(@NonNull CoordinatorLayout rootView,
-      @NonNull ImageButton editProfileImageButton, @NonNull TextInputEditText emailEditText,
-      @NonNull MaterialButton logoutButton, @NonNull TextView mealsClaimedText,
-      @NonNull TextInputEditText nameEditText, @NonNull TextInputEditText phoneEditText,
-      @NonNull ImageView profileImage, @NonNull MaterialButton saveButton,
-      @NonNull MaterialToolbar toolbar, @NonNull TextView wasteSavedText) {
+      @NonNull ImageButton cameraButton, @NonNull TextInputEditText emailEditText,
+      @NonNull ImageButton galleryButton, @NonNull MaterialButton logoutButton,
+      @NonNull TextView mealsClaimedText, @NonNull TextInputEditText nameEditText,
+      @NonNull TextInputEditText phoneEditText, @NonNull ImageView profileImage,
+      @NonNull MaterialButton saveButton, @NonNull MaterialToolbar toolbar,
+      @NonNull TextView wasteSavedText) {
     this.rootView = rootView;
-    this.editProfileImageButton = editProfileImageButton;
+    this.cameraButton = cameraButton;
     this.emailEditText = emailEditText;
+    this.galleryButton = galleryButton;
     this.logoutButton = logoutButton;
     this.mealsClaimedText = mealsClaimedText;
     this.nameEditText = nameEditText;
@@ -100,15 +105,21 @@ public final class FragmentUserProfileBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.editProfileImageButton;
-      ImageButton editProfileImageButton = ViewBindings.findChildViewById(rootView, id);
-      if (editProfileImageButton == null) {
+      id = R.id.cameraButton;
+      ImageButton cameraButton = ViewBindings.findChildViewById(rootView, id);
+      if (cameraButton == null) {
         break missingId;
       }
 
       id = R.id.emailEditText;
       TextInputEditText emailEditText = ViewBindings.findChildViewById(rootView, id);
       if (emailEditText == null) {
+        break missingId;
+      }
+
+      id = R.id.galleryButton;
+      ImageButton galleryButton = ViewBindings.findChildViewById(rootView, id);
+      if (galleryButton == null) {
         break missingId;
       }
 
@@ -160,9 +171,9 @@ public final class FragmentUserProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentUserProfileBinding((CoordinatorLayout) rootView, editProfileImageButton,
-          emailEditText, logoutButton, mealsClaimedText, nameEditText, phoneEditText, profileImage,
-          saveButton, toolbar, wasteSavedText);
+      return new FragmentUserProfileBinding((CoordinatorLayout) rootView, cameraButton,
+          emailEditText, galleryButton, logoutButton, mealsClaimedText, nameEditText, phoneEditText,
+          profileImage, saveButton, toolbar, wasteSavedText);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
