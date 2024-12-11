@@ -3475,6 +3475,7 @@ drawable ic_directions
 drawable ic_discover
 drawable ic_email
 drawable ic_food
+drawable ic_gallery
 drawable ic_keyboard_black_24dp
 drawable ic_launcher_foreground
 drawable ic_location
@@ -3696,6 +3697,7 @@ id btnRegister
 id buttonPanel
 id cache_measures
 id callMeasure
+id cameraButton
 id cancel_button
 id carryVelocity
 id center
@@ -3783,7 +3785,6 @@ id easeInOut
 id easeOut
 id east
 id edge
-id editProfileImageButton
 id edit_query
 id elastic
 id emailEditText
@@ -3828,6 +3829,7 @@ id forever
 id fragment_container_view_tag
 id frost
 id fullscreen_header
+id galleryButton
 id ghost_view
 id ghost_view_holder
 id glide_custom_view_target_tag

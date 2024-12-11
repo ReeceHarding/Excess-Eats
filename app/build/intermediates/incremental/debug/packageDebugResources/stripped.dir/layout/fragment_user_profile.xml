@@ -37,68 +37,76 @@
                 android:orientation="horizontal"
                 android:paddingBottom="24dp">
 
-                <FrameLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="80dp"
-                    android:layout_height="80dp">
+                    android:layout_height="94dp"
+                    android:layout_weight="1">
+
+                    <ImageButton
+                        android:id="@+id/cameraButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Take a picture"
+                        android:src="@drawable/ic_camera"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="?attr/colorPrimary" />
+
+                    <ImageButton
+                        android:id="@+id/galleryButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Select from gallery"
+                        android:src="@drawable/ic_gallery"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cameraButton"
+                        app:tint="?attr/colorPrimary" />
 
                     <ImageView
                         android:id="@+id/profileImage"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginEnd="8dp"
                         android:background="@drawable/circle_background"
+                        android:contentDescription="Profile Image"
+                        android:elevation="2dp"
+                        android:padding="4dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_person"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:contentDescription="Profile picture" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/cameraButton"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <ImageButton
-                        android:id="@+id/editProfileImageButton"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_gravity="bottom|end"
-                        android:background="@drawable/circle_background"
-                        android:src="@drawable/ic_camera"
-                        android:padding="4dp"
-                        android:tint="@android:color/white"
-                        android:elevation="2dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:contentDescription="Edit profile picture" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </FrameLayout>
-
-                <LinearLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="8dp"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:hint="Name"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nameEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Name"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/nameEditText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textPersonName" />
-                    </com.google.android.material.textfield.TextInputLayout>
-                </LinearLayout>
+                        android:inputType="textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <!-- Contact Information -->
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:hint="Email"
-                app:startIconDrawable="@drawable/ic_email"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:startIconDrawable="@drawable/ic_email">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/emailEditText"
@@ -108,12 +116,12 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:hint="Phone"
-                app:startIconDrawable="@drawable/ic_phone"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:startIconDrawable="@drawable/ic_phone">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/phoneEditText"
@@ -139,9 +147,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
                         android:text="Your Impact"
-                        android:textAppearance="?attr/textAppearanceHeadline6"
-                        android:layout_marginBottom="16dp" />
+                        android:textAppearance="?attr/textAppearanceHeadline6" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -159,9 +167,9 @@
                             <ImageView
                                 android:layout_width="32dp"
                                 android:layout_height="32dp"
+                                android:contentDescription="Meals claimed"
                                 android:src="@drawable/ic_meals"
-                                android:tint="?attr/colorPrimary"
-                                android:contentDescription="Meals claimed" />
+                                app:tint="?attr/colorPrimary" />
 
                             <TextView
                                 android:id="@+id/mealsClaimedText"
@@ -188,9 +196,9 @@
                             <ImageView
                                 android:layout_width="32dp"
                                 android:layout_height="32dp"
+                                android:contentDescription="Food waste prevented"
                                 android:src="@drawable/ic_waste"
-                                android:tint="?attr/colorPrimary"
-                                android:contentDescription="Food waste prevented" />
+                                app:tint="?attr/colorPrimary" />
 
                             <TextView
                                 android:id="@+id/wasteSavedText"
@@ -214,15 +222,15 @@
                 android:id="@+id/saveButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Save Changes"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="8dp"
+                android:text="Save Changes" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/logoutButton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/action_logout"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+                android:text="@string/action_logout" />
 
         </LinearLayout>
 

@@ -1,15 +1,22 @@
 package com.yourcompany.excesseats.ui.profile
 
 import android.content.Intent
+import android.Manifest
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -22,15 +29,68 @@ import com.yourcompany.excesseats.data.repository.UserRepository
 import com.yourcompany.excesseats.databinding.FragmentUserProfileBinding
 import com.yourcompany.excesseats.utils.Logger
 import kotlinx.coroutines.launch
+import java.io.File
 
 class UserProfileFragment : Fragment() {
     private var _binding: FragmentUserProfileBinding? = null
     private val binding get() = _binding!!
     private val userRepository = UserRepository.getInstance()
     private val foodPostRepository = FoodPostRepository.getInstance()
+    private lateinit var cameraImageUri: Uri
 
     private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let { handleImageSelection(it) }
+    }
+
+    private val takePicture = registerForActivityResult(ActivityResultContracts.TakePicture()) { success: Boolean ->
+        if (success) {
+            handleImageSelection(cameraImageUri)
+        }
+    }
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
+        if (permissions[Manifest.permission.CAMERA] == true && permissions[Manifest.permission.READ_MEDIA_IMAGES] == true) {
+            launchCameraIntent()
+        } else {
+            Toast.makeText(context, "Permissions denied", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun openCamera() {
+        Log.d("UserProfileFragment", "openCamera called")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
+                Log.d("UserProfileFragment", "Requesting CAMERA and READ_MEDIA_IMAGES permissions")
+                requestPermissionLauncher.launch(arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_MEDIA_IMAGES))
+            } else {
+                launchCameraIntent()
+            }
+        } else {
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                Log.d("UserProfileFragment", "Requesting CAMERA permission")
+                requestPermissionLauncher.launch(arrayOf(Manifest.permission.CAMERA))
+            } else {
+                launchCameraIntent()
+            }
+        }
+    }
+
+    private fun launchCameraIntent() {
+        Log.d("UserProfileFragment", "launchCameraIntent called")
+        try {
+            val photoFile = File.createTempFile("profile_image", ".jpg", requireContext().cacheDir).apply {
+                createNewFile()
+                deleteOnExit()
+            }
+            cameraImageUri = FileProvider.getUriForFile(requireContext(), "${requireContext().packageName}.fileprovider", photoFile)
+            Log.d("UserProfileFragment", "cameraImageUri: $cameraImageUri")
+            takePicture.launch(cameraImageUri)
+        } catch (e: Exception) {
+            Log.e("UserProfileFragment", "Error launching camera intent", e)
+            Toast.makeText(context, "Error launching camera: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onCreateView(
@@ -50,12 +110,18 @@ class UserProfileFragment : Fragment() {
 
     private fun setupViews() {
         binding.apply {
-            // Profile image click handlers
+            // Profile image click handler
             profileImage.setOnClickListener {
                 openImagePicker()
             }
 
-            editProfileImageButton.setOnClickListener {
+            // Camera button click handler
+            cameraButton.setOnClickListener {
+                openCamera()
+            }
+
+            // Gallery button click handler
+            galleryButton.setOnClickListener {
                 openImagePicker()
             }
 
@@ -124,7 +190,6 @@ class UserProfileFragment : Fragment() {
         lifecycleScope.launch {
             try {
                 binding.profileImage.isEnabled = false
-                binding.editProfileImageButton.isEnabled = false
 
                 val result = userRepository.uploadProfileImage(currentUser.uid, uri)
                 result.onSuccess { imageUrl ->
@@ -143,7 +208,6 @@ class UserProfileFragment : Fragment() {
                 Logger.e("Error uploading profile image", e)
             } finally {
                 binding.profileImage.isEnabled = true
-                binding.editProfileImageButton.isEnabled = true
             }
         }
     }
@@ -158,7 +222,7 @@ class UserProfileFragment : Fragment() {
             try {
                 // Update claim count first
                 foodPostRepository.updateUserClaimCount(currentUser.uid)
-                
+
                 // Then load profile which will show updated count
                 val profile = userRepository.getUserProfile(currentUser.uid)
                 updateUI(profile)

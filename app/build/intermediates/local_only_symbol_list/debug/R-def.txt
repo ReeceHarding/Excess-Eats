@@ -21,6 +21,7 @@ drawable ic_directions
 drawable ic_discover
 drawable ic_email
 drawable ic_food
+drawable ic_gallery
 drawable ic_launcher_foreground
 drawable ic_location
 drawable ic_meals
@@ -42,6 +43,7 @@ id autocomplete_fragment
 id bottomNavigationView
 id btnLogin
 id btnRegister
+id cameraButton
 id changeFeaturedPhotoButton
 id claimButton
 id claimedChip
@@ -57,7 +59,6 @@ id descriptionText
 id directionsButton
 id distanceSlider
 id distanceText
-id editProfileImageButton
 id emailEditText
 id emptyStateText
 id emptyView
@@ -75,6 +76,7 @@ id foodTypeChipGroup
 id foodTypeInput
 id foodTypeLayout
 id foodTypeText
+id galleryButton
 id imagePreview
 id locationLayout
 id locationText
